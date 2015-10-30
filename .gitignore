@@ -1,2 +1,4 @@
 node_modules
 dist
+# remove once AWS keys are removed from the file
+wallaby.js
