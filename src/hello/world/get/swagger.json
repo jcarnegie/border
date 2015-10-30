@@ -1,0 +1,17 @@
+{
+    "description": "Prints \"Hello, world\"\n",
+    "responses": {
+        "200": {
+            "description": "Successful response",
+            "schema": {
+                "title": "Response",
+                "type": "object",
+                "properties": {
+                    "hello": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}
