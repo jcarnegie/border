@@ -45,7 +45,7 @@ let stubbedRequest = (responseText, headers, error) => {
     });
 };
 
-describe ("awsrequest", () => {
+xdescribe ("awsrequest", () => {
     describe ("request", () => {
         it ("should make a get request", asyncTest(async () => {
             let awsreq = stubbedRequest("blah");

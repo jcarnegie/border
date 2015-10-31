@@ -1,0 +1,40 @@
+{
+    "_links": {
+        "curies": [
+            {
+                "href": "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-method-{rel}.html",
+                "name": "method",
+                "templated": true
+            },
+            {
+                "href": "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-resource-{rel}.html",
+                "name": "resource",
+                "templated": true
+            }
+        ],
+        "self": {
+            "href": "/restapis/cd14zqypi2/resources/3e5141"
+        },
+        "method:by-http-method": {
+            "href": "/restapis/cd14zqypi2/resources/3e5141/methods/{http_method}",
+            "templated": true
+        },
+        "method:put": {
+            "href": "/restapis/cd14zqypi2/resources/3e5141/methods/{http_method}",
+            "templated": true
+        },
+        "resource:create-child": {
+            "href": "/restapis/cd14zqypi2/resources/3e5141"
+        },
+        "resource:delete": {
+            "href": "/restapis/cd14zqypi2/resources/3e5141"
+        },
+        "resource:update": {
+            "href": "/restapis/cd14zqypi2/resources/3e5141"
+        }
+    },
+    "id": "3e5141",
+    "parentId": "klqt924rw3",
+    "path": "/hello",
+    "pathPart": "hello"
+}

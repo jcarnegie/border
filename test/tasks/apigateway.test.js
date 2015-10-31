@@ -33,20 +33,43 @@ describe("Create", async () => {
     }));
 
 
-    it ("should create a new API gateway", (done) => {
+    it ("should create a new API gateway", asyncTest(async () => {
+        console.log("inside test");
         // 1. POST /restapis - creates a new api gateway using name, description from the swagger def
         // 2. For each path in the swagger
-        //    3.
+        // 3.
 
         let apiDef = {
-            name: "api"
-
+            swagger: "2.0",
+            info: {
+                version: "0.0.0",
+                title: "api",
+                description: "Intelos API"
+            },
+            paths: {
+                "/hello/world": {
+                    get: {
+                        description: "Prints \"Hello, world\"\n",
+                        responses: {
+                            "200": { // eslint-disable-line
+                                description: "Successful response",
+                                schema: {
+                                    title: "Response",
+                                    type: "object",
+                                    properties: {
+                                        hello: {
+                                            type: "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         };
 
-        // x
 
-        gateway.create(apiDef);
-
-        done();
-    });
+        let res = await gateway.create(apiDef);
+    }, { timeout: 60000 }));
 });

@@ -1,0 +1,55 @@
+{
+    "_links": {
+        "curies": [
+            {
+                "href": "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-method-{rel}.html",
+                "name": "method",
+                "templated": true
+            },
+            {
+                "href": "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-resource-{rel}.html",
+                "name": "resource",
+                "templated": true
+            }
+        ],
+        "self": {
+            "href": "/restapis/cd14zqypi2/resources"
+        },
+        "item": {
+            "href": "/restapis/cd14zqypi2/resources/klqt924rw3"
+        },
+        "resource:by-id": {
+            "href": "/restapis/cd14zqypi2/resources/{resource_id}{?embed}",
+            "templated": true
+        },
+        "resource:create": {
+            "href": "/restapis/cd14zqypi2/resources/{parent_id}",
+            "templated": true
+        }
+    },
+    "_embedded": {
+        "item": {
+            "_links": {
+                "self": {
+                    "href": "/restapis/cd14zqypi2/resources/klqt924rw3"
+                },
+                "method:by-http-method": {
+                    "href": "/restapis/cd14zqypi2/resources/klqt924rw3/methods/{http_method}",
+                    "templated": true
+                },
+                "method:put": {
+                    "href": "/restapis/cd14zqypi2/resources/klqt924rw3/methods/{http_method}",
+                    "templated": true
+                },
+                "resource:create-child": {
+                    "href": "/restapis/cd14zqypi2/resources/klqt924rw3"
+                },
+                "resource:update": {
+                    "href": "/restapis/cd14zqypi2/resources/klqt924rw3"
+                }
+            },
+            "id": "klqt924rw3",
+            "path": "/"
+        }
+    }
+}

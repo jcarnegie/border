@@ -1,0 +1,19 @@
+{
+    "_links": {
+        "curies": {
+            "href": "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-restapi-{rel}.html",
+            "name": "restapi",
+            "templated": true
+        },
+        "self": {
+            "href": "/restapis"
+        },
+        "restapi:by-id": {
+            "href": "/restapis/{restapi_id}",
+            "templated": true
+        },
+        "restapi:create": {
+            "href": "/restapis"
+        }
+    }
+}
