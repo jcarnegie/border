@@ -24,7 +24,7 @@ var fileToJson = function(path) {
 }
 
 // since our tests are written in es6/7 and transpiled with babel
-require("babel/register");
+require("babel-core/register");
 
 gulp.task("default", ["build"]);
 

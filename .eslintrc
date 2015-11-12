@@ -5,6 +5,7 @@
         "modules": true
     },
     "globals": {
+        "Buffer": false,
         "window": false,
         "document": false,
         "location": false,

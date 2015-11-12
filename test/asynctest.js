@@ -5,7 +5,7 @@ export default (test) => {
             await test();
             done();
         } catch (e) {
-            console.error(e.stack);  // eslint-disable-line no-console
+            console.error(e);  // eslint-disable-line no-console
             done(e);
         }
     };

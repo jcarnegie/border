@@ -15,7 +15,7 @@ import asyncTest from "../asynctest";
 // };
 
 
-describe("Create", async () => {
+xdescribe("Create", async () => {
     beforeEach(asyncTest(async () => {
         // let data = await test("us-west-2");
         // console.log(JSON.stringify(data, null, 4));
@@ -33,7 +33,8 @@ describe("Create", async () => {
     }));
 
 
-    it ("should create a new API gateway", asyncTest(async () => {
+    it ("should create a new API gateway", function(done) {
+        this.timeout(60000);
         console.log("inside test");
         // 1. POST /restapis - creates a new api gateway using name, description from the swagger def
         // 2. For each path in the swagger
@@ -70,6 +71,38 @@ describe("Create", async () => {
         };
 
 
-        let res = await gateway.create(apiDef);
-    }, { timeout: 60000 }));
+        // let res = await gateway.create(apiDef);
+
+        async () => {
+            // let met = await gateway.method("us-west-2", "cd14zqypi2", "3e5141", "GET");
+            // console.log(JSON.stringify(met, null, 4));
+
+            try {
+                let res = await gateway.createIntegration({
+                    region: "us-west-2",
+                    apiId: "cd14zqypi2",
+                    resourceId: "3e5141",
+                    method: "POST",
+                    type: "AWS",
+                    httpMethod: "POST",
+                    authorizationType: "none",
+                    uri: "arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:018810891728:function:GetHelloWorld/invocations",
+                    credentials: null,
+                    requestParameters: {},
+                    requestTemplates: {},
+                    cacheNamespace: null,
+                    cacheKeyParameters: []
+                });
+                console.log(JSON.stringify(res, null, 4));
+            } catch (e) {
+                console.error("error:", e.statusCode);
+                console.error("error:", e.statusMessage);
+                console.log("res keys:", r.keys(e));
+            }
+            done();
+        }();
+
+
+
+    });
 });
