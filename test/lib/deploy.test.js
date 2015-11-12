@@ -29,16 +29,18 @@ describe("Deploy", () => {
             },
             paths: {
                 "/hello": {
-                    description: "Prints \"Hello, world\"\n",
-                    responses: {
-                        200: {
-                            description: "Successful response",
-                            schema: {
-                                title: "Response",
-                                type: "object",
-                                properties: {
-                                    hello: {
-                                        type: "string"
+                    get: {
+                        description: "Prints \"Hello, world\"\n",
+                        responses: {
+                            200: {
+                                description: "Successful response",
+                                schema: {
+                                    title: "Response",
+                                    type: "object",
+                                    properties: {
+                                        hello: {
+                                            type: "string"
+                                        }
                                     }
                                 }
                             }
@@ -56,7 +58,7 @@ describe("Deploy", () => {
         let resourcesStub    = sinon.stub().resolves([loadFixture("resources-empty-get")._embedded.item]);
         let createResStub    = sinon.stub().resolves(loadFixture("resources-post"));
         let updateMethodStub = sinon.stub().resolves(loadFixture("methods-put"));
-        let zipStub          = sinon.stub();
+        let zipStub          = sinon.stub().resolves("foo");
         let createFuncStub   = sinon.stub().yields(null, {});
         let deploy = proxyquire("../../lib/deploy", {
             "./transpile": transpileStub,
@@ -79,14 +81,16 @@ describe("Deploy", () => {
 
         let res = await deploy.go("us-west-2", "test", "api", "v1", spec, "dist");
 
+        let lambdaCreateArgs = { Code: { ZipFile: "foo" } };
+
         expect(transpileStub.withArgs("v1", "dist").calledOnce).to.eql(true);
         expect(npmInstallStub.withArgs("dist/v1/hello").calledOnce).to.eql(true);
         expect(createApiStub.withArgs("us-west-2", "api-test", "").calledOnce).to.eql(true);
         expect(resourcesStub.withArgs("us-west-2", "cd14zqypi2").calledOnce).to.eql(true);
         expect(createResStub.withArgs("us-west-2", "cd14zqypi2", "klqt924rw3", "hello").calledOnce).to.eql(true);
         expect(updateMethodStub.withArgs("us-west-2", "cd14zqypi2", "3e5141", "GET").calledOnce).to.eql(true);
-        expect(zipStub.calledOnce).to.eql(true);
-        expect(createFuncStub.calledOnce).to.eql(true);
+        expect(zipStub.withArgs("dist/v1/hello").calledOnce).to.eql(true);
+        expect(createFuncStub.withArgs(lambdaCreateArgs).calledOnce).to.eql(true);
         // expect(res.status).to.eql(0);
         // expect(res.output.length).to.be.gt(0);
     });
