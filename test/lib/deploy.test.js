@@ -63,9 +63,10 @@ describe("Deploy", () => {
         let createResStub    = sinon.stub().resolves(loadFixture("resources-post"));
         let updateMethodStub = sinon.stub().resolves(loadFixture("methods-put"));
         let zipStub          = sinon.stub().resolves("foo");
+        let getUserStub      = sinon.stub().yields(null, { User: { Arn: `arn:aws:iam::${accountId}:root` } });
         let createFuncStub   = sinon.stub().yields(null, {});
         let addPermStub      = sinon.stub().yields(null, {});
-        let getUserStub      = sinon.stub().yields(null, { Arn: `arn:aws:iam::${accountId}:root` });
+        let createIntegrationStub = sinon.stub().resolves({});
         let deploy = proxyquire("../../lib/deploy", {
             "./transpile": transpileStub,
             "./npminstall": npmInstallStub,
@@ -73,7 +74,8 @@ describe("Deploy", () => {
                 createRestapi: createApiStub,
                 resources: resourcesStub,
                 createResource: createResStub,
-                updateMethod: updateMethodStub
+                updateMethod: updateMethodStub,
+                createIntegration: createIntegrationStub
             },
             "aws-sdk": {
                 Lambda: function() {
@@ -104,7 +106,7 @@ describe("Deploy", () => {
             FunctionName: "api-test-v1-hello-get",
             Principal: "apigateway.amazonaws.com",
             StatementId: "api-test-v1-hello-get",
-            SourceARN: "arn:aws:apigateway:us-west-2::3e5141:/hello"
+            SourceArn: "arn:aws:apigateway:us-west-2::3e5141:/hello"
         };
 
         expect(transpileStub.withArgs("src/v1", "dist/v1").calledOnce).to.eql(true);
@@ -116,5 +118,6 @@ describe("Deploy", () => {
         expect(zipStub.withArgs("dist/v1/hello/get").calledOnce).to.eql(true);
         expect(createFuncStub.withArgs(lambdaCreateArgs).calledOnce).to.eql(true);
         expect(addPermStub.withArgs(lambdaAddPermArgs).calledOnce).to.eql(true);
+        expect(createIntegrationStub.calledOnce).to.eql(true);
     });
 });

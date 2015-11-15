@@ -82,34 +82,34 @@ let updateMethod = async (region, apiId, parentResourceId, method) => {
 //     });
 // });
 
-// let createIntegration = r.curry(async (opts) => {
-//     // let region = opts.region;
-//     // let apiId = opts.apiId;
-//     // let resourceId = opts.resourceId;
-//     // let method = opts.method
-//     // let type = opts.type;
-//     // let httpMethod = opts.httpMethod;
-//     // let uri = opts.uri;
-//     // let credentials = opts.credentials;
-//     // let requestParameters = opts.requestParameters;
-//     // let requestTemplates = opts.requestTemplates;
-//     // let cacheNamespace = opts.cacheNamespace;
-//     // let cacheKeyParameter = opts.cacheKeyParameter;
-//
-//     let props = ["type", "httpMethod", "authorizationType", "uri", "credentials", "requestParameters", "requestTemplates", "cacheNamespace", "cacheKeyParameters"];
-//
-//     // console.log("/restapis/cd14zqypi2/resources/3e5141/methods/POST/integration");
-//     // console.log("--or--");
-//     // console.log(`/restapis/${opts.apiId}/resources/${opts.resourceId}/methods/${opts.method.toUpperCase()}/integration`);
-//
-//     return await awsreq.put({
-//         region: opts.region,
-//         host:   `apigateway.${opts.region}.amazonaws.com`,
-//         // path:   "/restapis/cd14zqypi2/resources/3e5141/methods/POST/integration",
-//         path:   `/restapis/${opts.apiId}/resources/${opts.resourceId}/methods/${opts.method.toUpperCase()}/integration`,
-//         body:   r.pick(props, opts)
-//     });
-// });
+let createIntegration = async (opts) => {
+    // let region = opts.region;
+    // let apiId = opts.apiId;
+    // let resourceId = opts.resourceId;
+    // let method = opts.method
+    // let type = opts.type;
+    // let httpMethod = opts.httpMethod;
+    // let uri = opts.uri;
+    // let credentials = opts.credentials;
+    // let requestParameters = opts.requestParameters;
+    // let requestTemplates = opts.requestTemplates;
+    // let cacheNamespace = opts.cacheNamespace;
+    // let cacheKeyParameter = opts.cacheKeyParameter;
+
+    let props = ["type", "httpMethod", "authorizationType", "uri", "credentials", "requestParameters", "requestTemplates", "cacheNamespace", "cacheKeyParameters"];
+
+    // console.log("/restapis/cd14zqypi2/resources/3e5141/methods/POST/integration");
+    // console.log("--or--");
+    // console.log(`/restapis/${opts.apiId}/resources/${opts.resourceId}/methods/${opts.method.toUpperCase()}/integration`);
+
+    return await awsreq.put({
+        region: opts.region,
+        host:   `apigateway.${opts.region}.amazonaws.com`,
+        // path:   "/restapis/cd14zqypi2/resources/3e5141/methods/POST/integration",
+        path:   `/restapis/${opts.apiId}/resources/${opts.resourceId}/methods/${opts.method.toUpperCase()}/integration`,
+        body:   r.pick(props, opts)
+    });
+};
 
 // let create = async (spec, region) => {
 //     let name = spec.info.title;
@@ -189,9 +189,9 @@ export default {
     createRestapi,
     resources,
     createResource,
-    updateMethod
+    updateMethod,
     // resource,
     // method,
-    // createIntegration,
+    createIntegration
     // createEndpoint
 };
