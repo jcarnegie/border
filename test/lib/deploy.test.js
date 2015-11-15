@@ -67,6 +67,7 @@ describe("Deploy", () => {
         let createFuncStub   = sinon.stub().yields(null, {});
         let addPermStub      = sinon.stub().yields(null, {});
         let createIntegrationStub = sinon.stub().resolves({});
+        let deployStub       = sinon.stub().resolves({});
         let deploy = proxyquire("../../lib/deploy", {
             "./transpile": transpileStub,
             "./npminstall": npmInstallStub,
@@ -75,7 +76,8 @@ describe("Deploy", () => {
                 resources: resourcesStub,
                 createResource: createResStub,
                 updateMethod: updateMethodStub,
-                createIntegration: createIntegrationStub
+                createIntegration: createIntegrationStub,
+                deploy: deployStub
             },
             "aws-sdk": {
                 Lambda: function() {
@@ -119,5 +121,7 @@ describe("Deploy", () => {
         expect(createFuncStub.withArgs(lambdaCreateArgs).calledOnce).to.eql(true);
         expect(addPermStub.withArgs(lambdaAddPermArgs).calledOnce).to.eql(true);
         expect(createIntegrationStub.calledOnce).to.eql(true);
+        console.log(deployStub.callCount);
+        expect(deployStub.calledOnce).to.eql(true);
     });
 });
