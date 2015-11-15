@@ -36,6 +36,7 @@ let resources = r.curry(async (region, apiId) => {
     });
     res = res._embedded.item; // eslint-disable-line
     if (!r.is(Array, res)) res = [res];
+    return res;
 });
 
 let createResource = async (region, apiId, parentResourceId, pathPart) => {

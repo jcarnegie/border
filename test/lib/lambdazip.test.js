@@ -10,13 +10,13 @@ describe("Lambda Function Zip", () => {
     it ("should return a buffer", async () => {
         let readdirStub = sinon.stub().yields(null, ["foo", "bar"]);
         let zipAddLocalFileStub = sinon.stub();
-        let zipWriteStub = sinon.stub().returns(new Buffer("lambdazip"));
+        let zipBufferStub = sinon.stub().returns(new Buffer("lambdazip"));
 
         let lambdazip = proxyquire("../../lib/lambdazip", {
             "recursive-readdir": readdirStub,
             "adm-zip": function() {
                 this.addLocalFile = zipAddLocalFileStub;
-                this.writeZip = zipWriteStub;
+                this.toBuffer = zipBufferStub;
             }
         });
 

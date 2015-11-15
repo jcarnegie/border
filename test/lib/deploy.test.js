@@ -25,7 +25,8 @@ describe("Deploy", () => {
             swagger: "2.0",
             info: {
                 version: "0.0.0",
-                title: "api"
+                title: "api",
+                "x-lambda-exec-role": "lambda_basic_execution"
             },
             paths: {
                 "/hello": {
@@ -51,7 +52,9 @@ describe("Deploy", () => {
         };
     });
 
-    it ("should create a new API", async () => {
+    it ("should create a new API", async function() {
+        this.timeout(60000);
+
         let transpileStub    = sinon.stub();
         let npmInstallStub   = sinon.stub();
         let createApiStub    = sinon.stub().resolves(loadFixture("restapis-post"));
@@ -60,6 +63,7 @@ describe("Deploy", () => {
         let updateMethodStub = sinon.stub().resolves(loadFixture("methods-put"));
         let zipStub          = sinon.stub().resolves("foo");
         let createFuncStub   = sinon.stub().yields(null, {});
+        let addPermStub      = sinon.stub().yields(null, {});
         let deploy = proxyquire("../../lib/deploy", {
             "./transpile": transpileStub,
             "./npminstall": npmInstallStub,
@@ -72,26 +76,40 @@ describe("Deploy", () => {
             "aws-sdk": {
                 Lambda: function() {
                     return {
-                        createFunction: createFuncStub
+                        createFunction: createFuncStub,
+                        addPermission: addPermStub
                     }
                 }
             },
             "./lambdazip": zipStub
         });
 
-        let res = await deploy.go("us-west-2", "test", "api", "v1", spec, "dist");
+        let res = await deploy.go("us-west-2", "test", "v1", spec, "dist");
 
-        let lambdaCreateArgs = { Code: { ZipFile: "foo" } };
+        let lambdaCreateArgs = {
+            Code: { ZipFile: "foo" },
+            FunctionName: "api-test-v1-hello-get",
+            Handler: "handler",
+            Role: "arn:aws:iam::018810891728:role/lambda_basic_execution",
+            Runtime: "nodejs"
+        };
 
-        expect(transpileStub.withArgs("v1", "dist").calledOnce).to.eql(true);
-        expect(npmInstallStub.withArgs("dist/v1/hello").calledOnce).to.eql(true);
-        expect(createApiStub.withArgs("us-west-2", "api-test", "").calledOnce).to.eql(true);
+        let lambdaAddPermArgs = {
+            Action: "lambda:InvokeFunction",
+            FunctionName: "api-test-v1-hello-get",
+            Principal: "apigateway.amazonaws.com",
+            StatementId: "api-test-v1-hello-get",
+            SourceARN: "arn:aws:apigateway:us-west-2::3e5141:/hello"
+        };
+
+        expect(transpileStub.withArgs("src/v1", "dist/v1").calledOnce).to.eql(true);
+        expect(npmInstallStub.withArgs("dist/v1/hello/get").calledOnce).to.eql(true);
+        expect(createApiStub.withArgs("us-west-2", "api-test", "api").calledOnce).to.eql(true);
         expect(resourcesStub.withArgs("us-west-2", "cd14zqypi2").calledOnce).to.eql(true);
         expect(createResStub.withArgs("us-west-2", "cd14zqypi2", "klqt924rw3", "hello").calledOnce).to.eql(true);
         expect(updateMethodStub.withArgs("us-west-2", "cd14zqypi2", "3e5141", "GET").calledOnce).to.eql(true);
-        expect(zipStub.withArgs("dist/v1/hello").calledOnce).to.eql(true);
+        expect(zipStub.withArgs("dist/v1/hello/get").calledOnce).to.eql(true);
         expect(createFuncStub.withArgs(lambdaCreateArgs).calledOnce).to.eql(true);
-        // expect(res.status).to.eql(0);
-        // expect(res.output.length).to.be.gt(0);
+        expect(addPermStub.withArgs(lambdaAddPermArgs).calledOnce).to.eql(true);
     });
 });
