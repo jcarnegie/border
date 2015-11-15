@@ -55,6 +55,7 @@ describe("Deploy", () => {
     it ("should create a new API", async function() {
         this.timeout(60000);
 
+        let accountId        = "1234567890";
         let transpileStub    = sinon.stub();
         let npmInstallStub   = sinon.stub();
         let createApiStub    = sinon.stub().resolves(loadFixture("restapis-post"));
@@ -64,6 +65,7 @@ describe("Deploy", () => {
         let zipStub          = sinon.stub().resolves("foo");
         let createFuncStub   = sinon.stub().yields(null, {});
         let addPermStub      = sinon.stub().yields(null, {});
+        let getUserStub      = sinon.stub().yields(null, { Arn: `arn:aws:iam::${accountId}:root` });
         let deploy = proxyquire("../../lib/deploy", {
             "./transpile": transpileStub,
             "./npminstall": npmInstallStub,
@@ -79,6 +81,9 @@ describe("Deploy", () => {
                         createFunction: createFuncStub,
                         addPermission: addPermStub
                     }
+                },
+                IAM: function() {
+                    return { getUser: getUserStub }
                 }
             },
             "./lambdazip": zipStub
@@ -90,7 +95,7 @@ describe("Deploy", () => {
             Code: { ZipFile: "foo" },
             FunctionName: "api-test-v1-hello-get",
             Handler: "handler",
-            Role: "arn:aws:iam::018810891728:role/lambda_basic_execution",
+            Role: `arn:aws:iam::${accountId}:role/lambda_basic_execution`,
             Runtime: "nodejs"
         };
 

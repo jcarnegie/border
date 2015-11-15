@@ -23,11 +23,7 @@ describe("Transpile", () => {
             "recursive-copy": copyStub
         });
 
-        try {
-            await transpile("src", "dest");
-        } catch (e) {
-            console.log("wtf?", e);
-        }
+        await transpile("src", "dest");
 
         expect(globStub.withArgs("src/**", { nodir: true }).calledOnce).to.eql(true);
         expect(transformStub.withArgs("hello/get/index.js").calledOnce).to.eql(true);
