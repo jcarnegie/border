@@ -1,6 +1,6 @@
 import "babel/polyfill";
 import proxyquire from "proxyquire";
-// import gateway from "../../tasks/apigateway"
+// import gateway from "../../lib/apigateway"
 import Bluebird from "bluebird";
 import sinon from "sinon";
 import chai from "chai";
@@ -21,35 +21,7 @@ describe("Deploy", () => {
     let spec = null;
 
     beforeEach(() => {
-        spec = {
-            swagger: "2.0",
-            info: {
-                version: "0.0.0",
-                title: "api",
-                "x-lambda-exec-role": "lambda_basic_execution"
-            },
-            paths: {
-                "/hello": {
-                    get: {
-                        description: "Prints \"Hello, world\"\n",
-                        responses: {
-                            200: {
-                                description: "Successful response",
-                                schema: {
-                                    title: "Response",
-                                    type: "object",
-                                    properties: {
-                                        hello: {
-                                            type: "string"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        };
+        spec = loadFixture("swagger-single-method");
     });
 
     it ("should create a new API", async function() {
@@ -71,7 +43,7 @@ describe("Deploy", () => {
         let deploy = proxyquire("../../lib/deploy", {
             "./transpile": transpileStub,
             "./npminstall": npmInstallStub,
-            "../tasks/apigateway": {
+            "../lib/apigateway": {
                 createRestapi: createApiStub,
                 resources: resourcesStub,
                 createResource: createResStub,

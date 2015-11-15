@@ -1,0 +1,29 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "0.0.0",
+        "title": "api",
+        "x-lambda-exec-role": "lambda_basic_execution"
+    },
+    "paths": {
+        "/hello": {
+            "get": {
+                "description": "Prints \"Hello, world\"\n",
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "title": "Response",
+                            "type": "object",
+                            "properties": {
+                                "hello": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
