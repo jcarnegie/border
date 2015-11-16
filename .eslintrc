@@ -145,7 +145,7 @@
         // disabled: don't require function names for closures
         "func-names": 0,
         "func-style": [2, "expression"],
-        "id-length": [2, { exceptions: ["r", "e"] }],
+        "id-length": [2, { exceptions: ["a", "b", "e", "r", "x"] }],
         "id-match": 2,
         "indent": 2,
         "jsx-quotes": 2,
