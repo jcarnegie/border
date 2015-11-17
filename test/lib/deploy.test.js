@@ -19,14 +19,20 @@ let loadFixture = (name) => {
 
 describe("Deploy", () => {
     let spec = null;
+    let clock = null;
 
     beforeEach(() => {
         spec = loadFixture("swagger-single-method");
+        clock = sinon.useFakeTimers();
+    });
+
+    afterEach(() => {
+        clock.restore();
     });
 
     it ("should deploy a new API", async function() {
         this.timeout(60000);
-        
+
         let accountId        = "1234567890";
         let transpileStub    = sinon.stub();
         let npmInstallStub   = sinon.stub();
@@ -40,33 +46,39 @@ describe("Deploy", () => {
         let getUserStub      = sinon.stub().yields(null, { User: { Arn: `arn:aws:iam::${accountId}:root` } });
         let createFuncStub   = sinon.stub().yields(null, {});
         let addPermStub      = sinon.stub().yields(null, {});
+        let updateFuncCodeStub = sinon.stub().yields(null, {});
+        let updateFuncConfigStub = sinon.stub().yields(null, {});
+        let listFuncsStub    = sinon.stub().yields(null, { Functions: [] });
         let createIntegrationStub = sinon.stub().resolves({});
         let deployStub       = sinon.stub().resolves({});
         let deploy = proxyquire("../../lib/deploy", {
-            // "./transpile": transpileStub,
-            // "./npminstall": npmInstallStub,
-            // "../lib/apigateway": {
-            //     restapis: restapisStub,
-            //     createRestapi: createApiStub,
-            //     resources: resourcesStub,
-            //     createResource: createResStub,
-            //     method: methodStub,
-            //     updateMethod: updateMethodStub,
-            //     createIntegration: createIntegrationStub,
-            //     deploy: deployStub
-            // },
-            // "aws-sdk": {
-            //     Lambda: function() {
-            //         return {
-            //             createFunction: createFuncStub,
-            //             addPermission: addPermStub
-            //         }
-            //     },
-            //     IAM: function() {
-            //         return { getUser: getUserStub }
-            //     }
-            // },
-            // "./lambdazip": zipStub
+            "./transpile": transpileStub,
+            "./npminstall": npmInstallStub,
+            "../lib/apigateway": {
+                restapis: restapisStub,
+                createRestapi: createApiStub,
+                resources: resourcesStub,
+                createResource: createResStub,
+                method: methodStub,
+                updateMethod: updateMethodStub,
+                createIntegration: createIntegrationStub,
+                deploy: deployStub
+            },
+            "aws-sdk": {
+                Lambda: function() {
+                    return {
+                        listFunctions: listFuncsStub,
+                        createFunction: createFuncStub,
+                        addPermission: addPermStub,
+                        updateFunctionCode: updateFuncCodeStub,
+                        updateFunctionConfiguration: updateFuncConfigStub
+                    }
+                },
+                IAM: function() {
+                    return { getUser: getUserStub }
+                }
+            },
+            "./lambdazip": zipStub
         });
 
         resourcesStub.onCall(0).resolves([loadFixture("resources-empty-get")._embedded.item]);
@@ -86,9 +98,11 @@ describe("Deploy", () => {
             Action: "lambda:InvokeFunction",
             FunctionName: "api-test-v1-hello-get",
             Principal: "apigateway.amazonaws.com",
-            StatementId: "api-test-v1-hello-get",
+            StatementId: `api-test-v1-hello-get-${ new Date().getTime() }`,
             SourceArn: "arn:aws:apigateway:us-west-2::3e5141:/hello"
         };
+
+        console.log(lambdaAddPermArgs);
 
         expect(transpileStub.withArgs("src/v1", "dist/v1").calledOnce).to.eql(true);
         expect(npmInstallStub.withArgs("dist/v1/hello/get").calledOnce).to.eql(true);
