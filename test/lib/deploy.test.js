@@ -25,6 +25,8 @@ describe("Deploy", () => {
     });
 
     it ("should deploy a new API", async function() {
+        this.timeout(60000);
+        
         let accountId        = "1234567890";
         let transpileStub    = sinon.stub();
         let npmInstallStub   = sinon.stub();
@@ -32,6 +34,7 @@ describe("Deploy", () => {
         let createApiStub    = sinon.stub().resolves(loadFixture("restapis-post"));
         let resourcesStub    = sinon.stub();
         let createResStub    = sinon.stub().resolves(loadFixture("resources-post"));
+        let methodStub       = sinon.stub().resolves(null);
         let updateMethodStub = sinon.stub().resolves(loadFixture("methods-put"));
         let zipStub          = sinon.stub().resolves("foo");
         let getUserStub      = sinon.stub().yields(null, { User: { Arn: `arn:aws:iam::${accountId}:root` } });
@@ -40,35 +43,36 @@ describe("Deploy", () => {
         let createIntegrationStub = sinon.stub().resolves({});
         let deployStub       = sinon.stub().resolves({});
         let deploy = proxyquire("../../lib/deploy", {
-            "./transpile": transpileStub,
-            "./npminstall": npmInstallStub,
-            "../lib/apigateway": {
-                restapis: restapisStub,
-                createRestapi: createApiStub,
-                resources: resourcesStub,
-                createResource: createResStub,
-                updateMethod: updateMethodStub,
-                createIntegration: createIntegrationStub,
-                deploy: deployStub
-            },
-            "aws-sdk": {
-                Lambda: function() {
-                    return {
-                        createFunction: createFuncStub,
-                        addPermission: addPermStub
-                    }
-                },
-                IAM: function() {
-                    return { getUser: getUserStub }
-                }
-            },
-            "./lambdazip": zipStub
+            // "./transpile": transpileStub,
+            // "./npminstall": npmInstallStub,
+            // "../lib/apigateway": {
+            //     restapis: restapisStub,
+            //     createRestapi: createApiStub,
+            //     resources: resourcesStub,
+            //     createResource: createResStub,
+            //     method: methodStub,
+            //     updateMethod: updateMethodStub,
+            //     createIntegration: createIntegrationStub,
+            //     deploy: deployStub
+            // },
+            // "aws-sdk": {
+            //     Lambda: function() {
+            //         return {
+            //             createFunction: createFuncStub,
+            //             addPermission: addPermStub
+            //         }
+            //     },
+            //     IAM: function() {
+            //         return { getUser: getUserStub }
+            //     }
+            // },
+            // "./lambdazip": zipStub
         });
 
         resourcesStub.onCall(0).resolves([loadFixture("resources-empty-get")._embedded.item]);
         resourcesStub.onCall(1).resolves(loadFixture("resources-multiple-get")._embedded.item);
 
-        let res = await deploy.go("us-west-2", "test", "v1", spec, "dist");
+        let res = await deploy.go("us-west-2", "test", "v1", "dist", spec);
 
         let lambdaCreateArgs = {
             Code: { ZipFile: "foo" },
