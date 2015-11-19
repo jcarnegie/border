@@ -102,8 +102,6 @@ describe("Deploy", () => {
             SourceArn: "arn:aws:apigateway:us-west-2::3e5141:/hello"
         };
 
-        console.log(lambdaAddPermArgs);
-
         expect(transpileStub.withArgs("src/v1", "dist/v1").calledOnce).to.eql(true);
         expect(npmInstallStub.withArgs("dist/v1/hello/get").calledOnce).to.eql(true);
         expect(createApiStub.withArgs("us-west-2", "api-test", "api").calledOnce).to.eql(true);
