@@ -21,20 +21,21 @@ describe("NPM Install", () => {
     });
 
     it ("should install npm modules", async () => {
-        let loadStub = sinon.stub().yields(null);
-        let installStub = sinon.stub().yields(null, "foo");
+        let execStub = sinon.stub().returns({
+            stdout: {},
+            stderr: {},
+            on: (event, cb) => {
+                // if (event === "error") cb(0);
+                if (event === "exit") cb(0);
+            }
+        });
 
         let npmInstall = proxyquire("../../lib/npminstall", {
-            npm: {
-                load: loadStub,
-                commands: { install: installStub }
-            }
+            "child_process": { exec: execStub }
         });
 
         await npmInstall("test");
 
-        expect(loadStub.withArgs("test/package.json").calledOnce).to.eql(true);
-        expect(installStub.calledOnce).to.eql(true);
-        expect(chdirStub.calledTwice).to.eql(true);
+        expect(execStub.withArgs("npm install").calledOnce).to.eql(true);
     });
 });

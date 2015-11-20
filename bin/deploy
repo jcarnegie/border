@@ -1,0 +1,17 @@
+#!babel-node
+
+import tools from "../lib/tools";
+
+let region = process.env.AWS_DEFAULT_REGION;
+let env    = process.env.NODE_ENV || "development";
+let stage  = process.argv[2];
+
+let main = async () => {
+    try {
+        await tools.deploy(region, env, stage, "dist");
+    } catch (e) {
+        console.error(e);
+    }
+};
+
+main();
