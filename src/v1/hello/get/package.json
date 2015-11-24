@@ -1,5 +1,10 @@
 {
     "x-swagger-path": {
+        "x-apigateway": {
+            "request-params": {
+                "querystring": "notname"
+            }
+        },
         "description": "Prints \"Hello, world\"\n",
         "responses": {
             "200": {

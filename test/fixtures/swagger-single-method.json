@@ -3,11 +3,24 @@
     "info": {
         "version": "0.0.0",
         "title": "api",
-        "x-lambda-exec-role": "lambda_basic_execution"
+        "x-lambda-exec-role": "lambda_basic_execution",
+        "x-apigateway": {
+            "default-request-params": {
+                "header": [
+                    "Host", "Connection", "User-Agent", "Accept", "Referer", "Accept-Encoding", "Accept-Language", "Pragma"
+                ]
+            }
+        }
     },
     "paths": {
         "/hello": {
             "get": {
+                "x-apigateway": {
+                    "request-params": {
+                        "header": ["X-Test2"],
+                        "querystring": ["name"]
+                    }
+                },
                 "description": "Prints \"Hello, world\"\n",
                 "responses": {
                     "200": {

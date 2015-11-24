@@ -235,6 +235,8 @@ describe("Deploy", () => {
         resourcesStub.onCall(0).resolves([loadFixture("resources-empty-get")._embedded.item]);
         resourcesStub.onCall(1).resolves(loadFixture("resources-multiple-get")._embedded.item);
 
+        console.log(spec);
+
         let res = await deploy.go("us-west-2", "test", "v1", "dist", spec);
 
         let lambdaCreateArgs = {
