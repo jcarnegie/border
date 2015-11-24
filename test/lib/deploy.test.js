@@ -20,14 +20,165 @@ let loadFixture = (name) => {
 describe("Deploy", () => {
     let spec = null;
     let clock = null;
+    let region = null;
 
     beforeEach(() => {
         spec = loadFixture("swagger-single-method");
         clock = sinon.useFakeTimers();
+        region = "us-west-2";
     });
 
     afterEach(() => {
         clock.restore();
+    });
+
+    it ("should create a new api", async () => {
+        let restapisStub = sinon.stub().resolves([]);
+        let createRestapiStub = sinon.stub();
+        let deploy = proxyquire("../../lib/deploy", {
+            "../lib/apigateway": {
+                restapis: restapisStub,
+                createRestapi: createRestapiStub
+            }
+        });
+
+        await deploy.createApi(region, "api", "api");
+
+        expect(restapisStub.withArgs(region).calledOnce).to.eql(true);
+        expect(createRestapiStub.withArgs(region, "api", "api").calledOnce).to.eql(true);
+    });
+
+    it ("should not create an api if it already exists", async () => {
+        let restapisStub = sinon.stub().resolves([{ name: "api" }]);
+        let createRestapiStub = sinon.stub();
+        let deploy = proxyquire("../../lib/deploy", {
+            "../lib/apigateway": {
+                restapis: restapisStub,
+                createRestapi: createRestapiStub
+            }
+        });
+
+        let api = await deploy.createApi(region, "api", "api");
+
+        expect(restapisStub.withArgs(region).calledOnce).to.eql(true);
+        expect(api).to.eql({ name: "api" });
+        expect(createRestapiStub.callCount).to.eql(0);
+    });
+
+    describe("Create Resources", () => {
+        it ("should create a resource", async () => {
+            let resourcesStub = sinon.stub().resolves([{ path: "/", id: "x" }]);
+            let createResourceStub = sinon.stub().resolves({ path: "/test", pathPart: "test", id: "y", parentId: "x" });
+            let deploy = proxyquire("../../lib/deploy", {
+                "../lib/apigateway": {
+                    resources: resourcesStub,
+                    createResource: createResourceStub
+                }
+            });
+
+            let testSpec = { paths: { "/test": { get: { } } } };
+
+            await deploy.createResources(region, { id: "y" }, testSpec);
+
+            expect(createResourceStub.withArgs(region, "y", "x", "test").calledOnce).to.eql(true);
+        });
+
+        it ("should create a nested resource", async () => {
+            let resourcesStub = sinon.stub().resolves([{ path: "/", id: "x" }]);
+            let createResourceStub = sinon.stub();
+            let deploy = proxyquire("../../lib/deploy", {
+                "../lib/apigateway": {
+                    resources: resourcesStub,
+                    createResource: createResourceStub
+                }
+            });
+
+            let testSpec = { paths: { "/nested/test": { get: { } } } };
+
+            createResourceStub.onCall(0).resolves({ path: "/nested", pathPart: "nested", id: "y", parentId: "x" });
+            createResourceStub.onCall(1).resolves({ path: "/nested/test", pathPart: "test", id: "z", parentId: "y" });
+
+            await deploy.createResources(region, { id: "a" }, testSpec);
+
+            expect(createResourceStub.calledTwice).to.eql(true);
+            expect(createResourceStub.withArgs(region, "a", "x", "nested").calledOnce).to.eql(true);
+            expect(createResourceStub.withArgs(region, "a", "y", "test").calledOnce).to.eql(true);
+        });
+
+        it ("should create a nested resource with existing middle path", async () => {
+            let resourcesStub = sinon.stub().resolves([
+                { path: "/", id: "x" },
+                { path: "/nested/middle", id: "z" }
+            ]);
+            let createResourceStub = sinon.stub();
+            let deploy = proxyquire("../../lib/deploy", {
+                "../lib/apigateway": {
+                    resources: resourcesStub,
+                    createResource: createResourceStub
+                }
+            });
+
+            let testSpec = { paths: { "/nested/middle/test": { get: { } } } };
+
+            createResourceStub.onCall(0).resolves({ path: "/nested", pathPart: "nested", id: "y", parentId: "x" });
+            createResourceStub.onCall(1).resolves({ path: "/nested/middle/test", pathPart: "test", id: "0", parentId: "z" });
+
+            await deploy.createResources(region, { id: "a" }, testSpec);
+
+            expect(createResourceStub.calledTwice).to.eql(true);
+            expect(createResourceStub.withArgs(region, "a", "x", "nested").calledOnce).to.eql(true);
+            expect(createResourceStub.withArgs(region, "a", "z", "test").calledOnce).to.eql(true);
+        });
+    });
+
+    describe("List Lambda Functions", () => {
+        it ("should list all lambda functions", async () => {
+            let listFuncsStub = sinon.stub().yields(null, { Functions: ["a", "b"]});
+            let deploy = proxyquire("../../lib/deploy", {
+                "aws-sdk": {
+                    Lambda: function() {
+                        return {
+                            createFunction: sinon.stub(),
+                            addPermission: sinon.stub(),
+                            updateFunctionCode: sinon.stub(),
+                            updateFunctionConfiguration: sinon.stub(),
+                            listFunctions: listFuncsStub
+                        }
+                    }
+                }
+            });
+
+            let funcs = await deploy.listAllFunctions(region);
+
+            expect(funcs).to.eql(["a", "b"]);
+        });
+
+        it ("should list all lambda fns with multiple listFunctions calls", async () => {
+            let listFuncsStub = sinon.stub();
+            let deploy = proxyquire("../../lib/deploy", {
+                "aws-sdk": {
+                    Lambda: function() {
+                        return {
+                            createFunction: sinon.stub(),
+                            addPermission: sinon.stub(),
+                            updateFunctionCode: sinon.stub(),
+                            updateFunctionConfiguration: sinon.stub(),
+                            listFunctions: listFuncsStub
+                        }
+                    }
+                }
+            });
+
+            listFuncsStub.onCall(0).yields(null, { Functions: ["a", "b"], NextMarker: "marker"});
+            listFuncsStub.onCall(1).yields(null, { Functions: ["c", "d"]});
+
+            let funcs = await deploy.listAllFunctions(region);
+
+            expect(funcs).to.eql(["a", "b", "c", "d"]);
+            expect(listFuncsStub.calledTwice).to.eql(true);
+            expect(listFuncsStub.withArgs({ MaxItems: 10000 }).calledOnce).to.eql(true);
+            expect(listFuncsStub.withArgs({ MaxItems: 10000, NextMarker: "marker" }).calledOnce).to.eql(true);
+        });
     });
 
     it ("should deploy a new API", async function() {
@@ -148,7 +299,10 @@ describe("Deploy", () => {
                 Lambda: function() {
                     return {
                         createFunction: createFuncStub,
-                        addPermission: addPermStub
+                        addPermission: addPermStub,
+                        listFunctions: sinon.stub.yields(null, []),
+                        updateFunctionCode: sinon.stub,
+                        updateFunctionConfiguration: sinon.stub
                     }
                 },
                 IAM: function() {
@@ -158,7 +312,7 @@ describe("Deploy", () => {
             "./lambdazip": zipStub
         });
 
-        let res = await deploy.go("us-west-2", "test", "v1", spec, "dist");
+        let res = await deploy.go("us-west-2", "test", "v1", "dist", spec);
 
         expect(transpileStub.withArgs("src/v1", "dist/v1").calledOnce).to.eql(true);
         expect(npmInstallStub.withArgs("dist/v1/hello/get").calledOnce).to.eql(true);
@@ -174,5 +328,4 @@ describe("Deploy", () => {
         expect(createIntegrationStub.calledOnce).to.eql(true);
         expect(deployStub.calledOnce).to.eql(true);
     }));
-
 });
