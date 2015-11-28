@@ -243,7 +243,7 @@ describe("Deploy", () => {
             Code: { ZipFile: "foo" },
             FunctionName: "api-test-v1-hello-get",
             Handler: "handler",
-            Role: `arn:aws:iam::${accountId}:role/lambda_basic_execution`,
+            Role: `arn:aws:iam::${accountId}:role/APIGatewayLambdaExecRole`,
             Runtime: "nodejs"
         };
 
@@ -252,7 +252,7 @@ describe("Deploy", () => {
             FunctionName: "api-test-v1-hello-get",
             Principal: "apigateway.amazonaws.com",
             StatementId: `api-test-v1-hello-get-${ new Date().getTime() }`,
-            SourceArn: "arn:aws:apigateway:us-west-2::3e5141:/hello"
+            SourceArn: `arn:aws:execute-api:us-west-2:${accountId}:cd14zqypi2/*/GET/hello`
         };
 
         expect(transpileStub.withArgs("src/v1", "dist/v1").calledOnce).to.eql(true);
