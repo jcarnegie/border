@@ -201,6 +201,8 @@ describe("Deploy", () => {
         let updateFuncConfigStub = sinon.stub().yields(null, {});
         let listFuncsStub    = sinon.stub().yields(null, { Functions: [] });
         let createIntegrationStub = sinon.stub().resolves({});
+        let createMethodResponseStub = sinon.stub().resolves({});
+        let createIntegrationResponseStub = sinon.stub().resolves({});
         let deployStub       = sinon.stub().resolves({});
         let deploy = proxyquire("../../lib/deploy", {
             "./transpile": transpileStub,
@@ -213,6 +215,8 @@ describe("Deploy", () => {
                 method: methodStub,
                 updateMethod: updateMethodStub,
                 createIntegration: createIntegrationStub,
+                createMethodResponse: createMethodResponseStub,
+                createIntegrationResponse: createIntegrationResponseStub,
                 deploy: deployStub
             },
             "aws-sdk": {
@@ -240,7 +244,7 @@ describe("Deploy", () => {
         let lambdaCreateArgs = {
             Code: { ZipFile: "foo" },
             FunctionName: "api-test-v1-hello-get",
-            Handler: "handler",
+            Handler: "api-test-v1-hello-get.handler",
             Role: `arn:aws:iam::${accountId}:role/APIGatewayLambdaExecRole`,
             Runtime: "nodejs"
         };
@@ -263,6 +267,8 @@ describe("Deploy", () => {
         expect(createFuncStub.withArgs(lambdaCreateArgs).calledOnce).to.eql(true);
         expect(addPermStub.withArgs(lambdaAddPermArgs).calledOnce).to.eql(true);
         expect(createIntegrationStub.calledOnce).to.eql(true);
+        expect(createMethodResponseStub.calledOnce).to.eql(true);
+        expect(createIntegrationResponseStub.calledOnce).to.eql(true);
         expect(deployStub.calledOnce).to.eql(true);
     });
 
