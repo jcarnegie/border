@@ -4,7 +4,7 @@ import asyncTest from "../asynctest";
 import Bluebird from "bluebird";
 import sinon from "sinon";
 import chai from "chai";
-import sap from "sinon-as-promised"
+import sap from "sinon-as-promised";
 import fs from "fs";
 
 sap(Bluebird);
