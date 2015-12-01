@@ -28,6 +28,15 @@
                         "querystring": ["name"]
                     }
                 },
+                "parameters": [
+                    {
+                        "name": "count",
+                        "in": "query",
+                        "description": "Count of how many times you've written 'hello, world'",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
                 "description": "Prints \"Hello, world\"\n",
                 "responses": {
                     "200": {

@@ -3,12 +3,17 @@
         "ramda": "^0.18.0"
     },
     "x-swagger-path": {
-        "x-aws-apigateway": {
-            "request-params": {
-                "querystring": "notname"
-            }
-        },
+        "x-aws-apigateway": { },
         "description": "Prints \"Hello, world\"\n",
+        "parameters": [
+            {
+                "name": "count",
+                "in": "query",
+                "description": "Count of how many times you've written 'hello, world'",
+                "required": true,
+                "type": "integer"
+            }
+        ],
         "responses": {
             "200": {
                 "description": "Successful response",
