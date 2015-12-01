@@ -1,6 +1,9 @@
 {
+    "dependencies": {
+        "ramda": "^0.18.0"
+    },
     "x-swagger-path": {
-        "x-apigateway": {
+        "x-aws-apigateway": {
             "request-params": {
                 "querystring": "notname"
             }
@@ -20,8 +23,5 @@
                 }
             }
         }
-    },
-    "dependencies": {
-        "ramda": "^0.18.0"
     }
 }

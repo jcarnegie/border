@@ -7,7 +7,8 @@
     "lint": "./node_modules/eslint/bin/eslint.js --format 'node_modules/eslint-friendly-formatter' lib/ src/ tasks/ test/  --ext .js --ext .jsx || true",
     "test": "./node_modules/.bin/mocha -c --compilers js:babel/register ./test/**/*.js  || true",
     "test:watch": "./node_modules/.bin/mocha -c -w --compilers js:babel/register ./test/**/*.js  || true",
-    "deploy": "babel-node bin/deploy"
+    "deploy": "babel-node bin/deploy",
+    "dev": "babel-node lib/server.js"
   },
   "author": "",
   "license": "ISC",
@@ -40,6 +41,7 @@
     "aws-sdk": "^2.2.16",
     "aws4": "^1.1.0",
     "bluebird": "^2.10.2",
+    "express": "^4.13.3",
     "glob": "^6.0.1",
     "npm": "^3.3.12",
     "ramda": "^0.18.0",

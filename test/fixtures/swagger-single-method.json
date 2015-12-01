@@ -3,11 +3,18 @@
     "info": {
         "version": "0.0.0",
         "title": "api",
-        "x-lambda-exec-role": "APIGatewayLambdaExecRole",
-        "x-apigateway": {
+        "x-aws-apigateway": {
+            "default-role": "APIGatewayLambdaExecRole",
             "default-request-params": {
                 "header": [
-                    "Host", "Connection", "User-Agent", "Accept", "Referer", "Accept-Encoding", "Accept-Language", "Pragma"
+                    "Host",
+                    "Connection",
+                    "User-Agent",
+                    "Accept",
+                    "Referer",
+                    "Accept-Encoding",
+                    "Accept-Language",
+                    "Pragma"
                 ]
             }
         }
@@ -15,7 +22,7 @@
     "paths": {
         "/hello": {
             "get": {
-                "x-apigateway": {
+                "x-aws-apigateway": {
                     "request-params": {
                         "header": ["X-Test2"],
                         "querystring": ["name"]

@@ -3,7 +3,9 @@
     "info": {
         "version": "0.0.0",
         "title": "api",
-        "x-lambda-exec-role": "lambda_basic_execution"
+        "x-aws-apigateway": {
+            "default-role": "APIGatewayLambdaExecRole"
+        }
     },
     "paths": {
         "/hello": {

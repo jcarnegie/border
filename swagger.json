@@ -3,8 +3,8 @@
     "info": {
         "version": "0.0.0",
         "title": "api",
-        "x-lambda-exec-role": "APIGatewayLambdaExecRole",
-        "x-apigateway": {
+        "x-aws-apigateway": {
+            "default-role": "APIGatewayLambdaExecRole",
             "default-request-params": {
                 "header": [
                     "Host",
