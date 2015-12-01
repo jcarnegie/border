@@ -33,6 +33,7 @@ describe("Deploy", () => {
     });
 
     it ("should create a new api", async () => {
+        let logStub = sinon.stub();
         let restapisStub = sinon.stub().resolves([]);
         let createRestapiStub = sinon.stub();
         let deploy = proxyquire("../../lib/deploy", {
@@ -42,13 +43,14 @@ describe("Deploy", () => {
             }
         });
 
-        await deploy.createApi(region, "api", "api");
+        await deploy.createApi(logStub, region, "api", "api");
 
         expect(restapisStub.withArgs(region).calledOnce).to.eql(true);
         expect(createRestapiStub.withArgs(region, "api", "api").calledOnce).to.eql(true);
     });
 
     it ("should not create an api if it already exists", async () => {
+        let logStub = sinon.stub();
         let restapisStub = sinon.stub().resolves([{ name: "api" }]);
         let createRestapiStub = sinon.stub();
         let deploy = proxyquire("../../lib/deploy", {
@@ -58,7 +60,7 @@ describe("Deploy", () => {
             }
         });
 
-        let api = await deploy.createApi(region, "api", "api");
+        let api = await deploy.createApi(logStub, region, "api", "api");
 
         expect(restapisStub.withArgs(region).calledOnce).to.eql(true);
         expect(api).to.eql({ name: "api" });
@@ -235,11 +237,12 @@ describe("Deploy", () => {
             },
             "./lambdazip": zipStub
         });
+        let logFn = sinon.stub();
 
         resourcesStub.onCall(0).resolves([loadFixture("resources-empty-get")._embedded.item]);
         resourcesStub.onCall(1).resolves(loadFixture("resources-multiple-get")._embedded.item);
 
-        let res = await deploy.go("us-west-2", "test", "v1", "dist", spec);
+        let res = await deploy.go(logFn, "us-west-2", "test", "v1", "dist", spec);
 
         let lambdaCreateArgs = {
             Code: { ZipFile: "foo" },
