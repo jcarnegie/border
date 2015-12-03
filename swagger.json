@@ -16,6 +16,11 @@
                     "Accept-Language",
                     "Pragma"
                 ]
+            },
+            "cors": {
+                "Access-Control-Allow-Origin": "http://foo.example",
+                "Access-Control-Allow-Methods": "POST, PUT, PATCH, GET, OPTIONS",
+                "Access-Control-Allow-Headers": "X-PINGOTHER"
             }
         }
     }
