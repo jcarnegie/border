@@ -194,7 +194,7 @@ describe("Deploy", () => {
         let resourcesStub    = sinon.stub();
         let createResStub    = sinon.stub().resolves(loadFixture("resources-post"));
         let methodStub       = sinon.stub().resolves(null);
-        let updateMethodStub = sinon.stub().resolves(loadFixture("methods-put"));
+        let createMethodStub = sinon.stub().resolves(loadFixture("methods-put"));
         let zipStub          = sinon.stub().resolves("foo");
         let getUserStub      = sinon.stub().yields(null, { User: { Arn: `arn:aws:iam::${accountId}:root` } });
         let createFuncStub   = sinon.stub().yields(null, {});
@@ -215,7 +215,7 @@ describe("Deploy", () => {
                 resources: resourcesStub,
                 createResource: createResStub,
                 method: methodStub,
-                updateMethod: updateMethodStub,
+                createMethod: createMethodStub,
                 createIntegration: createIntegrationStub,
                 createMethodResponse: createMethodResponseStub,
                 createIntegrationResponse: createIntegrationResponseStub,
@@ -265,13 +265,13 @@ describe("Deploy", () => {
         expect(createApiStub.withArgs("us-west-2", "api-test", "api").calledOnce).to.eql(true);
         expect(resourcesStub.withArgs("us-west-2", "cd14zqypi2").calledTwice).to.eql(true);
         expect(createResStub.withArgs("us-west-2", "cd14zqypi2", "klqt924rw3", "hello").calledOnce).to.eql(true);
-        expect(updateMethodStub.withArgs("us-west-2", "cd14zqypi2", "3e5141", "GET").calledOnce).to.eql(true);
+        expect(createMethodStub.withArgs("us-west-2", "cd14zqypi2", "3e5141", "GET").calledOnce).to.eql(true);
         expect(zipStub.withArgs("dist/v1/hello/get").calledOnce).to.eql(true);
         expect(createFuncStub.withArgs(lambdaCreateArgs).calledOnce).to.eql(true);
         expect(addPermStub.withArgs(lambdaAddPermArgs).calledOnce).to.eql(true);
         expect(createIntegrationStub.calledOnce).to.eql(true);
-        expect(createMethodResponseStub.calledOnce).to.eql(true);
-        expect(createIntegrationResponseStub.calledOnce).to.eql(true);
+        expect(createMethodResponseStub.calledThrice).to.eql(true);
+        expect(createIntegrationResponseStub.calledThrice).to.eql(true);
         expect(deployStub.calledOnce).to.eql(true);
     });
 
@@ -285,7 +285,7 @@ describe("Deploy", () => {
         let createApiStub    = sinon.stub().resolves(loadFixture("restapis-post"));
         let resourcesStub    = sinon.stub().resolves([loadFixture("resources-empty-get")._embedded.item]);
         let createResStub    = sinon.stub().resolves(loadFixture("resources-post"));
-        let updateMethodStub = sinon.stub().resolves(loadFixture("methods-put"));
+        let createMethodStub = sinon.stub().resolves(loadFixture("methods-put"));
         let zipStub          = sinon.stub().resolves("foo");
         let getUserStub      = sinon.stub().yields(null, { User: { Arn: `arn:aws:iam::${accountId}:root` } });
         let createFuncStub   = sinon.stub().yields(null, {});
@@ -300,7 +300,7 @@ describe("Deploy", () => {
                 createRestapi: createApiStub,
                 resources: resourcesStub,
                 createResource: createResStub,
-                updateMethod: updateMethodStub,
+                updateMethod: createMethodStub,
                 createIntegration: createIntegrationStub,
                 deploy: deployStub
             },
@@ -330,7 +330,7 @@ describe("Deploy", () => {
         expect(resourcesStub.withArgs("us-west-2", "cd14zqypi2").calledOnce).to.eql(true);
         expect(resourcesStub.calledTwice).to.eql(true);
         expect(createResStub.withArgs("us-west-2", "cd14zqypi2", "klqt924rw3", "hello").calledOnce).to.eql(true);
-        expect(updateMethodStub.withArgs("us-west-2", "cd14zqypi2", "3e5141", "GET").calledOnce).to.eql(true);
+        expect(createMethodStub.withArgs("us-west-2", "cd14zqypi2", "3e5141", "GET").calledOnce).to.eql(true);
         expect(zipStub.withArgs("dist/v1/hello/get").calledOnce).to.eql(true);
         expect(createFuncStub.withArgs(lambdaCreateArgs).calledOnce).to.eql(true);
         expect(addPermStub.withArgs(lambdaAddPermArgs).calledOnce).to.eql(true);

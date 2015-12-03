@@ -41,6 +41,12 @@
                 "responses": {
                     "200": {
                         "description": "Successful response",
+                        "headers": {
+                            "X-TEST": {
+                                "description": "just a test",
+                                "type": "string"
+                            }
+                        },
                         "schema": {
                             "title": "Response",
                             "type": "object",
@@ -50,6 +56,12 @@
                                 }
                             }
                         }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
                     }
                 }
             }
