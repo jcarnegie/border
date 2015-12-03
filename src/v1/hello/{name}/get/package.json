@@ -1,0 +1,43 @@
+{
+    "dependencies": {
+    },
+    "x-swagger-path": {
+        "x-aws-apigateway": { },
+        "description": "Prints \"Hello, {name}\"\n",
+        "parameters": [
+            {
+                "name": "name",
+                "in": "path",
+                "description": "hello, 'you'",
+                "required": true,
+                "type": "string"
+            }
+        ],
+        "responses": {
+            "200": {
+                "description": "Successful response",
+                "headers": {
+                    "x-test-header": {
+                        "description": "just a test",
+                        "type": "string"
+                    }
+                },
+                "schema": {
+                    "title": "Response",
+                    "type": "object",
+                    "properties": {
+                        "hello": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "400": {
+                "description": "Bad Request"
+            },
+            "401": {
+                "description": "Unauthorized"
+            }
+        }
+    }
+}
