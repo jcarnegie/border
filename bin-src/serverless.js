@@ -1,4 +1,4 @@
-#!babel-node
+#!/usr/bin/env node
 
 import tools from "../lib/tools";
 import "colors";

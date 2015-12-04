@@ -2,12 +2,15 @@
   "name": "serverless",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "lint": "./node_modules/eslint/bin/eslint.js --format 'node_modules/eslint-friendly-formatter' lib/ src/ tasks/ test/  --ext .js --ext .jsx || true",
+    "lint": "./node_modules/eslint/bin/eslint.js --format 'node_modules/eslint-friendly-formatter' src/ test/ --ext .js || true",
     "test": "./node_modules/.bin/mocha -c --compilers js:babel/register ./test/**/*.js",
     "test:watch": "./node_modules/.bin/mocha -c -w --compilers js:babel/register ./test/**/*.js  || true",
-    "transpile": "babel src -d lib"
+    "transpile": "babel src -d lib; babel bin-src -d bin",
+    "prepublish": "npm run transpile && npm run test"
+  },
+  "bin": {
+    "serverless": "./bin/serverless.js"
   },
   "author": "",
   "license": "ISC",
