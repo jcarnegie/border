@@ -18,7 +18,7 @@ describe("Transpile", () => {
         let transpile = proxyquire("../../lib/transpile", {
             glob: globStub,
             mkdirp: mkdirStub,
-            "../notranspile/transformfile": transformStub,
+            "./transformfile": transformStub,
             fs: { writeFile: writeFileStub },
             "recursive-copy": copyStub
         });

@@ -10,15 +10,17 @@ describe("App", () => {
         let globStub = sinon.stub().yields(null, [
             `src/${stage}/hello/get/package.json`
         ]);
+        let dirnameStub = sinon.stub().returns("test/fixtures/configure/get");
         let getStub = sinon.stub();
         let app = proxyquire("../../lib/configure", {
             glob: globStub,
-            "../src/v1/hello/get": { handler: () => {} }
+            path: { dirname: dirnameStub },
+            "../test/fixtures/configure/get": { handler: () => {} }
         });
 
         await app({ get: getStub }, stage);
 
         expect(globStub.calledOnce).to.eql(true);
-        expect(getStub.withArgs("/hello").calledOnce).to.eql(true);
+        expect(getStub.withArgs("test/fixtures/configure").calledOnce).to.eql(true);
     });
 });
