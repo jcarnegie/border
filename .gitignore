@@ -1,5 +1,5 @@
 node_modules
 dist
 tags
-# remove once AWS keys are removed from the file
+npm-debug.log
 wallaby.js

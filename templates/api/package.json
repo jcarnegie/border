@@ -1,13 +1,13 @@
 {
-  "name": "serverless",
+  "name": "{{apiName}}",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "lint": "./node_modules/eslint/bin/eslint.js --format 'node_modules/eslint-friendly-formatter' lib/ src/ tasks/ test/  --ext .js --ext .jsx || true",
-    "test": "./node_modules/.bin/mocha -c --compilers js:babel/register ./test/**/*.js",
+    "test": "./node_modules/.bin/mocha -c --compilers js:babel/register ./test/**/*.js  || true",
     "test:watch": "./node_modules/.bin/mocha -c -w --compilers js:babel/register ./test/**/*.js  || true",
-    "transpile": "babel -d src lib"
+    "deploy": "babel-node bin/deploy",
+    "dev": "babel-node lib/server.js"
   },
   "author": "",
   "license": "ISC",
@@ -36,17 +36,9 @@
     "sinon-as-promised": "^4.0.0"
   },
   "dependencies": {
-    "adm-zip": "^0.4.7",
-    "aws-sdk": "^2.2.16",
-    "aws4": "^1.1.0",
-    "bluebird": "^2.10.2",
-    "colors": "^1.1.2",
-    "express": "^4.13.3",
-    "glob": "^6.0.1",
-    "mkdirp": "^0.5.1",
-    "npm": "^3.3.12",
-    "ramda": "^0.18.0",
-    "recursive-copy": "^1.0.10",
-    "recursive-readdir": "^1.3.0"
+      "babel": "^6.3.13",
+      "babel-eslint": "^4.1.3",
+      "babel-preset-es2015": "^6.3.13",
+      "babel-preset-stage-0": "^6.3.13"
   }
 }
