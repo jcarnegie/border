@@ -1,7 +1,7 @@
 {
   "name": "serverless",
   "version": "0.0.1",
-  "description": "",
+  "description": "Framework for deploying code to AWS API Gateway",
   "scripts": {
     "lint": "./node_modules/eslint/bin/eslint.js --format 'node_modules/eslint-friendly-formatter' src/ test/ --ext .js || true",
     "test": "./node_modules/.bin/mocha -c --compilers js:babel/register ./test/**/*.js",
@@ -12,8 +12,12 @@
   "bin": {
     "serverless": "./bin/serverless.js"
   },
-  "author": "",
-  "license": "ISC",
+  "author": {
+    "name": "Jeff Carnegie",
+    "email": "jeff.carnegie@gmail.com",
+    "url": "https://github.com/jcarnegie"
+  },
+  "license": "MIT",
   "devDependencies": {
     "babel": "5.8.29",
     "babel-eslint": "^4.1.3",
