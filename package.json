@@ -7,7 +7,7 @@
     "lint": "./node_modules/eslint/bin/eslint.js --format 'node_modules/eslint-friendly-formatter' lib/ src/ tasks/ test/  --ext .js --ext .jsx || true",
     "test": "./node_modules/.bin/mocha -c --compilers js:babel/register ./test/**/*.js",
     "test:watch": "./node_modules/.bin/mocha -c -w --compilers js:babel/register ./test/**/*.js  || true",
-    "transpile": "babel -d src lib"
+    "transpile": "babel src -d lib"
   },
   "author": "",
   "license": "ISC",
