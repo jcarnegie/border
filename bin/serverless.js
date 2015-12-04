@@ -5,6 +5,8 @@ var _this = this;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
+require("babel/polyfill");
+
 var _libTools = require("../lib/tools");
 
 var _libTools2 = _interopRequireDefault(_libTools);
