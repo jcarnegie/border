@@ -60,9 +60,9 @@ let method = async (region, apiId, parentResourceId, method) => {
     });
 };
 
-let createMethod = async (region, apiId, parentResourceId, method, requestParams = {}) => {
+let createMethod = async (region, apiId, parentResourceId, method, requestParams) => {
     let newMethUrl = `/restapis/${apiId}/resources/${parentResourceId}/methods/${method.toUpperCase()}`;
-    return await awsreq.put({
+    let params = {
         region,
         host:  `apigateway.${region}.amazonaws.com`,
         path:  newMethUrl,
@@ -70,7 +70,8 @@ let createMethod = async (region, apiId, parentResourceId, method, requestParams
             authorizationType: "NONE",
             requestParameters: requestParams
         }
-    });
+    };
+    return await awsreq.put(params);
 };
 
 let updateMethod = async (region, apiId, parentResourceId, method, requestParams = {}) => {
@@ -215,6 +216,7 @@ export default {
     createMethod,
     updateMethod,
     createIntegration,
+    updateIntegration,
     createMethodResponse,
     updateMethodResponse,
     createIntegrationResponse,
