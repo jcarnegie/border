@@ -14,8 +14,8 @@
   "license": "MIT",
   "scripts": {
     "lint": "./node_modules/eslint/bin/eslint.js --format 'node_modules/eslint-friendly-formatter' src/ test/ --ext .js || true",
-    "test": "./node_modules/.bin/mocha -c --compilers js:babel/register ./test/**/*.js",
-    "test:watch": "./node_modules/.bin/mocha -c -w --compilers js:babel/register ./test/**/*.js  || true",
+    "test": "./node_modules/.bin/mocha -c --compilers js:babel-register ./test/**/*.js",
+    "test:watch": "./node_modules/.bin/mocha -c -w --compilers js:babel-register ./test/**/*.js  || true",
     "transpile": "babel src -d lib; babel bin-src -d bin",
     "prepublish": "npm run transpile && npm run test"
   },
@@ -27,6 +27,7 @@
     "babel-core": "^6.3.15",
     "babel-eslint": "^4.1.3",
     "babel-plugin-add-module-exports": "^0.1.1",
+    "babel-polyfill": "^6.3.14",
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-stage-0": "^6.3.13",
     "babel-register": "^6.3.13",

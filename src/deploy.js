@@ -113,7 +113,17 @@ let createResources = async (region, api, spec) => {
         }
     });
 
-    return await * r.map(createPath(api, deployedResources, root), r.sort(r.gt, [...pathsToCreate]));
+    let sortedPaths = r.sort(
+        r.gt,
+        [...pathsToCreate]
+    );
+
+    return await Promise.all(
+        r.map(
+            createPath(api, deployedResources, root),
+            sortedPaths
+        )
+    );
 };
 
 let listAllFunctions = async (region, nextMarker) => {
@@ -346,15 +356,28 @@ let go = r.curry(async (logFn, region, env, stage, dest, spec) => {
         logFn("ok", "fetched resources");
 
         // install NPMs for each endpoint lambda function
-        await mapSerialAsync(installFunctionModules(dest, stage), apiSpec.endpoints);
+        await mapSerialAsync(
+            installFunctionModules(dest, stage),
+            apiSpec.endpoints
+        );
         logFn("ok", "installed lambda function NPM modules");
 
         // Make sure all gateway endpoints are created
-        await * r.map(createOrUpdateMethod(region, api.id, apiSpec.resources, spec), apiSpec.endpoints);
+        await Promise.all(
+            r.map(
+                createOrUpdateMethod(region, api.id, apiSpec.resources, spec),
+                apiSpec.endpoints
+            )
+        );
         logFn("ok", "created method endpoints");
 
         // Create lambda functions and bind them to the api gateway endpoint methods
-        await * r.map(bindEndpointAndFunction(logFn, apiSpec), apiSpec.endpoints);
+        await Promise.all(
+            r.map(
+                bindEndpointAndFunction(logFn, apiSpec),
+                apiSpec.endpoints
+            )
+        );
 
         // deploy the api
         await gateway.deploy(region, api.id, stage);

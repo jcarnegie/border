@@ -1,4 +1,4 @@
-import "babel/polyfill";
+import "babel-polyfill";
 import proxyquire from "proxyquire";
 import sinon from "sinon";
 import pmock from "pmock";

@@ -1,4 +1,4 @@
-import "babel/polyfill";
+import "babel-polyfill";
 import asyncTest from "./../asynctest.js";
 import proxyquire from "proxyquire";
 import chai from "chai";

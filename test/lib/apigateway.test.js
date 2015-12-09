@@ -1,4 +1,4 @@
-import "babel/polyfill";
+import "babel-polyfill";
 import gateway from "../../lib/apigateway";
 import asyncTest from "../asynctest";
 

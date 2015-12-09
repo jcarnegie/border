@@ -1,9 +1,10 @@
-import "babel/polyfill";
+import "babel-polyfill";
 import asyncTest from "../asynctest";
 import proxyquire from "proxyquire";
 import sinon from "sinon";
 import "sinon-as-promised";
 import chai from "chai";
+import r from "ramda";
 
 let expect = chai.expect;
 
@@ -23,7 +24,7 @@ describe("Transpile", () => {
             "recursive-copy": copyStub
         });
 
-        await transpile("src", "dest");
+        await transpile("src", "dest", r.identity);
 
         expect(globStub.withArgs("src/**", { nodir: true }).calledOnce).to.eql(true);
         expect(transformStub.withArgs("hello/get/index.js").calledOnce).to.eql(true);

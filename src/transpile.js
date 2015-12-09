@@ -20,7 +20,7 @@ let writeFileSafe = (file, contents) => {
     });
 };
 
-export default async (src, dest, nameTransformFn = r.identity) => {
+export default async (src, dest, nameTransformFn) => {
     return new Promise((resolve, reject) => {
         glob(`${src}/**`, { nodir: true }, async (err, files) => {
             for (let prefixedFile of files) {

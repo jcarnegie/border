@@ -12,7 +12,7 @@ let resourceOnly  = filepath => {
 };
 let notModule = filename => !filename.match(/node_modules/);
 
-let pathAndSpec  = r.curry(async (prefix, file) => {
+let pathAndSpec = r.curry(async (prefix, file) => {
     try {
         let pathSpec = await readAndParse(file, "utf8");
         let method   = path.basename(file.replace("/package.json", ""));
@@ -35,7 +35,7 @@ let addPathToSwagger = (swagger, pathSpecPair) => {
 let build = async stage => {
     let swagger = await readAndParse("swagger.json", "utf8");
     let files   = await glob(`src/${stage}/**/package.json`);
-    let data    = await * r.map(pathAndSpec(`src/${stage}`), r.filter(notModule, files));
+    let data    = await Promise.all(r.map(pathAndSpec(`src/${stage}`), r.filter(notModule, files)));
     if (!swagger.paths) swagger.paths = {};
     let spec = r.reduce(addPathToSwagger, swagger, data);
     return spec;

@@ -1,4 +1,4 @@
-import "babel/polyfill";
+import "babel-polyfill";
 import proxyquire from "proxyquire";
 import asyncTest from "../asynctest";
 import Bluebird from "bluebird";
