@@ -1,5 +1,5 @@
 {
-  "name": "serverlessjs",
+  "name": "aws-api",
   "version": "0.0.1",
   "description": "Framework for deploying code to AWS API Gateway",
   "author": {
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jcarnegie/serverless"
+    "url": "https://github.com/jcarnegie/aws-api"
   },
   "license": "MIT",
   "scripts": {
@@ -20,7 +20,7 @@
     "prepublish": "npm run transpile && npm run test"
   },
   "bin": {
-    "serverless": "./bin/serverless.js"
+    "aws-api": "./bin/aws-api.js"
   },
   "devDependencies": {
     "babel-cli": "^6.3.15",
