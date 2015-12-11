@@ -1,5 +1,5 @@
 {
-  "name": "aws-api",
+  "name": "border",
   "version": "0.0.1",
   "description": "Framework for deploying code to AWS API Gateway",
   "author": {
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jcarnegie/aws-api"
+    "url": "https://github.com/jcarnegie/border"
   },
   "license": "MIT",
   "scripts": {
@@ -20,7 +20,7 @@
     "prepublish": "npm run transpile && npm run test"
   },
   "bin": {
-    "aws-api": "./bin/aws-api.js"
+    "border": "./bin/border.js"
   },
   "devDependencies": {
     "babel-cli": "^6.3.15",
