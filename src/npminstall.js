@@ -1,8 +1,7 @@
 import { exec } from "child_process";
 import Promise from "bluebird";
-import npm from "npm";
 
-let install = (dir) => {
+let install = () => {
     return new Promise((resolve, reject) => {
         let child = exec("npm install");
         child.on("error", (code) => {
@@ -21,7 +20,6 @@ export default async (dir) => {
 
     process.chdir(dir);
 
-    // await load(dir);
     data = await install(dir);
 
     process.chdir(cwd);

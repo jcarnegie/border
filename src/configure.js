@@ -36,8 +36,10 @@ export default async (app, stage) => {
         };
     };
 
-    let addEndpoint = r.curry((app, ep) => { app[ep.method](ep.path, ep.wrapper); });
-    let endpointData = r.map(extractEndpointData, files);
+    let addEndpoint = r.curry((app, ep) => {
+        app[ep.method](ep.path, ep.wrapper);
+    });
+
     let wireUpEndpoints = r.compose(
         r.map(addEndpoint(app)),
         r.map(extractEndpointData)

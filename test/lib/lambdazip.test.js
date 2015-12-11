@@ -1,3 +1,5 @@
+/* eslint-disable object-shorthand */
+
 import "babel-polyfill";
 import proxyquire from "proxyquire";
 import sinon from "sinon";
@@ -16,7 +18,6 @@ describe("Lambda Function Zip", () => {
             }
         });
         let funcDir = "/some/lambda/func/dir";
-        let modDirs = `${funcDir}/node_modules`;
         let buffer = await lambdazip(funcDir);
 
         expect(zipAddLocalFolderStub.getCall(0).args[0]).to.eql(funcDir);

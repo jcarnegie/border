@@ -73,11 +73,11 @@ let awsAccountId = async () => {
 let createApi = async (logFn, region, name, desc) => {
     let apis = await gateway.restapis(region);
     let api = r.find(r.propEq("name", name), apis);
-    if (!api) {
+    if (api) {
+        logFn("ok", `found existing API '${name}'`);
+    } else {
         api = await gateway.createRestapi(region, name, desc);
         logFn("ok", `created API '${name}'`);
-    } else {
-        logFn("ok", `found existing API '${name}'`);
     }
     return api;
 };

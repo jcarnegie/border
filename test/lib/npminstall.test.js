@@ -1,7 +1,6 @@
 import "babel-polyfill";
 import proxyquire from "proxyquire";
 import sinon from "sinon";
-import pmock from "pmock";
 import chai from "chai";
 
 let expect = chai.expect;
@@ -31,7 +30,7 @@ describe("NPM Install", () => {
         });
 
         let npmInstall = proxyquire("../../lib/npminstall", {
-            "child_process": { exec: execStub }
+            child_process: { exec: execStub }
         });
 
         await npmInstall("test");

@@ -12,6 +12,7 @@
         "module": false,
         "require": false,
         "process": false,
+        "console": false,
         "describe": false,
         "xdescribe": false,
         "it": false,
@@ -74,7 +75,9 @@
         "no-alert": 2,
         "no-caller": 2,
         "no-div-regex": 2,
-        "no-else-return": 2,
+        // disabled: doing returns in if/else clauses
+        // is really useful with async/await patterns
+        // "no-else-return": 2,
         "no-empty-label": 2,
         "no-eq-null": 2,
         "no-eval": 2,
@@ -84,7 +87,9 @@
         "no-floating-decimal": 2,
         "no-implicit-coercion": 2,
         "no-implied-eval": 2,
-        "no-invalid-this": 2,
+        // disabled: using this in the context of functions outside of
+        // class-like structures is oftentimes useful, esp in testing
+        // "no-invalid-this": 2,
         "no-iterator": 2,
         "no-labels": 2,
         "no-lone-blocks": 2,
@@ -136,7 +141,9 @@
         "array-bracket-spacing": 2,
         "block-spacing": 2,
         "brace-style": 2,
-        "camelcase": 2,
+        // disabled: there are are lots of webservices that
+        // return JSON properties that are underscored
+        // "camelcase": 2,
         "comma-spacing": 2,
         "comma-style": 2,
         "computed-property-spacing": 2,
@@ -179,7 +186,8 @@
         // disabled: prefer the terseness of ternary operator in some cases
         "no-ternary": 0,
         "no-trailing-spaces": 2,
-        "no-underscore-dangle": 2,
+        // disabled: many webservices return underscored JSON properties
+        //"no-underscore-dangle": 2,
         "no-unneeded-ternary": 2,
         "object-curly-spacing": [2, "always", { arraysInObjects: false }],
         "one-var": [2, "never"],

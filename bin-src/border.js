@@ -24,14 +24,14 @@ let color    = (str) => {
     }
 };
 let logger = (level, msg) => {
-    console.log(`[${color(level)}] ${msg}`);
+    console.log(`[${color(level)}] ${msg}`); // eslint-disable-line no-console
 };
 
 let main = async () => {
     try {
         await tools.deploy(logger, region, env, stage, "dist");
     } catch (e) {
-        console.error(e);
+        console.error(e); // eslint-disable-line no-console
     }
 };
 

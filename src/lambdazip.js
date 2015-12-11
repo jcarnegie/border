@@ -1,8 +1,7 @@
 import Promise from "bluebird";
-import readdir from "recursive-readdir";
 import AdmZip from "adm-zip";
 
-export default (endpointDir, functionName = "index") => {
+export default (endpointDir) => {
     return new Promise((resolve) => {
         let zip = new AdmZip();
         zip.addLocalFolder(endpointDir);

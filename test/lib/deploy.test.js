@@ -1,3 +1,5 @@
+/* eslint-disable object-shorthand */
+
 import "babel-polyfill";
 import proxyquire from "proxyquire";
 import asyncTest from "../asynctest";
@@ -145,7 +147,7 @@ describe("Deploy", () => {
                             updateFunctionCode: sinon.stub(),
                             updateFunctionConfiguration: sinon.stub(),
                             listFunctions: listFuncsStub
-                        }
+                        };
                     }
                 }
             });
@@ -166,12 +168,12 @@ describe("Deploy", () => {
                             updateFunctionCode: sinon.stub(),
                             updateFunctionConfiguration: sinon.stub(),
                             listFunctions: listFuncsStub
-                        }
+                        };
                     }
                 }
             });
 
-            listFuncsStub.onCall(0).yields(null, { Functions: ["a", "b"], NextMarker: "marker"});
+            listFuncsStub.onCall(0).yields(null, { Functions: ["a", "b"], NextMarker: "marker" });
             listFuncsStub.onCall(1).yields(null, { Functions: ["c", "d"]});
 
             let funcs = await deploy.listAllFunctions(region);
@@ -201,7 +203,7 @@ describe("Deploy", () => {
         let addPermStub      = sinon.stub().yields(null, {});
         let updateFuncCodeStub = sinon.stub().yields(null, {});
         let updateFuncConfigStub = sinon.stub().yields(null, {});
-        let listFuncsStub    = sinon.stub().yields(null, { Functions: [] });
+        let listFuncsStub    = sinon.stub().yields(null, { Functions: []});
         let createIntegrationStub = sinon.stub().resolves({});
         let createMethodResponseStub = sinon.stub().resolves({});
         let createIntegrationResponseStub = sinon.stub().resolves({});
@@ -229,10 +231,10 @@ describe("Deploy", () => {
                         addPermission: addPermStub,
                         updateFunctionCode: updateFuncCodeStub,
                         updateFunctionConfiguration: updateFuncConfigStub
-                    }
+                    };
                 },
                 IAM: function() {
-                    return { getUser: getUserStub }
+                    return { getUser: getUserStub };
                 }
             },
             "./lambdazip": zipStub
@@ -242,7 +244,7 @@ describe("Deploy", () => {
         resourcesStub.onCall(0).resolves([loadFixture("resources-empty-get")._embedded.item]);
         resourcesStub.onCall(1).resolves(loadFixture("resources-multiple-get")._embedded.item);
 
-        let res = await deploy.go(logFn, "us-west-2", "test", "v1", "dist", spec);
+        await deploy.go(logFn, "us-west-2", "test", "v1", "dist", spec);
 
         let lambdaCreateArgs = {
             Code: { ZipFile: "foo" },
@@ -312,16 +314,16 @@ describe("Deploy", () => {
                         listFunctions: sinon.stub.yields(null, []),
                         updateFunctionCode: sinon.stub,
                         updateFunctionConfiguration: sinon.stub
-                    }
+                    };
                 },
                 IAM: function() {
-                    return { getUser: getUserStub }
+                    return { getUser: getUserStub };
                 }
             },
             "./lambdazip": zipStub
         });
 
-        let res = await deploy.go("us-west-2", "test", "v1", "dist", spec);
+        await deploy.go("us-west-2", "test", "v1", "dist", spec);
 
         expect(transpileStub.withArgs("src/v1", "dist/v1").calledOnce).to.eql(true);
         expect(npmInstallStub.withArgs("dist/v1/hello/get").calledOnce).to.eql(true);
@@ -332,8 +334,6 @@ describe("Deploy", () => {
         expect(createResStub.withArgs("us-west-2", "cd14zqypi2", "klqt924rw3", "hello").calledOnce).to.eql(true);
         expect(createMethodStub.withArgs("us-west-2", "cd14zqypi2", "3e5141", "GET").calledOnce).to.eql(true);
         expect(zipStub.withArgs("dist/v1/hello/get").calledOnce).to.eql(true);
-        expect(createFuncStub.withArgs(lambdaCreateArgs).calledOnce).to.eql(true);
-        expect(addPermStub.withArgs(lambdaAddPermArgs).calledOnce).to.eql(true);
         expect(createIntegrationStub.calledOnce).to.eql(true);
         expect(deployStub.calledOnce).to.eql(true);
     }));

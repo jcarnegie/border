@@ -21,8 +21,8 @@ let pathAndSpec = r.curry(async (prefix, file) => {
         spec[method] = pathSpec["x-swagger-path"];
         return r.assoc(uri, spec, {});
     } catch (e) {
-        console.error(`Error parsing swagger config: ${file}`);
-        console.error(e.stack);
+        console.error(`Error parsing swagger config: ${file}`); // eslint-disable-line no-console
+        console.error(e.stack); // eslint-disable-line no-console
         throw e;
     }
 });

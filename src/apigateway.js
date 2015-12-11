@@ -1,5 +1,4 @@
 import r from "ramda";
-import fs from "fs";
 import awsreq from "../lib/awsrequest";
 
 let restapis = async (region) => {
@@ -76,7 +75,9 @@ let createMethod = async (region, apiId, parentResourceId, method, requestParams
 
 let updateMethod = async (region, apiId, parentResourceId, method, requestParams = {}) => {
     let methodUrl = `/restapis/${apiId}/resources/${parentResourceId}/methods/${method.toUpperCase()}`;
-    let patchOp = param => { return { op: "add", path: `/requestParameters/${param}` }; };
+    let patchOp = param => {
+        return { op: "add", path: `/requestParameters/${param}` };
+    };
     return await awsreq.patch({
         region,
         host:  `apigateway.${region}.amazonaws.com`,
@@ -109,18 +110,6 @@ let createIntegration = async (opts) => {
 };
 
 let updateIntegration =  async (opts) => {
-    let props = [
-        "type",
-        "httpMethod",
-        "authorizationType",
-        "uri",
-        "credentials",
-        "requestParameters",
-        "requestTemplates",
-        "cacheNamespace",
-        "cacheKeyParameters"
-    ];
-
     let ops = [
         { op: "replace", path: "/httpMethod", value: opts.httpMethod },
         { op: "replace", path: "/uri", value: opts.uri },
@@ -137,7 +126,7 @@ let updateIntegration =  async (opts) => {
 };
 
 
-let createMethodResponse = async(region, apiId, resourceId, method, statusCode, responseParameters={}, responseModels={}) => {
+let createMethodResponse = async(region, apiId, resourceId, method, statusCode, responseParameters = {}, responseModels = {}) => {
     return await awsreq.put({
         region,
         host:   `apigateway.${region}.amazonaws.com`,
@@ -149,11 +138,14 @@ let createMethodResponse = async(region, apiId, resourceId, method, statusCode, 
     });
 };
 
-let updateMethodResponse = async(region, apiId, resourceId, method, statusCode, responseParameters={}, responseModels={}) => {
-    let genOp = (param) => { return {
-        op: "add",
-        path: `/responseParameters/${param}`
-    }};
+let updateMethodResponse = async(region, apiId, resourceId, method, statusCode, responseParameters = {}) => {
+    let genOp = (param) => {
+        return {
+            op: "add",
+            path: `/responseParameters/${param}`
+        };
+    };
+
     let ops = r.map(genOp, r.keys(responseParameters));
     return await awsreq.patch({
         region,
@@ -164,7 +156,6 @@ let updateMethodResponse = async(region, apiId, resourceId, method, statusCode, 
         }
     });
 };
-
 
 let createIntegrationResponse = async(region, apiId, resourceId, method, statusCode, selectionPattern = null) => {
     return await awsreq.put({
