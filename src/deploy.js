@@ -32,7 +32,6 @@ let mapSerialAsync = async (fn, list) => {
     }
 };
 
-
 let lambdaFunctionName = (apiSpec, methodSpec) => {
     let basename = r.compose(
         r.replace(/\//g, "-"),

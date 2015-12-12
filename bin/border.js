@@ -33,7 +33,7 @@ var color = function color(str) {
     }
 };
 var logger = function logger(level, msg) {
-    console.log("[" + color(level) + "] " + msg);
+    console.log("[" + color(level) + "] " + msg); // eslint-disable-line no-console
 };
 
 var main = (function () {
@@ -56,7 +56,7 @@ var main = (function () {
                         _context.prev = 5;
                         _context.t0 = _context["catch"](0);
 
-                        console.error(_context.t0);
+                        console.error(_context.t0); // eslint-disable-line no-console
 
                     case 8:
                     case "end":
