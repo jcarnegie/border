@@ -26,18 +26,8 @@ let exec = async (command) => {
 // };
 
 export default async (dir) => {
-    // let cwd = process.cwd();
-    // let data = null;
-    //
-    // process.chdir(dir);
-    //
-    // data = await install(dir);
-    //
-    // process.chdir(cwd);
-    //
-    // return data;
     let commands = [
-        ". ~/.nvm/nvm.sh",
+        ". /opt/nvm/nvm.sh",
         "nvm use v0.10.36",
         `cd ${dir}`,
         "npm install"
