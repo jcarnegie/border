@@ -27,12 +27,13 @@ let exec = async (command) => {
 
 export default async (dir) => {
     let commands = [
-        ". /opt/nvm/nvm.sh",
+        ". ~/.nvm/nvm.sh",
         "nvm use v0.10.36",
         `cd ${dir}`,
         "npm install"
     ];
-    let cmd = commands.join(" && ");
+    let envCmd = process.env.BORDER_NPM_INSTALL_COMMAND;
+    let cmd = (envCmd) ? envCmd.replace("%dir%", dir) : commands.join(" && ");
     let result = await exec(cmd);
     let output = result[1];
     return output;
