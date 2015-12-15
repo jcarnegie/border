@@ -15,7 +15,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 var region = process.env.AWS_DEFAULT_REGION;
 var env = process.env.NODE_ENV || "development";
-var stage = process.argv[2];
+var action = process.argv[2];
+var stage = process.argv[3] || "deploy";
 var color = function color(str) {
     switch (str) {
         case "ok":
@@ -46,7 +47,7 @@ var main = (function () {
                     case 0:
                         _context.prev = 0;
                         _context.next = 3;
-                        return _tools2.default.deploy(logger, region, env, stage, "dist");
+                        return _tools2.default.deploy(action, logger, region, env, stage, "dist");
 
                     case 3:
                         _context.next = 8;

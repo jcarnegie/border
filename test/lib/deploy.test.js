@@ -244,12 +244,12 @@ describe("Deploy", () => {
         resourcesStub.onCall(0).resolves([loadFixture("resources-empty-get")._embedded.item]);
         resourcesStub.onCall(1).resolves(loadFixture("resources-multiple-get")._embedded.item);
 
-        await deploy.go(logFn, "us-west-2", "test", "v1", "dist", spec);
+        await deploy.go("deploy", logFn, "us-west-2", "test", "v1", "dist", spec);
 
         let lambdaCreateArgs = {
             Code: { ZipFile: "foo" },
             FunctionName: "api-test-v1-hello-get",
-            Handler: "api-test-v1-hello-get.handler",
+            Handler: "index.handler",
             Role: `arn:aws:iam::${accountId}:role/APIGatewayLambdaExecRole`,
             Runtime: "nodejs"
         };

@@ -5,12 +5,17 @@ import lambdazip from "./lambdazip";
 import pathUtil from "path";
 import transpile from "./transpile";
 import npmInstall from "./npminstall";
+import globCb from "glob";
 import AWS from "aws-sdk";
+import fs from "fs";
 import r from "ramda";
 
 let awaitable      = Promise.promisify;
 let lambda         = new AWS.Lambda();
 let iam            = new AWS.IAM();
+let glob           = awaitable(globCb);
+let readFile       = awaitable(fs.readFile);
+let writeFile      = awaitable(fs.writeFile);
 let createFunction = awaitable(lambda.createFunction.bind(lambda));
 let addPermission  = awaitable(lambda.addPermission.bind(lambda));
 let listFunctions  = awaitable(lambda.listFunctions.bind(lambda));
@@ -202,7 +207,8 @@ let createGatewayLambdaFunction = r.curry(async (apiSpec, functionName, zip) => 
     return await createOrUpdateFunction(apiSpec.lambdaFunctions, {
         Code: { ZipFile: zip },
         FunctionName: functionName,
-        Handler: `${functionName}.${apiSpec.defaultHandler}`,
+        // Handler: `${functionName}.${apiSpec.defaultHandler}`,
+        Handler: `index.${apiSpec.defaultHandler}`,
         Role: `arn:aws:iam::${apiSpec.accountId}:role/${apiSpec.defaultRole}`,
         Runtime: "nodejs"
     });
@@ -311,21 +317,22 @@ let bindEndpointAndFunction = r.curry(async (logFn, apiSpec, methodSpec) => {
     return result;
 });
 
-let endpointModuleFilename = r.curry((apiName, env, stage, dest, filename) => {
-    let relPath = filename.replace(`${dest}/${stage}/`, "");
-    let parts = r.init(relPath.split("/"));
-    let dir = pathUtil.dirname(relPath);
-    let basename = `${apiName}-${env}-${stage}-${parts.join("-")}`;
-    let name = `${dest}/${stage}/${dir}/${basename.replace(/(\{|\})/g, "_")}.js`;
-    return name;
-});
+// let endpointModuleFilename = r.curry((apiName, env, stage, dest, filename) => {
+//     let relPath = filename.replace(`${dest}/${stage}/`, "");
+//     let parts = r.init(relPath.split("/"));
+//     let dir = pathUtil.dirname(relPath);
+//     let basename = `${apiName}-${env}-${stage}-${parts.join("-")}`;
+//     let name = `${dest}/${stage}/${dir}/${basename.replace(/(\{|\})/g, "_")}.js`;
+//     return name;
+// });
 
-let go = r.curry(async (logFn, region, env, stage, dest, spec) => {
+let go = r.curry(async (action, logFn, region, env, stage, dest, spec) => {
     try {
         let accountId         = await awsAccountId();
         let api               = await createApi(logFn, region, `${spec.info.title}-${env}`, spec.info.title);
         let lambdaFunctions   = await listAllFunctions(region);
-        let filenameFn        = endpointModuleFilename(spec.info.title, env, stage, dest);
+        // let filenameFn        = endpointModuleFilename(spec.info.title, env, stage, dest);
+        let filenameFn        = r.identity;
 
         let apiSpec = {
             region,
@@ -348,18 +355,21 @@ let go = r.curry(async (logFn, region, env, stage, dest, spec) => {
         await transpile(`src/${stage}`, `${dest}/${stage}`, filenameFn);
         logFn("ok", "transpiled");
 
-        await createResources(region, api, spec);
-        logFn("ok", "created missing resources");
-
-        apiSpec.resources = await gateway.resources(region, api.id);
-        logFn("ok", "fetched resources");
-
         // install NPMs for each endpoint lambda function
         await mapSerialAsync(
             installFunctionModules(dest, stage),
             apiSpec.endpoints
         );
         logFn("ok", "installed lambda function NPM modules");
+
+        // stop here if we're only building
+        if (action === "build") return;
+
+        await createResources(region, api, spec);
+        logFn("ok", "created missing resources");
+
+        apiSpec.resources = await gateway.resources(region, api.id);
+        logFn("ok", "fetched resources");
 
         // Make sure all gateway endpoints are created
         await Promise.all(

@@ -4,10 +4,11 @@ import "babel-polyfill";
 import tools from "../lib/tools";
 import "colors";
 
-let region   = process.env.AWS_DEFAULT_REGION;
-let env      = process.env.NODE_ENV || "development";
-let stage    = process.argv[2];
-let color    = (str) => {
+let region = process.env.AWS_DEFAULT_REGION;
+let env    = process.env.NODE_ENV || "development";
+let action = process.argv[2];
+let stage  = process.argv[3] || "deploy";
+let color  = (str) => {
     switch (str) {
     case "ok":
         return str.green;
@@ -29,7 +30,7 @@ let logger = (level, msg) => {
 
 let main = async () => {
     try {
-        await tools.deploy(logger, region, env, stage, "dist");
+        await tools.deploy(action, logger, region, env, stage, "dist");
     } catch (e) {
         console.error(e); // eslint-disable-line no-console
     }

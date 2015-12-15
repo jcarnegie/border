@@ -157,8 +157,8 @@ let updateMethodResponse = async(region, apiId, resourceId, method, statusCode, 
     });
 };
 
-let createIntegrationResponse = async(region, apiId, resourceId, method, statusCode, selectionPattern = null) => {
-    return await awsreq.put({
+let createIntegrationResponse = async(region, apiId, resourceId, method, statusCode, selectionPattern) => {
+    let params = {
         region,
         host:   `apigateway.${region}.amazonaws.com`,
         path:   `/restapis/${apiId}/resources/${resourceId}/methods/${method.toUpperCase()}/integration/responses/${statusCode}`,
@@ -166,7 +166,8 @@ let createIntegrationResponse = async(region, apiId, resourceId, method, statusC
             selectionPattern,
             responseTemplates: { "application/json": null }
         }
-    });
+    };
+    return await awsreq.put(params);
 };
 
 let deployments = async (region, apiId) => {

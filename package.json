@@ -13,10 +13,10 @@
   },
   "license": "MIT",
   "scripts": {
-    "lint": "./node_modules/eslint/bin/eslint.js --format 'node_modules/eslint-friendly-formatter' src/ test/ --ext .js || true",
-    "test": "./node_modules/.bin/mocha -c --compilers js:babel-register ./test/**/*.js",
+    "lint": "make lint",
+    "test": "make test",
     "test:watch": "./node_modules/.bin/mocha -c -w --compilers js:babel-register ./test/**/*.js  || true",
-    "transpile": "babel src -d lib; babel bin-src -d bin",
+    "transpile": "make",
     "prepublish": "npm run transpile && npm run test"
   },
   "bin": {
