@@ -4,7 +4,21 @@ import aws4 from "aws4";
 import https from "https";
 import Promise from "bluebird";
 
+let queue = [];
+
 let request = async (options) => {
+    // console.log(`queueing request: ${options.method.toUpperCase()} ${options.path}`);
+    return new Promise((resolve, reject) => {
+        let req = {
+            resolve,
+            reject,
+            options
+        };
+        queue = r.append(req, queue);
+    });
+};
+
+let makeRequest = async (options) => {
     return new Promise((resolve, reject) => {
         let req = null;
         let signedReq = null;
@@ -38,11 +52,13 @@ let request = async (options) => {
                 if (r.contains(res.headers["content-type"], jsonTypes)) {
                     data = JSON.parse(data);
                 }
+                // console.log(`resolving request: ${options.method.toUpperCase()} ${options.path}`);
                 resolve(data, res);
             });
         });
 
         req.on("error", (e) => {
+            // console.log(`rejecting request: ${options.method.toUpperCase()} ${options.path}`);
             reject(e);
         });
 
@@ -52,6 +68,17 @@ let request = async (options) => {
 
         req.end();
     });
+};
+
+let queueHandler = () => {
+    // console.log(`queueHandler: queue size: ${queue.length}`);
+    let request = r.head(queue);
+    if (!request) return;
+    queue = r.tail(queue);
+    // console.log(`processing request: ${request.options.method.toUpperCase()} ${request.options.path}`);
+    makeRequest(request.options)
+        .then(request.resolve)
+        .catch(request.reject);
 };
 
 let get = async (opts) => {
@@ -80,10 +107,26 @@ let patch = async (opts) => {
 };
 
 
+let intervalId = null;
+
+let start = () => {
+    // process requests once every .6 seconds since the limit is 2 requests per
+    // second: http://docs.aws.amazon.com/apigateway/api-reference/making-http-requests/
+    // console.log("starting request timer");
+    intervalId = setInterval(queueHandler, 600);
+};
+
+let stop = () => {
+    // console.log("stopping request timer");
+    clearInterval(intervalId);
+};
+
 export default {
     request,
     get,
     post,
     put,
-    patch
+    patch,
+    start,
+    stop
 };

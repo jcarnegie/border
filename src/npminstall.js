@@ -28,7 +28,7 @@ let exec = async (command) => {
 export default async (dir) => {
     let commands = [
         ". ~/.nvm/nvm.sh",
-        "nvm use v0.10.36",
+        // "nvm use v0.10.36",
         `cd ${dir}`,
         "npm install"
     ];

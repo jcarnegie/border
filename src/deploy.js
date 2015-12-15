@@ -1,5 +1,6 @@
 import Promise from "bluebird";
 import gateway from "../lib/apigateway";
+import awsrequest from "../lib/awsrequest";
 import set from "./set";
 import lambdazip from "./lambdazip";
 import pathUtil from "path";
@@ -313,17 +314,12 @@ let bindEndpointAndFunction = r.curry(async (logFn, apiSpec, methodSpec) => {
     return result;
 });
 
-// let endpointModuleFilename = r.curry((apiName, env, stage, dest, filename) => {
-//     let relPath = filename.replace(`${dest}/${stage}/`, "");
-//     let parts = r.init(relPath.split("/"));
-//     let dir = pathUtil.dirname(relPath);
-//     let basename = `${apiName}-${env}-${stage}-${parts.join("-")}`;
-//     let name = `${dest}/${stage}/${dir}/${basename.replace(/(\{|\})/g, "_")}.js`;
-//     return name;
-// });
-
 let go = r.curry(async (action, logFn, region, env, stage, dest, spec) => {
     try {
+        // requests to AWS are queued and throttled to twice per second
+        // this starts the timer that processes the requests
+        awsrequest.start();
+
         let accountId         = await awsAccountId();
         let api               = await createApi(logFn, region, `${spec.info.title}-${env}`, spec.info.title);
         let lambdaFunctions   = await listAllFunctions(region);
@@ -387,6 +383,9 @@ let go = r.curry(async (action, logFn, region, env, stage, dest, spec) => {
         // deploy the api
         await gateway.deploy(region, api.id, stage);
         logFn("ok", `deployed api to https://${api.id}.execute-api.${region}.amazonaws.com/${stage}`);
+
+        // stop the request processing timer
+        awsrequest.stop();
     } catch (e) {
         logFn("error", e.stack);
         throw e;
