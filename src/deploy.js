@@ -5,17 +5,12 @@ import lambdazip from "./lambdazip";
 import pathUtil from "path";
 import transpile from "./transpile";
 import npmInstall from "./npminstall";
-import globCb from "glob";
 import AWS from "aws-sdk";
-import fs from "fs";
 import r from "ramda";
 
 let awaitable      = Promise.promisify;
 let lambda         = new AWS.Lambda();
 let iam            = new AWS.IAM();
-let glob           = awaitable(globCb);
-let readFile       = awaitable(fs.readFile);
-let writeFile      = awaitable(fs.writeFile);
 let createFunction = awaitable(lambda.createFunction.bind(lambda));
 let addPermission  = awaitable(lambda.addPermission.bind(lambda));
 let listFunctions  = awaitable(lambda.listFunctions.bind(lambda));
