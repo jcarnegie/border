@@ -1,16 +1,4 @@
-import Promise from "bluebird";
-import shell from "shelljs";
-
-let exec = async (command) => {
-    return new Promise((resolve) => {
-        let silent = true;
-        let async = true;
-        let options = { silent, async };
-        shell.exec(command, options, (code, output) => {
-            resolve(code, output);
-        });
-    });
-};
+import exec from "./exec";
 
 // let install = () => {
 //     return new Promise((resolve, reject) => {

@@ -1,10 +1,25 @@
+import pathUtil from "path";
 import Promise from "bluebird";
-import AdmZip from "adm-zip";
+import exec from "./exec";
+import fs from "fs";
 
-export default (endpointDir) => {
-    return new Promise((resolve) => {
-        let zip = new AdmZip();
-        zip.addLocalFolder(endpointDir);
-        resolve(zip.toBuffer());
-    });
+let readFile = Promise.promisify(fs.readFile);
+
+export default async (endpointDir) => {
+    let zipFile = "endpoint.zip";
+    let zipPath = pathUtil.join(endpointDir, zipFile);
+
+    let cmd = [
+        `cd '${endpointDir}'`,
+        `zip -9r ${zipFile} *`
+    ].join(" && ");
+
+    let code = await exec(cmd);
+
+    if (code !== 0) {
+        let msg = `exit code '${code}' for ${cmd}`;
+        throw new Error(msg);
+    }
+
+    return await readFile(zipPath);
 };
