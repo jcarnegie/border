@@ -241,7 +241,10 @@ let createOrUpdateIntegration = r.curry(async (apiSpec, methodSpec, resourceId, 
         let templates = {};
         r.map(param => templates[param] = `$input.params('${param}')`, paramNames);
         templates.body = "$input.json('$')";
-        requestTemplates[contentType] = JSON.stringify(templates);
+        let templateStr = JSON.stringify(templates);
+        let match = "\"$input.json('$')\"";
+        let replacement = "$input.json('$$')";
+        requestTemplates[contentType] = templateStr.replace(match, replacement);
     }
 
     opts.requestTemplates = requestTemplates;

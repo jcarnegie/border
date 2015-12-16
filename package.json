@@ -1,6 +1,6 @@
 {
   "name": "border",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Framework for deploying code to AWS API Gateway",
   "author": {
     "name": "Jeff Carnegie",
