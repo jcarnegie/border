@@ -139,7 +139,8 @@
         "no-undef": 2,
         "no-undefined": 2,
         "no-unused-vars": 2,
-        "no-use-before-define": 2,
+        // disabled
+        "no-use-before-define": 0,
 
         // Stylistic Issues (http://eslint.org/docs/rules/)
         "array-bracket-spacing": 2,
@@ -156,7 +157,7 @@
         // disabled: don't require function names for closures
         "func-names": 0,
         "func-style": [2, "expression"],
-        "id-length": [2, { exceptions: ["a", "b", "e", "r", "x"] }],
+        "id-length": [2, { exceptions: ["a", "b", "e", "p", "r", "x"] }],
         "id-match": 2,
         "indent": 2,
         "jsx-quotes": 2,

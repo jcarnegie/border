@@ -1,22 +1,8 @@
 import r from "ramda";
-// import qs from "querystring";
 import aws4 from "aws4";
 import https from "https";
 import Promise from "bluebird";
-
-let queue = [];
-
-let request = async (options) => {
-    // console.log(`queueing request: ${options.method.toUpperCase()} ${options.path}`);
-    return new Promise((resolve, reject) => {
-        let req = {
-            resolve,
-            reject,
-            options
-        };
-        queue = r.append(req, queue);
-    });
-};
+import timedq from "./timedq";
 
 let makeRequest = async (options) => {
     return new Promise((resolve, reject) => {
@@ -70,16 +56,7 @@ let makeRequest = async (options) => {
     });
 };
 
-let queueHandler = () => {
-    // console.log(`queueHandler: queue size: ${queue.length}`);
-    let request = r.head(queue);
-    if (!request) return;
-    queue = r.tail(queue);
-    // console.log(`processing request: ${request.options.method.toUpperCase()} ${request.options.path}`);
-    makeRequest(request.options)
-        .then(request.resolve)
-        .catch(request.reject);
-};
+let request = timedq(makeRequest, 500);
 
 let get = async (opts) => {
     return request(r.merge(opts, { method: "GET" }));
@@ -107,26 +84,10 @@ let patch = async (opts) => {
 };
 
 
-let intervalId = null;
-
-let start = () => {
-    // process requests once every .6 seconds since the limit is 2 requests per
-    // second: http://docs.aws.amazon.com/apigateway/api-reference/making-http-requests/
-    // console.log("starting request timer");
-    intervalId = setInterval(queueHandler, 600);
-};
-
-let stop = () => {
-    // console.log("stopping request timer");
-    clearInterval(intervalId);
-};
-
 export default {
     request,
     get,
     post,
     put,
-    patch,
-    start,
-    stop
+    patch
 };
