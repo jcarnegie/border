@@ -5,6 +5,7 @@ import Promise from "bluebird";
 import timedq from "./timedq";
 
 let makeRequest = async (options) => {
+    // console.log(`starting request: ${options.method.toUpperCase()} ${options.path}`);
     return new Promise((resolve, reject) => {
         let req = null;
         let signedReq = null;

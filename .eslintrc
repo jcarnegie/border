@@ -138,7 +138,7 @@
         "no-undef-init": 2,
         "no-undef": 2,
         "no-undefined": 2,
-        "no-unused-vars": 2,
+        "no-unused-vars": [2, {"args": "after-used", "argsIgnorePattern": "^_"}],
         // disabled
         "no-use-before-define": 0,
 
@@ -157,7 +157,7 @@
         // disabled: don't require function names for closures
         "func-names": 0,
         "func-style": [2, "expression"],
-        "id-length": [2, { exceptions: ["a", "b", "e", "p", "r", "x"] }],
+        "id-length": [2, { exceptions: ["_", "a", "b", "e", "p", "r", "x"] }],
         "id-match": 2,
         "indent": 2,
         "jsx-quotes": 2,
@@ -195,7 +195,8 @@
         //"no-underscore-dangle": 2,
         "no-unneeded-ternary": 2,
         "object-curly-spacing": [2, "always", { arraysInObjects: false }],
-        "one-var": [2, "never"],
+        // disabled
+        "one-var": 0,
         "operator-assignment": 2,
         // disabled: undecided for now
         "operator-linebreak": 0,

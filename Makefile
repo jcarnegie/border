@@ -1,6 +1,7 @@
 ESLINT := node_modules/.bin/eslint
 
-SRC = $(wildcard src/*.js)
+# SRC = $(wildcard src/*.js src/**/*.js)
+SRC = $(shell find src -name "*.js")
 LIB = $(SRC:src/%.js=lib/%.js)
 BINSRC = $(wildcard bin-src/*.js)
 BIN = $(BINSRC:bin-src/%.js=bin/%.js)

@@ -139,22 +139,27 @@ let createMethodResponse = async(region, apiId, resourceId, method, statusCode, 
 };
 
 let updateMethodResponse = async(region, apiId, resourceId, method, statusCode, responseParameters = {}) => {
-    let genOp = (param) => {
-        return {
-            op: "add",
-            path: `/responseParameters/${param}`
+    try {
+        let genOp = (param) => {
+            return {
+                op: "add",
+                path: `/responseParameters/${param}`
+            };
         };
-    };
 
-    let ops = r.map(genOp, r.keys(responseParameters));
-    return await awsreq.patch({
-        region,
-        host:   `apigateway.${region}.amazonaws.com`,
-        path:   `/restapis/${apiId}/resources/${resourceId}/methods/${method.toUpperCase()}/responses/${statusCode}`,
-        body:   {
-            patchOperations: ops
-        }
-    });
+        let ops = r.map(genOp, r.keys(responseParameters));
+        return await awsreq.patch({
+            region,
+            host:   `apigateway.${region}.amazonaws.com`,
+            path:   `/restapis/${apiId}/resources/${resourceId}/methods/${method.toUpperCase()}/responses/${statusCode}`,
+            body:   {
+                patchOperations: ops
+            }
+        });
+    } catch (e) {
+        // console.log("updateMethodResponse error:", e);
+        // throw e;
+    }
 };
 
 let createIntegrationResponse = async(region, apiId, resourceId, method, statusCode, selectionPattern) => {

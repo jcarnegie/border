@@ -58,4 +58,19 @@ describe("Timed Queue", () => {
         expect(res1).to.eql(timeout);
         expect(res2).to.eql(115);
     });
+
+    it ("should process N items in a given time period", async () => {
+        let count = 0;
+        let timeout = 1;
+        let fn = timedq(testFn, 10);
+        fn(timeout).then(() => ++count);
+        fn(timeout).then(() => ++count);
+        fn(timeout).then(() => ++count);
+        fn(timeout).then(() => ++count);
+        fn(timeout).then(() => ++count);
+        setTimeout(() => {
+            expect(count).to.eql(4);
+        }, 50);
+        clock.tick(45);
+    });
 });

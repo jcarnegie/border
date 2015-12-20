@@ -1,6 +1,6 @@
 {
   "name": "border",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Framework for deploying code to AWS API Gateway",
   "author": {
     "name": "Jeff Carnegie",
@@ -46,6 +46,7 @@
     "aws-sdk": "^2.2.16",
     "aws4": "^1.1.0",
     "bluebird": "^2.10.2",
+    "body-parser": "^1.14.2",
     "colors": "^1.1.2",
     "commander": "^2.9.0",
     "express": "^4.13.3",
