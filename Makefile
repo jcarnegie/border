@@ -24,7 +24,8 @@ clean:
 lint:
 	@$(ESLINT) src test
 
-test: lib bin lint test-unit
+# test: lib bin lint test-unit
+test: lib bin test-unit
 
 test-unit:
 	mocha -c --compilers js:babel-register ./test/**/*.js

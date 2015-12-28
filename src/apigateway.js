@@ -38,6 +38,17 @@ let resources = r.curry(async (region, apiId) => {
     return res;
 });
 
+let embeddedResources = r.curry(async (region, apiId) => {
+    let res = await awsreq.get({
+        region,
+        host:   `apigateway.${region}.amazonaws.com`,
+        path:   `/restapis/${apiId}/resources?embed=methods`
+    });
+    res = res._embedded.item; // eslint-disable-line
+    if (!r.is(Array, res)) res = [res];
+    return res;
+});
+
 let createResource = async (region, apiId, parentResourceId, pathPart) => {
     let newResUrl = `/restapis/${apiId}/resources/${parentResourceId}`;
     return await awsreq.post({
@@ -208,6 +219,7 @@ export default {
     restapis,
     createRestapi,
     resources,
+    embeddedResources,
     createResource,
     method,
     createMethod,

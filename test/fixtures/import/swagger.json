@@ -1,0 +1,367 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "0.0.0",
+        "title": "api",
+        "x-aws-apigateway": {
+            "default-role": "APIGatewayLambdaExecRole",
+            "default-request-params": {
+                "header": [
+                    "Host",
+                    "Connection",
+                    "User-Agent",
+                    "Accept",
+                    "Referer",
+                    "Accept-Encoding",
+                    "Accept-Language",
+                    "Pragma"
+                ]
+            },
+            "cors": {
+                "Access-Control-Allow-Origin": "http://foo.example",
+                "Access-Control-Allow-Methods": "POST, PUT, PATCH, GET, OPTIONS",
+                "Access-Control-Allow-Headers": "X-PINGOTHER"
+            }
+        }
+    },
+    "paths": {
+        "/auth/session": {
+            "post": {
+                "description": "Create a new user",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                }
+            }
+        },
+        "/creates": {
+            "post": {
+                "description": "Creates a new create",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Auth/session token. Uses Bearer, not plain",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                }
+            }
+        },
+        "/cultures/feed": {
+            "get": {
+                "x-aws-apigateway": {},
+                "description": "Returns a feed of creates for a culture",
+                "parameters": [
+                    {
+                        "name": "friend_ids",
+                        "in": "query",
+                        "description": "Comma separated list of friend ids",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "show_world",
+                        "in": "query",
+                        "description": "Include creates from the world",
+                        "required": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "description": "Offset from the beginning of the feed (default: 0)",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "count",
+                        "in": "query",
+                        "description": "Number of items to return (default: 25)",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/events": {
+            "post": {
+                "description": "Create a new user",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                }
+            }
+        },
+        "/hello/{name}": {
+            "get": {
+                "x-aws-apigateway": {},
+                "description": "Prints \"Hello, {name}\"\n",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "path",
+                        "description": "hello, 'you'",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "headers": {
+                            "x-test-header": {
+                                "description": "just a test",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "title": "Response",
+                            "type": "object",
+                            "properties": {
+                                "hello": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/hello": {
+            "get": {
+                "x-aws-apigateway": {},
+                "description": "Prints \"Hello, world\"\n",
+                "parameters": [
+                    {
+                        "name": "count",
+                        "in": "query",
+                        "description": "Count of how many times you've written 'hello, world'",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "headers": {
+                            "x-test-header": {
+                                "description": "just a test",
+                                "type": "string"
+                            }
+                        },
+                        "schema": {
+                            "title": "Response",
+                            "type": "object",
+                            "properties": {
+                                "hello": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/s3/sign": {
+            "get": {
+                "description": "Returns a signed S3 upload URL",
+                "parameters": [
+                    {
+                        "name": "object_name",
+                        "in": "query",
+                        "description": "",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "content_type",
+                        "in": "query",
+                        "description": "",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "content_size",
+                        "in": "query",
+                        "description": "",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                }
+            }
+        },
+        "/search/images": {
+            "get": {
+                "description": "Image search",
+                "parameters": [
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "description": "Offset from the beginning of the feed (default: 0)",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "count",
+                        "in": "query",
+                        "description": "Number of items to return (default: 25)",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                }
+            }
+        },
+        "/users/feed": {
+            "get": {
+                "x-aws-apigateway": {},
+                "description": "Returns a feed of creates for the user",
+                "parameters": [
+                    {
+                        "name": "friend_ids",
+                        "in": "query",
+                        "description": "Comma separated list of friend ids",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "show_world",
+                        "in": "query",
+                        "description": "Include creates from the world",
+                        "required": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "description": "Offset from the beginning of the feed (default: 0)",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "count",
+                        "in": "query",
+                        "description": "Number of items to return (default: 25)",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/users": {
+            "post": {
+                "description": "Create a new user",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                }
+            }
+        }
+    }
+}

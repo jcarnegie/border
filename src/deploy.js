@@ -69,14 +69,14 @@ let awsAccountId = async () => {
     return accountId;
 };
 
-let createApi = async (logFn, region, name, desc) => {
+let createApi = async (msgFn, region, name, desc) => {
     let apis = await gateway.restapis(region);
     let api = r.find(r.propEq("name", name), apis);
     if (api) {
-        logFn("ok", `found existing API '${name}'`);
+        msgFn("ok", `found existing API '${name}'`);
     } else {
         api = await gateway.createRestapi(region, name, desc);
-        logFn("ok", `created API '${name}'`);
+        msgFn("ok", `created API '${name}'`);
     }
     return api;
 };
@@ -300,7 +300,7 @@ let zip = r.curry(async (apiSpec, spec, functionName) => {
     return await lambdazip(`${apiSpec.dest}/${apiSpec.stage}${spec.path}/${spec.method}`, functionName);
 });
 
-let bindEndpointAndFunction = r.curry(async (logFn, apiSpec, methodSpec) => {
+let bindEndpointAndFunction = r.curry(async (msgFn, apiSpec, methodSpec) => {
     let resourceId     = r.prop("id", r.find(r.propEq("path", methodSpec.path), apiSpec.resources));
     let functionName   = lambdaFunctionName(apiSpec, methodSpec);
     let createEndpoint = r.composeP(
@@ -312,16 +312,15 @@ let bindEndpointAndFunction = r.curry(async (logFn, apiSpec, methodSpec) => {
         zip(apiSpec, methodSpec)
     );
     let result = await createEndpoint(functionName);
-    logFn("ok", `deployed ${methodSpec.method.toUpperCase()} ${methodSpec.path}`);
+    msgFn("ok", `deployed ${methodSpec.method.toUpperCase()} ${methodSpec.path}`);
     return result;
 });
 
-let go = r.curry(async (action, logFn, region, env, stage, dest, spec) => {
+let go = r.curry(async (action, msgFn, region, env, stage, dest, spec) => {
     try {
         let accountId         = await awsAccountId();
-        let api               = await createApi(logFn, region, `${spec.info.title}-${env}`, spec.info.title);
+        let api               = await createApi(msgFn, region, `${spec.info.title}-${env}`, spec.info.title);
         let lambdaFunctions   = await listAllFunctions(region);
-        // let filenameFn        = endpointModuleFilename(spec.info.title, env, stage, dest);
         let filenameFn        = r.identity;
 
         let apiSpec = {
@@ -343,23 +342,23 @@ let go = r.curry(async (action, logFn, region, env, stage, dest, spec) => {
         };
 
         await transpile(`src/${stage}`, `${dest}/${stage}`, filenameFn);
-        logFn("ok", "transpiled");
+        msgFn("ok", "transpiled");
 
         // install NPMs for each endpoint lambda function
         await mapSerialAsync(
             installFunctionModules(dest, stage),
             apiSpec.endpoints
         );
-        logFn("ok", "installed lambda function NPM modules");
+        msgFn("ok", "installed lambda function NPM modules");
 
         // stop here if we're only building
         if (action === "build") return;
 
         await createResources(region, api, spec);
-        logFn("ok", "created missing resources");
+        msgFn("ok", "created missing resources");
 
         apiSpec.resources = await gateway.resources(region, api.id);
-        logFn("ok", "fetched resources");
+        msgFn("ok", "fetched resources");
 
         // Make sure all gateway endpoints are created
         await Promise.all(
@@ -368,21 +367,21 @@ let go = r.curry(async (action, logFn, region, env, stage, dest, spec) => {
                 apiSpec.endpoints
             )
         );
-        logFn("ok", "created method endpoints");
+        msgFn("ok", "created method endpoints");
 
         // Create lambda functions and bind them to the api gateway endpoint methods
         await Promise.all(
             r.map(
-                bindEndpointAndFunction(logFn, apiSpec),
+                bindEndpointAndFunction(msgFn, apiSpec),
                 apiSpec.endpoints
             )
         );
 
         // deploy the api
         await gateway.deploy(region, api.id, stage);
-        logFn("ok", `deployed api to https://${api.id}.execute-api.${region}.amazonaws.com/${stage}`);
+        msgFn("ok", `deployed api to https://${api.id}.execute-api.${region}.amazonaws.com/${stage}`);
     } catch (e) {
-        logFn("error", e.stack);
+        msgFn("error", e.stack);
         throw e;
     }
 });

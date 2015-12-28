@@ -1,0 +1,3021 @@
+[
+    {
+        "_links": {
+            "self": {
+                "href": "/restapis/fqn4zn1bif/resources/3bxi9w"
+            },
+            "method:by-http-method": {
+                "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/{http_method}",
+                "templated": true
+            },
+            "method:put": {
+                "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/{http_method}",
+                "templated": true
+            },
+            "resource:create-child": {
+                "href": "/restapis/fqn4zn1bif/resources/3bxi9w"
+            },
+            "resource:delete": {
+                "href": "/restapis/fqn4zn1bif/resources/3bxi9w"
+            },
+            "resource:methods": [
+                {
+                    "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/POST",
+                    "name": "POST",
+                    "title": "POST"
+                },
+                {
+                    "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/GET",
+                    "name": "GET",
+                    "title": "GET"
+                }
+            ],
+            "resource:update": {
+                "href": "/restapis/fqn4zn1bif/resources/3bxi9w"
+            }
+        },
+        "id": "3bxi9w",
+        "parentId": "f3i6k50lo7",
+        "path": "/hello",
+        "pathPart": "hello",
+        "_embedded": {
+            "resource:methods": [
+                {
+                    "_links": {
+                        "self": {
+                            "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/POST",
+                            "name": "POST",
+                            "title": "POST"
+                        },
+                        "integration:put": {
+                            "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/POST/integration"
+                        },
+                        "method:delete": {
+                            "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/POST"
+                        },
+                        "method:integration": {
+                            "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/POST/integration"
+                        },
+                        "method:responses": {
+                            "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/POST/responses/200",
+                            "name": "200",
+                            "title": "200"
+                        },
+                        "method:update": {
+                            "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/POST"
+                        },
+                        "methodresponse:put": {
+                            "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/POST/responses/{status_code}",
+                            "templated": true
+                        }
+                    },
+                    "apiKeyRequired": false,
+                    "authorizationType": "NONE",
+                    "httpMethod": "POST",
+                    "requestParameters": {},
+                    "_embedded": {
+                        "method:integration": {
+                            "_links": {
+                                "self": {
+                                    "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/POST/integration"
+                                },
+                                "integration:delete": {
+                                    "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/POST/integration"
+                                },
+                                "integration:responses": {
+                                    "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/POST/integration/responses/200",
+                                    "name": "200",
+                                    "title": "200"
+                                },
+                                "integration:update": {
+                                    "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/POST/integration"
+                                },
+                                "integrationresponse:put": {
+                                    "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/POST/integration/responses/{status_code}",
+                                    "templated": true
+                                }
+                            },
+                            "cacheKeyParameters": [],
+                            "cacheNamespace": "3bxi9w",
+                            "httpMethod": "POST",
+                            "type": "AWS",
+                            "uri": "arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:018810891728:function:api-development-v1-users-feed-get/invocations",
+                            "_embedded": {
+                                "integration:responses": {
+                                    "_links": {
+                                        "self": {
+                                            "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/POST/integration/responses/200",
+                                            "name": "200",
+                                            "title": "200"
+                                        },
+                                        "integrationresponse:delete": {
+                                            "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/POST/integration/responses/200"
+                                        },
+                                        "integrationresponse:update": {
+                                            "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/POST/integration/responses/200"
+                                        }
+                                    },
+                                    "responseTemplates": {
+                                        "application/json": null
+                                    },
+                                    "statusCode": "200"
+                                }
+                            }
+                        },
+                        "method:responses": {
+                            "_links": {
+                                "self": {
+                                    "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/POST/responses/200",
+                                    "name": "200",
+                                    "title": "200"
+                                },
+                                "methodresponse:delete": {
+                                    "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/POST/responses/200"
+                                },
+                                "methodresponse:update": {
+                                    "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/POST/responses/200"
+                                }
+                            },
+                            "responseModels": {
+                                "application/json": "Empty"
+                            },
+                            "statusCode": "200"
+                        }
+                    }
+                },
+                {
+                    "_links": {
+                        "self": {
+                            "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/GET",
+                            "name": "GET",
+                            "title": "GET"
+                        },
+                        "integration:put": {
+                            "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/GET/integration"
+                        },
+                        "method:delete": {
+                            "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/GET"
+                        },
+                        "method:integration": {
+                            "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/GET/integration"
+                        },
+                        "method:responses": [
+                            {
+                                "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/GET/responses/200",
+                                "name": "200",
+                                "title": "200"
+                            },
+                            {
+                                "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/GET/responses/400",
+                                "name": "400",
+                                "title": "400"
+                            },
+                            {
+                                "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/GET/responses/401",
+                                "name": "401",
+                                "title": "401"
+                            }
+                        ],
+                        "method:update": {
+                            "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/GET"
+                        },
+                        "methodresponse:put": {
+                            "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/GET/responses/{status_code}",
+                            "templated": true
+                        }
+                    },
+                    "apiKeyRequired": false,
+                    "authorizationType": "NONE",
+                    "httpMethod": "GET",
+                    "requestParameters": {
+                        "method.request.header.Accept": true,
+                        "method.request.querystring.count": true,
+                        "method.request.header.User-Agent": true,
+                        "method.request.header.Referer": true,
+                        "method.request.header.Pragma": true,
+                        "method.request.header.Accept-Language": true,
+                        "method.request.header.Connection": true,
+                        "method.request.header.Accept-Encoding": true,
+                        "method.request.header.Host": true
+                    },
+                    "_embedded": {
+                        "method:integration": {
+                            "_links": {
+                                "self": {
+                                    "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/GET/integration"
+                                },
+                                "integration:delete": {
+                                    "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/GET/integration"
+                                },
+                                "integration:responses": [
+                                    {
+                                        "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/GET/integration/responses/200",
+                                        "name": "200",
+                                        "title": "200"
+                                    },
+                                    {
+                                        "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/GET/integration/responses/400",
+                                        "name": "400",
+                                        "title": "400"
+                                    },
+                                    {
+                                        "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/GET/integration/responses/401",
+                                        "name": "401",
+                                        "title": "401"
+                                    }
+                                ],
+                                "integration:update": {
+                                    "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/GET/integration"
+                                },
+                                "integrationresponse:put": {
+                                    "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/GET/integration/responses/{status_code}",
+                                    "templated": true
+                                }
+                            },
+                            "cacheKeyParameters": [],
+                            "cacheNamespace": "3bxi9w",
+                            "httpMethod": "POST",
+                            "requestTemplates": {
+                                "application/json": "{\"Host\":\"$input.params('Host')\",\"Connection\":\"$input.params('Connection')\",\"User-Agent\":\"$input.params('User-Agent')\",\"Accept\":\"$input.params('Accept')\",\"Referer\":\"$input.params('Referer')\",\"Accept-Encoding\":\"$input.params('Accept-Encoding')\",\"Accept-Language\":\"$input.params('Accept-Language')\",\"Pragma\":\"$input.params('Pragma')\",\"count\":\"$input.params('count')\",\"body\":$input.json('$')}"
+                            },
+                            "type": "AWS",
+                            "uri": "arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:018810891728:function:api-development-v1-hello-get/invocations",
+                            "_embedded": {
+                                "integration:responses": [
+                                    {
+                                        "_links": {
+                                            "self": {
+                                                "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/GET/integration/responses/200",
+                                                "name": "200",
+                                                "title": "200"
+                                            },
+                                            "integrationresponse:delete": {
+                                                "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/GET/integration/responses/200"
+                                            },
+                                            "integrationresponse:update": {
+                                                "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/GET/integration/responses/200"
+                                            }
+                                        },
+                                        "responseTemplates": {
+                                            "application/json": null
+                                        },
+                                        "statusCode": "200"
+                                    },
+                                    {
+                                        "_links": {
+                                            "self": {
+                                                "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/GET/integration/responses/400",
+                                                "name": "400",
+                                                "title": "400"
+                                            },
+                                            "integrationresponse:delete": {
+                                                "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/GET/integration/responses/400"
+                                            },
+                                            "integrationresponse:update": {
+                                                "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/GET/integration/responses/400"
+                                            }
+                                        },
+                                        "responseTemplates": {
+                                            "application/json": null
+                                        },
+                                        "selectionPattern": "400",
+                                        "statusCode": "400"
+                                    },
+                                    {
+                                        "_links": {
+                                            "self": {
+                                                "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/GET/integration/responses/401",
+                                                "name": "401",
+                                                "title": "401"
+                                            },
+                                            "integrationresponse:delete": {
+                                                "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/GET/integration/responses/401"
+                                            },
+                                            "integrationresponse:update": {
+                                                "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/GET/integration/responses/401"
+                                            }
+                                        },
+                                        "responseTemplates": {
+                                            "application/json": null
+                                        },
+                                        "selectionPattern": "401",
+                                        "statusCode": "401"
+                                    }
+                                ]
+                            }
+                        },
+                        "method:responses": [
+                            {
+                                "_links": {
+                                    "self": {
+                                        "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/GET/responses/200",
+                                        "name": "200",
+                                        "title": "200"
+                                    },
+                                    "methodresponse:delete": {
+                                        "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/GET/responses/200"
+                                    },
+                                    "methodresponse:update": {
+                                        "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/GET/responses/200"
+                                    }
+                                },
+                                "statusCode": "200"
+                            },
+                            {
+                                "_links": {
+                                    "self": {
+                                        "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/GET/responses/400",
+                                        "name": "400",
+                                        "title": "400"
+                                    },
+                                    "methodresponse:delete": {
+                                        "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/GET/responses/400"
+                                    },
+                                    "methodresponse:update": {
+                                        "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/GET/responses/400"
+                                    }
+                                },
+                                "statusCode": "400"
+                            },
+                            {
+                                "_links": {
+                                    "self": {
+                                        "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/GET/responses/401",
+                                        "name": "401",
+                                        "title": "401"
+                                    },
+                                    "methodresponse:delete": {
+                                        "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/GET/responses/401"
+                                    },
+                                    "methodresponse:update": {
+                                        "href": "/restapis/fqn4zn1bif/resources/3bxi9w/methods/GET/responses/401"
+                                    }
+                                },
+                                "statusCode": "401"
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "_links": {
+            "self": {
+                "href": "/restapis/fqn4zn1bif/resources/63l1p8"
+            },
+            "method:by-http-method": {
+                "href": "/restapis/fqn4zn1bif/resources/63l1p8/methods/{http_method}",
+                "templated": true
+            },
+            "method:put": {
+                "href": "/restapis/fqn4zn1bif/resources/63l1p8/methods/{http_method}",
+                "templated": true
+            },
+            "resource:create-child": {
+                "href": "/restapis/fqn4zn1bif/resources/63l1p8"
+            },
+            "resource:delete": {
+                "href": "/restapis/fqn4zn1bif/resources/63l1p8"
+            },
+            "resource:update": {
+                "href": "/restapis/fqn4zn1bif/resources/63l1p8"
+            }
+        },
+        "id": "63l1p8",
+        "parentId": "f3i6k50lo7",
+        "path": "/search",
+        "pathPart": "search"
+    },
+    {
+        "_links": {
+            "self": {
+                "href": "/restapis/fqn4zn1bif/resources/d1yazt"
+            },
+            "method:by-http-method": {
+                "href": "/restapis/fqn4zn1bif/resources/d1yazt/methods/{http_method}",
+                "templated": true
+            },
+            "method:put": {
+                "href": "/restapis/fqn4zn1bif/resources/d1yazt/methods/{http_method}",
+                "templated": true
+            },
+            "resource:create-child": {
+                "href": "/restapis/fqn4zn1bif/resources/d1yazt"
+            },
+            "resource:delete": {
+                "href": "/restapis/fqn4zn1bif/resources/d1yazt"
+            },
+            "resource:methods": {
+                "href": "/restapis/fqn4zn1bif/resources/d1yazt/methods/POST",
+                "name": "POST",
+                "title": "POST"
+            },
+            "resource:update": {
+                "href": "/restapis/fqn4zn1bif/resources/d1yazt"
+            }
+        },
+        "id": "d1yazt",
+        "parentId": "f3i6k50lo7",
+        "path": "/creates",
+        "pathPart": "creates",
+        "_embedded": {
+            "resource:methods": {
+                "_links": {
+                    "self": {
+                        "href": "/restapis/fqn4zn1bif/resources/d1yazt/methods/POST",
+                        "name": "POST",
+                        "title": "POST"
+                    },
+                    "integration:put": {
+                        "href": "/restapis/fqn4zn1bif/resources/d1yazt/methods/POST/integration"
+                    },
+                    "method:delete": {
+                        "href": "/restapis/fqn4zn1bif/resources/d1yazt/methods/POST"
+                    },
+                    "method:integration": {
+                        "href": "/restapis/fqn4zn1bif/resources/d1yazt/methods/POST/integration"
+                    },
+                    "method:responses": [
+                        {
+                            "href": "/restapis/fqn4zn1bif/resources/d1yazt/methods/POST/responses/200",
+                            "name": "200",
+                            "title": "200"
+                        },
+                        {
+                            "href": "/restapis/fqn4zn1bif/resources/d1yazt/methods/POST/responses/400",
+                            "name": "400",
+                            "title": "400"
+                        },
+                        {
+                            "href": "/restapis/fqn4zn1bif/resources/d1yazt/methods/POST/responses/500",
+                            "name": "500",
+                            "title": "500"
+                        },
+                        {
+                            "href": "/restapis/fqn4zn1bif/resources/d1yazt/methods/POST/responses/401",
+                            "name": "401",
+                            "title": "401"
+                        }
+                    ],
+                    "method:update": {
+                        "href": "/restapis/fqn4zn1bif/resources/d1yazt/methods/POST"
+                    },
+                    "methodresponse:put": {
+                        "href": "/restapis/fqn4zn1bif/resources/d1yazt/methods/POST/responses/{status_code}",
+                        "templated": true
+                    }
+                },
+                "apiKeyRequired": false,
+                "authorizationType": "NONE",
+                "httpMethod": "POST",
+                "requestParameters": {
+                    "method.request.header.Accept": true,
+                    "method.request.header.User-Agent": true,
+                    "method.request.header.Referer": true,
+                    "method.request.header.Authorization": true,
+                    "method.request.header.Pragma": true,
+                    "method.request.header.Accept-Language": true,
+                    "method.request.header.Connection": true,
+                    "method.request.header.Accept-Encoding": true,
+                    "method.request.header.Host": true
+                },
+                "_embedded": {
+                    "method:integration": {
+                        "_links": {
+                            "self": {
+                                "href": "/restapis/fqn4zn1bif/resources/d1yazt/methods/POST/integration"
+                            },
+                            "integration:delete": {
+                                "href": "/restapis/fqn4zn1bif/resources/d1yazt/methods/POST/integration"
+                            },
+                            "integration:responses": [
+                                {
+                                    "href": "/restapis/fqn4zn1bif/resources/d1yazt/methods/POST/integration/responses/200",
+                                    "name": "200",
+                                    "title": "200"
+                                },
+                                {
+                                    "href": "/restapis/fqn4zn1bif/resources/d1yazt/methods/POST/integration/responses/400",
+                                    "name": "400",
+                                    "title": "400"
+                                },
+                                {
+                                    "href": "/restapis/fqn4zn1bif/resources/d1yazt/methods/POST/integration/responses/500",
+                                    "name": "500",
+                                    "title": "500"
+                                },
+                                {
+                                    "href": "/restapis/fqn4zn1bif/resources/d1yazt/methods/POST/integration/responses/401",
+                                    "name": "401",
+                                    "title": "401"
+                                }
+                            ],
+                            "integration:update": {
+                                "href": "/restapis/fqn4zn1bif/resources/d1yazt/methods/POST/integration"
+                            },
+                            "integrationresponse:put": {
+                                "href": "/restapis/fqn4zn1bif/resources/d1yazt/methods/POST/integration/responses/{status_code}",
+                                "templated": true
+                            }
+                        },
+                        "cacheKeyParameters": [],
+                        "cacheNamespace": "d1yazt",
+                        "httpMethod": "POST",
+                        "requestTemplates": {
+                            "application/json": "{\"Host\":\"$input.params('Host')\",\"Connection\":\"$input.params('Connection')\",\"User-Agent\":\"$input.params('User-Agent')\",\"Accept\":\"$input.params('Accept')\",\"Referer\":\"$input.params('Referer')\",\"Accept-Encoding\":\"$input.params('Accept-Encoding')\",\"Accept-Language\":\"$input.params('Accept-Language')\",\"Pragma\":\"$input.params('Pragma')\",\"Authorization\":\"$input.params('Authorization')\",\"body\":$input.json('$')}"
+                        },
+                        "type": "AWS",
+                        "uri": "arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:018810891728:function:api-development-v1-creates-post/invocations",
+                        "_embedded": {
+                            "integration:responses": [
+                                {
+                                    "_links": {
+                                        "self": {
+                                            "href": "/restapis/fqn4zn1bif/resources/d1yazt/methods/POST/integration/responses/200",
+                                            "name": "200",
+                                            "title": "200"
+                                        },
+                                        "integrationresponse:delete": {
+                                            "href": "/restapis/fqn4zn1bif/resources/d1yazt/methods/POST/integration/responses/200"
+                                        },
+                                        "integrationresponse:update": {
+                                            "href": "/restapis/fqn4zn1bif/resources/d1yazt/methods/POST/integration/responses/200"
+                                        }
+                                    },
+                                    "responseTemplates": {
+                                        "application/json": null
+                                    },
+                                    "statusCode": "200"
+                                },
+                                {
+                                    "_links": {
+                                        "self": {
+                                            "href": "/restapis/fqn4zn1bif/resources/d1yazt/methods/POST/integration/responses/400",
+                                            "name": "400",
+                                            "title": "400"
+                                        },
+                                        "integrationresponse:delete": {
+                                            "href": "/restapis/fqn4zn1bif/resources/d1yazt/methods/POST/integration/responses/400"
+                                        },
+                                        "integrationresponse:update": {
+                                            "href": "/restapis/fqn4zn1bif/resources/d1yazt/methods/POST/integration/responses/400"
+                                        }
+                                    },
+                                    "responseTemplates": {
+                                        "application/json": null
+                                    },
+                                    "selectionPattern": "400",
+                                    "statusCode": "400"
+                                },
+                                {
+                                    "_links": {
+                                        "self": {
+                                            "href": "/restapis/fqn4zn1bif/resources/d1yazt/methods/POST/integration/responses/500",
+                                            "name": "500",
+                                            "title": "500"
+                                        },
+                                        "integrationresponse:delete": {
+                                            "href": "/restapis/fqn4zn1bif/resources/d1yazt/methods/POST/integration/responses/500"
+                                        },
+                                        "integrationresponse:update": {
+                                            "href": "/restapis/fqn4zn1bif/resources/d1yazt/methods/POST/integration/responses/500"
+                                        }
+                                    },
+                                    "responseTemplates": {
+                                        "application/json": null
+                                    },
+                                    "selectionPattern": "500",
+                                    "statusCode": "500"
+                                },
+                                {
+                                    "_links": {
+                                        "self": {
+                                            "href": "/restapis/fqn4zn1bif/resources/d1yazt/methods/POST/integration/responses/401",
+                                            "name": "401",
+                                            "title": "401"
+                                        },
+                                        "integrationresponse:delete": {
+                                            "href": "/restapis/fqn4zn1bif/resources/d1yazt/methods/POST/integration/responses/401"
+                                        },
+                                        "integrationresponse:update": {
+                                            "href": "/restapis/fqn4zn1bif/resources/d1yazt/methods/POST/integration/responses/401"
+                                        }
+                                    },
+                                    "responseTemplates": {
+                                        "application/json": null
+                                    },
+                                    "selectionPattern": "401",
+                                    "statusCode": "401"
+                                }
+                            ]
+                        }
+                    },
+                    "method:responses": [
+                        {
+                            "_links": {
+                                "self": {
+                                    "href": "/restapis/fqn4zn1bif/resources/d1yazt/methods/POST/responses/200",
+                                    "name": "200",
+                                    "title": "200"
+                                },
+                                "methodresponse:delete": {
+                                    "href": "/restapis/fqn4zn1bif/resources/d1yazt/methods/POST/responses/200"
+                                },
+                                "methodresponse:update": {
+                                    "href": "/restapis/fqn4zn1bif/resources/d1yazt/methods/POST/responses/200"
+                                }
+                            },
+                            "statusCode": "200"
+                        },
+                        {
+                            "_links": {
+                                "self": {
+                                    "href": "/restapis/fqn4zn1bif/resources/d1yazt/methods/POST/responses/400",
+                                    "name": "400",
+                                    "title": "400"
+                                },
+                                "methodresponse:delete": {
+                                    "href": "/restapis/fqn4zn1bif/resources/d1yazt/methods/POST/responses/400"
+                                },
+                                "methodresponse:update": {
+                                    "href": "/restapis/fqn4zn1bif/resources/d1yazt/methods/POST/responses/400"
+                                }
+                            },
+                            "statusCode": "400"
+                        },
+                        {
+                            "_links": {
+                                "self": {
+                                    "href": "/restapis/fqn4zn1bif/resources/d1yazt/methods/POST/responses/500",
+                                    "name": "500",
+                                    "title": "500"
+                                },
+                                "methodresponse:delete": {
+                                    "href": "/restapis/fqn4zn1bif/resources/d1yazt/methods/POST/responses/500"
+                                },
+                                "methodresponse:update": {
+                                    "href": "/restapis/fqn4zn1bif/resources/d1yazt/methods/POST/responses/500"
+                                }
+                            },
+                            "statusCode": "500"
+                        },
+                        {
+                            "_links": {
+                                "self": {
+                                    "href": "/restapis/fqn4zn1bif/resources/d1yazt/methods/POST/responses/401",
+                                    "name": "401",
+                                    "title": "401"
+                                },
+                                "methodresponse:delete": {
+                                    "href": "/restapis/fqn4zn1bif/resources/d1yazt/methods/POST/responses/401"
+                                },
+                                "methodresponse:update": {
+                                    "href": "/restapis/fqn4zn1bif/resources/d1yazt/methods/POST/responses/401"
+                                }
+                            },
+                            "statusCode": "401"
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "_links": {
+            "self": {
+                "href": "/restapis/fqn4zn1bif/resources/e9mj7o"
+            },
+            "method:by-http-method": {
+                "href": "/restapis/fqn4zn1bif/resources/e9mj7o/methods/{http_method}",
+                "templated": true
+            },
+            "method:put": {
+                "href": "/restapis/fqn4zn1bif/resources/e9mj7o/methods/{http_method}",
+                "templated": true
+            },
+            "resource:create-child": {
+                "href": "/restapis/fqn4zn1bif/resources/e9mj7o"
+            },
+            "resource:delete": {
+                "href": "/restapis/fqn4zn1bif/resources/e9mj7o"
+            },
+            "resource:methods": {
+                "href": "/restapis/fqn4zn1bif/resources/e9mj7o/methods/GET",
+                "name": "GET",
+                "title": "GET"
+            },
+            "resource:update": {
+                "href": "/restapis/fqn4zn1bif/resources/e9mj7o"
+            }
+        },
+        "id": "e9mj7o",
+        "parentId": "f9ql9s",
+        "path": "/s3/sign",
+        "pathPart": "sign",
+        "_embedded": {
+            "resource:methods": {
+                "_links": {
+                    "self": {
+                        "href": "/restapis/fqn4zn1bif/resources/e9mj7o/methods/GET",
+                        "name": "GET",
+                        "title": "GET"
+                    },
+                    "integration:put": {
+                        "href": "/restapis/fqn4zn1bif/resources/e9mj7o/methods/GET/integration"
+                    },
+                    "method:delete": {
+                        "href": "/restapis/fqn4zn1bif/resources/e9mj7o/methods/GET"
+                    },
+                    "method:integration": {
+                        "href": "/restapis/fqn4zn1bif/resources/e9mj7o/methods/GET/integration"
+                    },
+                    "method:responses": [
+                        {
+                            "href": "/restapis/fqn4zn1bif/resources/e9mj7o/methods/GET/responses/200",
+                            "name": "200",
+                            "title": "200"
+                        },
+                        {
+                            "href": "/restapis/fqn4zn1bif/resources/e9mj7o/methods/GET/responses/400",
+                            "name": "400",
+                            "title": "400"
+                        },
+                        {
+                            "href": "/restapis/fqn4zn1bif/resources/e9mj7o/methods/GET/responses/500",
+                            "name": "500",
+                            "title": "500"
+                        },
+                        {
+                            "href": "/restapis/fqn4zn1bif/resources/e9mj7o/methods/GET/responses/401",
+                            "name": "401",
+                            "title": "401"
+                        }
+                    ],
+                    "method:update": {
+                        "href": "/restapis/fqn4zn1bif/resources/e9mj7o/methods/GET"
+                    },
+                    "methodresponse:put": {
+                        "href": "/restapis/fqn4zn1bif/resources/e9mj7o/methods/GET/responses/{status_code}",
+                        "templated": true
+                    }
+                },
+                "apiKeyRequired": false,
+                "authorizationType": "NONE",
+                "httpMethod": "GET",
+                "requestParameters": {
+                    "method.request.header.Accept": true,
+                    "method.request.querystring.object_name": true,
+                    "method.request.header.User-Agent": true,
+                    "method.request.header.Referer": true,
+                    "method.request.querystring.content_type": true,
+                    "method.request.header.Pragma": true,
+                    "method.request.header.Accept-Language": true,
+                    "method.request.header.Connection": true,
+                    "method.request.header.Accept-Encoding": true,
+                    "method.request.querystring.content_size": true,
+                    "method.request.header.Host": true
+                },
+                "_embedded": {
+                    "method:integration": {
+                        "_links": {
+                            "self": {
+                                "href": "/restapis/fqn4zn1bif/resources/e9mj7o/methods/GET/integration"
+                            },
+                            "integration:delete": {
+                                "href": "/restapis/fqn4zn1bif/resources/e9mj7o/methods/GET/integration"
+                            },
+                            "integration:responses": [
+                                {
+                                    "href": "/restapis/fqn4zn1bif/resources/e9mj7o/methods/GET/integration/responses/200",
+                                    "name": "200",
+                                    "title": "200"
+                                },
+                                {
+                                    "href": "/restapis/fqn4zn1bif/resources/e9mj7o/methods/GET/integration/responses/400",
+                                    "name": "400",
+                                    "title": "400"
+                                },
+                                {
+                                    "href": "/restapis/fqn4zn1bif/resources/e9mj7o/methods/GET/integration/responses/500",
+                                    "name": "500",
+                                    "title": "500"
+                                },
+                                {
+                                    "href": "/restapis/fqn4zn1bif/resources/e9mj7o/methods/GET/integration/responses/401",
+                                    "name": "401",
+                                    "title": "401"
+                                }
+                            ],
+                            "integration:update": {
+                                "href": "/restapis/fqn4zn1bif/resources/e9mj7o/methods/GET/integration"
+                            },
+                            "integrationresponse:put": {
+                                "href": "/restapis/fqn4zn1bif/resources/e9mj7o/methods/GET/integration/responses/{status_code}",
+                                "templated": true
+                            }
+                        },
+                        "cacheKeyParameters": [],
+                        "cacheNamespace": "e9mj7o",
+                        "httpMethod": "POST",
+                        "requestTemplates": {
+                            "application/json": "{\"Host\":\"$input.params('Host')\",\"Connection\":\"$input.params('Connection')\",\"User-Agent\":\"$input.params('User-Agent')\",\"Accept\":\"$input.params('Accept')\",\"Referer\":\"$input.params('Referer')\",\"Accept-Encoding\":\"$input.params('Accept-Encoding')\",\"Accept-Language\":\"$input.params('Accept-Language')\",\"Pragma\":\"$input.params('Pragma')\",\"object_name\":\"$input.params('object_name')\",\"content_type\":\"$input.params('content_type')\",\"content_size\":\"$input.params('content_size')\",\"body\":$input.json('$')}"
+                        },
+                        "type": "AWS",
+                        "uri": "arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:018810891728:function:api-development-v1-s3-sign-get/invocations",
+                        "_embedded": {
+                            "integration:responses": [
+                                {
+                                    "_links": {
+                                        "self": {
+                                            "href": "/restapis/fqn4zn1bif/resources/e9mj7o/methods/GET/integration/responses/200",
+                                            "name": "200",
+                                            "title": "200"
+                                        },
+                                        "integrationresponse:delete": {
+                                            "href": "/restapis/fqn4zn1bif/resources/e9mj7o/methods/GET/integration/responses/200"
+                                        },
+                                        "integrationresponse:update": {
+                                            "href": "/restapis/fqn4zn1bif/resources/e9mj7o/methods/GET/integration/responses/200"
+                                        }
+                                    },
+                                    "responseTemplates": {
+                                        "application/json": null
+                                    },
+                                    "statusCode": "200"
+                                },
+                                {
+                                    "_links": {
+                                        "self": {
+                                            "href": "/restapis/fqn4zn1bif/resources/e9mj7o/methods/GET/integration/responses/400",
+                                            "name": "400",
+                                            "title": "400"
+                                        },
+                                        "integrationresponse:delete": {
+                                            "href": "/restapis/fqn4zn1bif/resources/e9mj7o/methods/GET/integration/responses/400"
+                                        },
+                                        "integrationresponse:update": {
+                                            "href": "/restapis/fqn4zn1bif/resources/e9mj7o/methods/GET/integration/responses/400"
+                                        }
+                                    },
+                                    "responseTemplates": {
+                                        "application/json": null
+                                    },
+                                    "selectionPattern": "400",
+                                    "statusCode": "400"
+                                },
+                                {
+                                    "_links": {
+                                        "self": {
+                                            "href": "/restapis/fqn4zn1bif/resources/e9mj7o/methods/GET/integration/responses/500",
+                                            "name": "500",
+                                            "title": "500"
+                                        },
+                                        "integrationresponse:delete": {
+                                            "href": "/restapis/fqn4zn1bif/resources/e9mj7o/methods/GET/integration/responses/500"
+                                        },
+                                        "integrationresponse:update": {
+                                            "href": "/restapis/fqn4zn1bif/resources/e9mj7o/methods/GET/integration/responses/500"
+                                        }
+                                    },
+                                    "responseTemplates": {
+                                        "application/json": null
+                                    },
+                                    "selectionPattern": "500",
+                                    "statusCode": "500"
+                                },
+                                {
+                                    "_links": {
+                                        "self": {
+                                            "href": "/restapis/fqn4zn1bif/resources/e9mj7o/methods/GET/integration/responses/401",
+                                            "name": "401",
+                                            "title": "401"
+                                        },
+                                        "integrationresponse:delete": {
+                                            "href": "/restapis/fqn4zn1bif/resources/e9mj7o/methods/GET/integration/responses/401"
+                                        },
+                                        "integrationresponse:update": {
+                                            "href": "/restapis/fqn4zn1bif/resources/e9mj7o/methods/GET/integration/responses/401"
+                                        }
+                                    },
+                                    "responseTemplates": {
+                                        "application/json": null
+                                    },
+                                    "selectionPattern": "401",
+                                    "statusCode": "401"
+                                }
+                            ]
+                        }
+                    },
+                    "method:responses": [
+                        {
+                            "_links": {
+                                "self": {
+                                    "href": "/restapis/fqn4zn1bif/resources/e9mj7o/methods/GET/responses/200",
+                                    "name": "200",
+                                    "title": "200"
+                                },
+                                "methodresponse:delete": {
+                                    "href": "/restapis/fqn4zn1bif/resources/e9mj7o/methods/GET/responses/200"
+                                },
+                                "methodresponse:update": {
+                                    "href": "/restapis/fqn4zn1bif/resources/e9mj7o/methods/GET/responses/200"
+                                }
+                            },
+                            "statusCode": "200"
+                        },
+                        {
+                            "_links": {
+                                "self": {
+                                    "href": "/restapis/fqn4zn1bif/resources/e9mj7o/methods/GET/responses/400",
+                                    "name": "400",
+                                    "title": "400"
+                                },
+                                "methodresponse:delete": {
+                                    "href": "/restapis/fqn4zn1bif/resources/e9mj7o/methods/GET/responses/400"
+                                },
+                                "methodresponse:update": {
+                                    "href": "/restapis/fqn4zn1bif/resources/e9mj7o/methods/GET/responses/400"
+                                }
+                            },
+                            "statusCode": "400"
+                        },
+                        {
+                            "_links": {
+                                "self": {
+                                    "href": "/restapis/fqn4zn1bif/resources/e9mj7o/methods/GET/responses/500",
+                                    "name": "500",
+                                    "title": "500"
+                                },
+                                "methodresponse:delete": {
+                                    "href": "/restapis/fqn4zn1bif/resources/e9mj7o/methods/GET/responses/500"
+                                },
+                                "methodresponse:update": {
+                                    "href": "/restapis/fqn4zn1bif/resources/e9mj7o/methods/GET/responses/500"
+                                }
+                            },
+                            "statusCode": "500"
+                        },
+                        {
+                            "_links": {
+                                "self": {
+                                    "href": "/restapis/fqn4zn1bif/resources/e9mj7o/methods/GET/responses/401",
+                                    "name": "401",
+                                    "title": "401"
+                                },
+                                "methodresponse:delete": {
+                                    "href": "/restapis/fqn4zn1bif/resources/e9mj7o/methods/GET/responses/401"
+                                },
+                                "methodresponse:update": {
+                                    "href": "/restapis/fqn4zn1bif/resources/e9mj7o/methods/GET/responses/401"
+                                }
+                            },
+                            "statusCode": "401"
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "_links": {
+            "self": {
+                "href": "/restapis/fqn4zn1bif/resources/f3i6k50lo7"
+            },
+            "method:by-http-method": {
+                "href": "/restapis/fqn4zn1bif/resources/f3i6k50lo7/methods/{http_method}",
+                "templated": true
+            },
+            "method:put": {
+                "href": "/restapis/fqn4zn1bif/resources/f3i6k50lo7/methods/{http_method}",
+                "templated": true
+            },
+            "resource:create-child": {
+                "href": "/restapis/fqn4zn1bif/resources/f3i6k50lo7"
+            },
+            "resource:update": {
+                "href": "/restapis/fqn4zn1bif/resources/f3i6k50lo7"
+            }
+        },
+        "id": "f3i6k50lo7",
+        "path": "/"
+    },
+    {
+        "_links": {
+            "self": {
+                "href": "/restapis/fqn4zn1bif/resources/f9ql9s"
+            },
+            "method:by-http-method": {
+                "href": "/restapis/fqn4zn1bif/resources/f9ql9s/methods/{http_method}",
+                "templated": true
+            },
+            "method:put": {
+                "href": "/restapis/fqn4zn1bif/resources/f9ql9s/methods/{http_method}",
+                "templated": true
+            },
+            "resource:create-child": {
+                "href": "/restapis/fqn4zn1bif/resources/f9ql9s"
+            },
+            "resource:delete": {
+                "href": "/restapis/fqn4zn1bif/resources/f9ql9s"
+            },
+            "resource:update": {
+                "href": "/restapis/fqn4zn1bif/resources/f9ql9s"
+            }
+        },
+        "id": "f9ql9s",
+        "parentId": "f3i6k50lo7",
+        "path": "/s3",
+        "pathPart": "s3"
+    },
+    {
+        "_links": {
+            "self": {
+                "href": "/restapis/fqn4zn1bif/resources/fjomzi"
+            },
+            "method:by-http-method": {
+                "href": "/restapis/fqn4zn1bif/resources/fjomzi/methods/{http_method}",
+                "templated": true
+            },
+            "method:put": {
+                "href": "/restapis/fqn4zn1bif/resources/fjomzi/methods/{http_method}",
+                "templated": true
+            },
+            "resource:create-child": {
+                "href": "/restapis/fqn4zn1bif/resources/fjomzi"
+            },
+            "resource:delete": {
+                "href": "/restapis/fqn4zn1bif/resources/fjomzi"
+            },
+            "resource:update": {
+                "href": "/restapis/fqn4zn1bif/resources/fjomzi"
+            }
+        },
+        "id": "fjomzi",
+        "parentId": "f3i6k50lo7",
+        "path": "/auth",
+        "pathPart": "auth"
+    },
+    {
+        "_links": {
+            "self": {
+                "href": "/restapis/fqn4zn1bif/resources/hu69ri"
+            },
+            "method:by-http-method": {
+                "href": "/restapis/fqn4zn1bif/resources/hu69ri/methods/{http_method}",
+                "templated": true
+            },
+            "method:put": {
+                "href": "/restapis/fqn4zn1bif/resources/hu69ri/methods/{http_method}",
+                "templated": true
+            },
+            "resource:create-child": {
+                "href": "/restapis/fqn4zn1bif/resources/hu69ri"
+            },
+            "resource:delete": {
+                "href": "/restapis/fqn4zn1bif/resources/hu69ri"
+            },
+            "resource:update": {
+                "href": "/restapis/fqn4zn1bif/resources/hu69ri"
+            }
+        },
+        "id": "hu69ri",
+        "parentId": "f3i6k50lo7",
+        "path": "/cultures",
+        "pathPart": "cultures"
+    },
+    {
+        "_links": {
+            "self": {
+                "href": "/restapis/fqn4zn1bif/resources/i8t7h5"
+            },
+            "method:by-http-method": {
+                "href": "/restapis/fqn4zn1bif/resources/i8t7h5/methods/{http_method}",
+                "templated": true
+            },
+            "method:put": {
+                "href": "/restapis/fqn4zn1bif/resources/i8t7h5/methods/{http_method}",
+                "templated": true
+            },
+            "resource:create-child": {
+                "href": "/restapis/fqn4zn1bif/resources/i8t7h5"
+            },
+            "resource:delete": {
+                "href": "/restapis/fqn4zn1bif/resources/i8t7h5"
+            },
+            "resource:methods": {
+                "href": "/restapis/fqn4zn1bif/resources/i8t7h5/methods/GET",
+                "name": "GET",
+                "title": "GET"
+            },
+            "resource:update": {
+                "href": "/restapis/fqn4zn1bif/resources/i8t7h5"
+            }
+        },
+        "id": "i8t7h5",
+        "parentId": "hu69ri",
+        "path": "/cultures/feed",
+        "pathPart": "feed",
+        "_embedded": {
+            "resource:methods": {
+                "_links": {
+                    "self": {
+                        "href": "/restapis/fqn4zn1bif/resources/i8t7h5/methods/GET",
+                        "name": "GET",
+                        "title": "GET"
+                    },
+                    "integration:put": {
+                        "href": "/restapis/fqn4zn1bif/resources/i8t7h5/methods/GET/integration"
+                    },
+                    "method:delete": {
+                        "href": "/restapis/fqn4zn1bif/resources/i8t7h5/methods/GET"
+                    },
+                    "method:integration": {
+                        "href": "/restapis/fqn4zn1bif/resources/i8t7h5/methods/GET/integration"
+                    },
+                    "method:responses": [
+                        {
+                            "href": "/restapis/fqn4zn1bif/resources/i8t7h5/methods/GET/responses/200",
+                            "name": "200",
+                            "title": "200"
+                        },
+                        {
+                            "href": "/restapis/fqn4zn1bif/resources/i8t7h5/methods/GET/responses/400",
+                            "name": "400",
+                            "title": "400"
+                        },
+                        {
+                            "href": "/restapis/fqn4zn1bif/resources/i8t7h5/methods/GET/responses/401",
+                            "name": "401",
+                            "title": "401"
+                        }
+                    ],
+                    "method:update": {
+                        "href": "/restapis/fqn4zn1bif/resources/i8t7h5/methods/GET"
+                    },
+                    "methodresponse:put": {
+                        "href": "/restapis/fqn4zn1bif/resources/i8t7h5/methods/GET/responses/{status_code}",
+                        "templated": true
+                    }
+                },
+                "apiKeyRequired": false,
+                "authorizationType": "NONE",
+                "httpMethod": "GET",
+                "requestParameters": {
+                    "method.request.header.Accept": true,
+                    "method.request.querystring.count": true,
+                    "method.request.querystring.show_world": true,
+                    "method.request.querystring.offset": true,
+                    "method.request.header.User-Agent": true,
+                    "method.request.header.Referer": true,
+                    "method.request.header.Pragma": true,
+                    "method.request.header.Accept-Language": true,
+                    "method.request.header.Connection": true,
+                    "method.request.header.Accept-Encoding": true,
+                    "method.request.querystring.friend_ids": true,
+                    "method.request.header.Host": true
+                },
+                "_embedded": {
+                    "method:integration": {
+                        "_links": {
+                            "self": {
+                                "href": "/restapis/fqn4zn1bif/resources/i8t7h5/methods/GET/integration"
+                            },
+                            "integration:delete": {
+                                "href": "/restapis/fqn4zn1bif/resources/i8t7h5/methods/GET/integration"
+                            },
+                            "integration:responses": [
+                                {
+                                    "href": "/restapis/fqn4zn1bif/resources/i8t7h5/methods/GET/integration/responses/200",
+                                    "name": "200",
+                                    "title": "200"
+                                },
+                                {
+                                    "href": "/restapis/fqn4zn1bif/resources/i8t7h5/methods/GET/integration/responses/400",
+                                    "name": "400",
+                                    "title": "400"
+                                },
+                                {
+                                    "href": "/restapis/fqn4zn1bif/resources/i8t7h5/methods/GET/integration/responses/401",
+                                    "name": "401",
+                                    "title": "401"
+                                }
+                            ],
+                            "integration:update": {
+                                "href": "/restapis/fqn4zn1bif/resources/i8t7h5/methods/GET/integration"
+                            },
+                            "integrationresponse:put": {
+                                "href": "/restapis/fqn4zn1bif/resources/i8t7h5/methods/GET/integration/responses/{status_code}",
+                                "templated": true
+                            }
+                        },
+                        "cacheKeyParameters": [],
+                        "cacheNamespace": "i8t7h5",
+                        "httpMethod": "POST",
+                        "requestTemplates": {
+                            "application/json": "{\"Host\":\"$input.params('Host')\",\"Connection\":\"$input.params('Connection')\",\"User-Agent\":\"$input.params('User-Agent')\",\"Accept\":\"$input.params('Accept')\",\"Referer\":\"$input.params('Referer')\",\"Accept-Encoding\":\"$input.params('Accept-Encoding')\",\"Accept-Language\":\"$input.params('Accept-Language')\",\"Pragma\":\"$input.params('Pragma')\",\"friend_ids\":\"$input.params('friend_ids')\",\"show_world\":\"$input.params('show_world')\",\"offset\":\"$input.params('offset')\",\"count\":\"$input.params('count')\",\"body\":$input.json('$')}"
+                        },
+                        "type": "AWS",
+                        "uri": "arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:018810891728:function:api-development-v1-cultures-feed-get/invocations",
+                        "_embedded": {
+                            "integration:responses": [
+                                {
+                                    "_links": {
+                                        "self": {
+                                            "href": "/restapis/fqn4zn1bif/resources/i8t7h5/methods/GET/integration/responses/200",
+                                            "name": "200",
+                                            "title": "200"
+                                        },
+                                        "integrationresponse:delete": {
+                                            "href": "/restapis/fqn4zn1bif/resources/i8t7h5/methods/GET/integration/responses/200"
+                                        },
+                                        "integrationresponse:update": {
+                                            "href": "/restapis/fqn4zn1bif/resources/i8t7h5/methods/GET/integration/responses/200"
+                                        }
+                                    },
+                                    "responseTemplates": {
+                                        "application/json": null
+                                    },
+                                    "statusCode": "200"
+                                },
+                                {
+                                    "_links": {
+                                        "self": {
+                                            "href": "/restapis/fqn4zn1bif/resources/i8t7h5/methods/GET/integration/responses/400",
+                                            "name": "400",
+                                            "title": "400"
+                                        },
+                                        "integrationresponse:delete": {
+                                            "href": "/restapis/fqn4zn1bif/resources/i8t7h5/methods/GET/integration/responses/400"
+                                        },
+                                        "integrationresponse:update": {
+                                            "href": "/restapis/fqn4zn1bif/resources/i8t7h5/methods/GET/integration/responses/400"
+                                        }
+                                    },
+                                    "responseTemplates": {
+                                        "application/json": null
+                                    },
+                                    "selectionPattern": "400",
+                                    "statusCode": "400"
+                                },
+                                {
+                                    "_links": {
+                                        "self": {
+                                            "href": "/restapis/fqn4zn1bif/resources/i8t7h5/methods/GET/integration/responses/401",
+                                            "name": "401",
+                                            "title": "401"
+                                        },
+                                        "integrationresponse:delete": {
+                                            "href": "/restapis/fqn4zn1bif/resources/i8t7h5/methods/GET/integration/responses/401"
+                                        },
+                                        "integrationresponse:update": {
+                                            "href": "/restapis/fqn4zn1bif/resources/i8t7h5/methods/GET/integration/responses/401"
+                                        }
+                                    },
+                                    "responseTemplates": {
+                                        "application/json": null
+                                    },
+                                    "selectionPattern": "401",
+                                    "statusCode": "401"
+                                }
+                            ]
+                        }
+                    },
+                    "method:responses": [
+                        {
+                            "_links": {
+                                "self": {
+                                    "href": "/restapis/fqn4zn1bif/resources/i8t7h5/methods/GET/responses/200",
+                                    "name": "200",
+                                    "title": "200"
+                                },
+                                "methodresponse:delete": {
+                                    "href": "/restapis/fqn4zn1bif/resources/i8t7h5/methods/GET/responses/200"
+                                },
+                                "methodresponse:update": {
+                                    "href": "/restapis/fqn4zn1bif/resources/i8t7h5/methods/GET/responses/200"
+                                }
+                            },
+                            "statusCode": "200"
+                        },
+                        {
+                            "_links": {
+                                "self": {
+                                    "href": "/restapis/fqn4zn1bif/resources/i8t7h5/methods/GET/responses/400",
+                                    "name": "400",
+                                    "title": "400"
+                                },
+                                "methodresponse:delete": {
+                                    "href": "/restapis/fqn4zn1bif/resources/i8t7h5/methods/GET/responses/400"
+                                },
+                                "methodresponse:update": {
+                                    "href": "/restapis/fqn4zn1bif/resources/i8t7h5/methods/GET/responses/400"
+                                }
+                            },
+                            "statusCode": "400"
+                        },
+                        {
+                            "_links": {
+                                "self": {
+                                    "href": "/restapis/fqn4zn1bif/resources/i8t7h5/methods/GET/responses/401",
+                                    "name": "401",
+                                    "title": "401"
+                                },
+                                "methodresponse:delete": {
+                                    "href": "/restapis/fqn4zn1bif/resources/i8t7h5/methods/GET/responses/401"
+                                },
+                                "methodresponse:update": {
+                                    "href": "/restapis/fqn4zn1bif/resources/i8t7h5/methods/GET/responses/401"
+                                }
+                            },
+                            "statusCode": "401"
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "_links": {
+            "self": {
+                "href": "/restapis/fqn4zn1bif/resources/meh8b3"
+            },
+            "method:by-http-method": {
+                "href": "/restapis/fqn4zn1bif/resources/meh8b3/methods/{http_method}",
+                "templated": true
+            },
+            "method:put": {
+                "href": "/restapis/fqn4zn1bif/resources/meh8b3/methods/{http_method}",
+                "templated": true
+            },
+            "resource:create-child": {
+                "href": "/restapis/fqn4zn1bif/resources/meh8b3"
+            },
+            "resource:delete": {
+                "href": "/restapis/fqn4zn1bif/resources/meh8b3"
+            },
+            "resource:methods": {
+                "href": "/restapis/fqn4zn1bif/resources/meh8b3/methods/POST",
+                "name": "POST",
+                "title": "POST"
+            },
+            "resource:update": {
+                "href": "/restapis/fqn4zn1bif/resources/meh8b3"
+            }
+        },
+        "id": "meh8b3",
+        "parentId": "fjomzi",
+        "path": "/auth/session",
+        "pathPart": "session",
+        "_embedded": {
+            "resource:methods": {
+                "_links": {
+                    "self": {
+                        "href": "/restapis/fqn4zn1bif/resources/meh8b3/methods/POST",
+                        "name": "POST",
+                        "title": "POST"
+                    },
+                    "integration:put": {
+                        "href": "/restapis/fqn4zn1bif/resources/meh8b3/methods/POST/integration"
+                    },
+                    "method:delete": {
+                        "href": "/restapis/fqn4zn1bif/resources/meh8b3/methods/POST"
+                    },
+                    "method:integration": {
+                        "href": "/restapis/fqn4zn1bif/resources/meh8b3/methods/POST/integration"
+                    },
+                    "method:responses": [
+                        {
+                            "href": "/restapis/fqn4zn1bif/resources/meh8b3/methods/POST/responses/200",
+                            "name": "200",
+                            "title": "200"
+                        },
+                        {
+                            "href": "/restapis/fqn4zn1bif/resources/meh8b3/methods/POST/responses/400",
+                            "name": "400",
+                            "title": "400"
+                        },
+                        {
+                            "href": "/restapis/fqn4zn1bif/resources/meh8b3/methods/POST/responses/500",
+                            "name": "500",
+                            "title": "500"
+                        },
+                        {
+                            "href": "/restapis/fqn4zn1bif/resources/meh8b3/methods/POST/responses/401",
+                            "name": "401",
+                            "title": "401"
+                        }
+                    ],
+                    "method:update": {
+                        "href": "/restapis/fqn4zn1bif/resources/meh8b3/methods/POST"
+                    },
+                    "methodresponse:put": {
+                        "href": "/restapis/fqn4zn1bif/resources/meh8b3/methods/POST/responses/{status_code}",
+                        "templated": true
+                    }
+                },
+                "apiKeyRequired": false,
+                "authorizationType": "NONE",
+                "httpMethod": "POST",
+                "requestParameters": {
+                    "method.request.header.Accept": true,
+                    "method.request.header.User-Agent": true,
+                    "method.request.header.Referer": true,
+                    "method.request.header.Pragma": true,
+                    "method.request.header.Accept-Language": true,
+                    "method.request.header.Connection": true,
+                    "method.request.header.Accept-Encoding": true,
+                    "method.request.header.Host": true
+                },
+                "_embedded": {
+                    "method:integration": {
+                        "_links": {
+                            "self": {
+                                "href": "/restapis/fqn4zn1bif/resources/meh8b3/methods/POST/integration"
+                            },
+                            "integration:delete": {
+                                "href": "/restapis/fqn4zn1bif/resources/meh8b3/methods/POST/integration"
+                            },
+                            "integration:responses": [
+                                {
+                                    "href": "/restapis/fqn4zn1bif/resources/meh8b3/methods/POST/integration/responses/200",
+                                    "name": "200",
+                                    "title": "200"
+                                },
+                                {
+                                    "href": "/restapis/fqn4zn1bif/resources/meh8b3/methods/POST/integration/responses/400",
+                                    "name": "400",
+                                    "title": "400"
+                                },
+                                {
+                                    "href": "/restapis/fqn4zn1bif/resources/meh8b3/methods/POST/integration/responses/500",
+                                    "name": "500",
+                                    "title": "500"
+                                },
+                                {
+                                    "href": "/restapis/fqn4zn1bif/resources/meh8b3/methods/POST/integration/responses/401",
+                                    "name": "401",
+                                    "title": "401"
+                                }
+                            ],
+                            "integration:update": {
+                                "href": "/restapis/fqn4zn1bif/resources/meh8b3/methods/POST/integration"
+                            },
+                            "integrationresponse:put": {
+                                "href": "/restapis/fqn4zn1bif/resources/meh8b3/methods/POST/integration/responses/{status_code}",
+                                "templated": true
+                            }
+                        },
+                        "cacheKeyParameters": [],
+                        "cacheNamespace": "meh8b3",
+                        "httpMethod": "POST",
+                        "requestTemplates": {
+                            "application/json": "{\"Host\":\"$input.params('Host')\",\"Connection\":\"$input.params('Connection')\",\"User-Agent\":\"$input.params('User-Agent')\",\"Accept\":\"$input.params('Accept')\",\"Referer\":\"$input.params('Referer')\",\"Accept-Encoding\":\"$input.params('Accept-Encoding')\",\"Accept-Language\":\"$input.params('Accept-Language')\",\"Pragma\":\"$input.params('Pragma')\",\"body\":$input.json('$')}"
+                        },
+                        "type": "AWS",
+                        "uri": "arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:018810891728:function:api-development-v1-auth-session-post/invocations",
+                        "_embedded": {
+                            "integration:responses": [
+                                {
+                                    "_links": {
+                                        "self": {
+                                            "href": "/restapis/fqn4zn1bif/resources/meh8b3/methods/POST/integration/responses/200",
+                                            "name": "200",
+                                            "title": "200"
+                                        },
+                                        "integrationresponse:delete": {
+                                            "href": "/restapis/fqn4zn1bif/resources/meh8b3/methods/POST/integration/responses/200"
+                                        },
+                                        "integrationresponse:update": {
+                                            "href": "/restapis/fqn4zn1bif/resources/meh8b3/methods/POST/integration/responses/200"
+                                        }
+                                    },
+                                    "responseTemplates": {
+                                        "application/json": null
+                                    },
+                                    "statusCode": "200"
+                                },
+                                {
+                                    "_links": {
+                                        "self": {
+                                            "href": "/restapis/fqn4zn1bif/resources/meh8b3/methods/POST/integration/responses/400",
+                                            "name": "400",
+                                            "title": "400"
+                                        },
+                                        "integrationresponse:delete": {
+                                            "href": "/restapis/fqn4zn1bif/resources/meh8b3/methods/POST/integration/responses/400"
+                                        },
+                                        "integrationresponse:update": {
+                                            "href": "/restapis/fqn4zn1bif/resources/meh8b3/methods/POST/integration/responses/400"
+                                        }
+                                    },
+                                    "responseTemplates": {
+                                        "application/json": null
+                                    },
+                                    "selectionPattern": "400",
+                                    "statusCode": "400"
+                                },
+                                {
+                                    "_links": {
+                                        "self": {
+                                            "href": "/restapis/fqn4zn1bif/resources/meh8b3/methods/POST/integration/responses/500",
+                                            "name": "500",
+                                            "title": "500"
+                                        },
+                                        "integrationresponse:delete": {
+                                            "href": "/restapis/fqn4zn1bif/resources/meh8b3/methods/POST/integration/responses/500"
+                                        },
+                                        "integrationresponse:update": {
+                                            "href": "/restapis/fqn4zn1bif/resources/meh8b3/methods/POST/integration/responses/500"
+                                        }
+                                    },
+                                    "responseTemplates": {
+                                        "application/json": null
+                                    },
+                                    "selectionPattern": "500",
+                                    "statusCode": "500"
+                                },
+                                {
+                                    "_links": {
+                                        "self": {
+                                            "href": "/restapis/fqn4zn1bif/resources/meh8b3/methods/POST/integration/responses/401",
+                                            "name": "401",
+                                            "title": "401"
+                                        },
+                                        "integrationresponse:delete": {
+                                            "href": "/restapis/fqn4zn1bif/resources/meh8b3/methods/POST/integration/responses/401"
+                                        },
+                                        "integrationresponse:update": {
+                                            "href": "/restapis/fqn4zn1bif/resources/meh8b3/methods/POST/integration/responses/401"
+                                        }
+                                    },
+                                    "responseTemplates": {
+                                        "application/json": null
+                                    },
+                                    "selectionPattern": "401",
+                                    "statusCode": "401"
+                                }
+                            ]
+                        }
+                    },
+                    "method:responses": [
+                        {
+                            "_links": {
+                                "self": {
+                                    "href": "/restapis/fqn4zn1bif/resources/meh8b3/methods/POST/responses/200",
+                                    "name": "200",
+                                    "title": "200"
+                                },
+                                "methodresponse:delete": {
+                                    "href": "/restapis/fqn4zn1bif/resources/meh8b3/methods/POST/responses/200"
+                                },
+                                "methodresponse:update": {
+                                    "href": "/restapis/fqn4zn1bif/resources/meh8b3/methods/POST/responses/200"
+                                }
+                            },
+                            "statusCode": "200"
+                        },
+                        {
+                            "_links": {
+                                "self": {
+                                    "href": "/restapis/fqn4zn1bif/resources/meh8b3/methods/POST/responses/400",
+                                    "name": "400",
+                                    "title": "400"
+                                },
+                                "methodresponse:delete": {
+                                    "href": "/restapis/fqn4zn1bif/resources/meh8b3/methods/POST/responses/400"
+                                },
+                                "methodresponse:update": {
+                                    "href": "/restapis/fqn4zn1bif/resources/meh8b3/methods/POST/responses/400"
+                                }
+                            },
+                            "statusCode": "400"
+                        },
+                        {
+                            "_links": {
+                                "self": {
+                                    "href": "/restapis/fqn4zn1bif/resources/meh8b3/methods/POST/responses/500",
+                                    "name": "500",
+                                    "title": "500"
+                                },
+                                "methodresponse:delete": {
+                                    "href": "/restapis/fqn4zn1bif/resources/meh8b3/methods/POST/responses/500"
+                                },
+                                "methodresponse:update": {
+                                    "href": "/restapis/fqn4zn1bif/resources/meh8b3/methods/POST/responses/500"
+                                }
+                            },
+                            "statusCode": "500"
+                        },
+                        {
+                            "_links": {
+                                "self": {
+                                    "href": "/restapis/fqn4zn1bif/resources/meh8b3/methods/POST/responses/401",
+                                    "name": "401",
+                                    "title": "401"
+                                },
+                                "methodresponse:delete": {
+                                    "href": "/restapis/fqn4zn1bif/resources/meh8b3/methods/POST/responses/401"
+                                },
+                                "methodresponse:update": {
+                                    "href": "/restapis/fqn4zn1bif/resources/meh8b3/methods/POST/responses/401"
+                                }
+                            },
+                            "statusCode": "401"
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "_links": {
+            "self": {
+                "href": "/restapis/fqn4zn1bif/resources/mnf0tp"
+            },
+            "method:by-http-method": {
+                "href": "/restapis/fqn4zn1bif/resources/mnf0tp/methods/{http_method}",
+                "templated": true
+            },
+            "method:put": {
+                "href": "/restapis/fqn4zn1bif/resources/mnf0tp/methods/{http_method}",
+                "templated": true
+            },
+            "resource:create-child": {
+                "href": "/restapis/fqn4zn1bif/resources/mnf0tp"
+            },
+            "resource:delete": {
+                "href": "/restapis/fqn4zn1bif/resources/mnf0tp"
+            },
+            "resource:methods": {
+                "href": "/restapis/fqn4zn1bif/resources/mnf0tp/methods/POST",
+                "name": "POST",
+                "title": "POST"
+            },
+            "resource:update": {
+                "href": "/restapis/fqn4zn1bif/resources/mnf0tp"
+            }
+        },
+        "id": "mnf0tp",
+        "parentId": "f3i6k50lo7",
+        "path": "/users",
+        "pathPart": "users",
+        "_embedded": {
+            "resource:methods": {
+                "_links": {
+                    "self": {
+                        "href": "/restapis/fqn4zn1bif/resources/mnf0tp/methods/POST",
+                        "name": "POST",
+                        "title": "POST"
+                    },
+                    "integration:put": {
+                        "href": "/restapis/fqn4zn1bif/resources/mnf0tp/methods/POST/integration"
+                    },
+                    "method:delete": {
+                        "href": "/restapis/fqn4zn1bif/resources/mnf0tp/methods/POST"
+                    },
+                    "method:integration": {
+                        "href": "/restapis/fqn4zn1bif/resources/mnf0tp/methods/POST/integration"
+                    },
+                    "method:responses": [
+                        {
+                            "href": "/restapis/fqn4zn1bif/resources/mnf0tp/methods/POST/responses/200",
+                            "name": "200",
+                            "title": "200"
+                        },
+                        {
+                            "href": "/restapis/fqn4zn1bif/resources/mnf0tp/methods/POST/responses/400",
+                            "name": "400",
+                            "title": "400"
+                        },
+                        {
+                            "href": "/restapis/fqn4zn1bif/resources/mnf0tp/methods/POST/responses/500",
+                            "name": "500",
+                            "title": "500"
+                        },
+                        {
+                            "href": "/restapis/fqn4zn1bif/resources/mnf0tp/methods/POST/responses/401",
+                            "name": "401",
+                            "title": "401"
+                        }
+                    ],
+                    "method:update": {
+                        "href": "/restapis/fqn4zn1bif/resources/mnf0tp/methods/POST"
+                    },
+                    "methodresponse:put": {
+                        "href": "/restapis/fqn4zn1bif/resources/mnf0tp/methods/POST/responses/{status_code}",
+                        "templated": true
+                    }
+                },
+                "apiKeyRequired": false,
+                "authorizationType": "NONE",
+                "httpMethod": "POST",
+                "requestParameters": {
+                    "method.request.header.Accept": true,
+                    "method.request.header.Referer": true,
+                    "method.request.header.User-Agent": true,
+                    "method.request.header.Content-Type": false,
+                    "method.request.header.Pragma": true,
+                    "method.request.header.Accept-Language": true,
+                    "method.request.header.Connection": true,
+                    "method.request.header.Accept-Encoding": true,
+                    "method.request.header.Host": true
+                },
+                "_embedded": {
+                    "method:integration": {
+                        "_links": {
+                            "self": {
+                                "href": "/restapis/fqn4zn1bif/resources/mnf0tp/methods/POST/integration"
+                            },
+                            "integration:delete": {
+                                "href": "/restapis/fqn4zn1bif/resources/mnf0tp/methods/POST/integration"
+                            },
+                            "integration:responses": [
+                                {
+                                    "href": "/restapis/fqn4zn1bif/resources/mnf0tp/methods/POST/integration/responses/200",
+                                    "name": "200",
+                                    "title": "200"
+                                },
+                                {
+                                    "href": "/restapis/fqn4zn1bif/resources/mnf0tp/methods/POST/integration/responses/400",
+                                    "name": "400",
+                                    "title": "400"
+                                },
+                                {
+                                    "href": "/restapis/fqn4zn1bif/resources/mnf0tp/methods/POST/integration/responses/500",
+                                    "name": "500",
+                                    "title": "500"
+                                },
+                                {
+                                    "href": "/restapis/fqn4zn1bif/resources/mnf0tp/methods/POST/integration/responses/401",
+                                    "name": "401",
+                                    "title": "401"
+                                }
+                            ],
+                            "integration:update": {
+                                "href": "/restapis/fqn4zn1bif/resources/mnf0tp/methods/POST/integration"
+                            },
+                            "integrationresponse:put": {
+                                "href": "/restapis/fqn4zn1bif/resources/mnf0tp/methods/POST/integration/responses/{status_code}",
+                                "templated": true
+                            }
+                        },
+                        "cacheKeyParameters": [],
+                        "cacheNamespace": "mnf0tp",
+                        "httpMethod": "POST",
+                        "requestTemplates": {
+                            "application/json": "{\"Host\":\"$input.params('Host')\",\"Connection\":\"$input.params('Connection')\",\"User-Agent\":\"$input.params('User-Agent')\",\"Accept\":\"$input.params('Accept')\",\"Referer\":\"$input.params('Referer')\",\"Accept-Encoding\":\"$input.params('Accept-Encoding')\",\"Accept-Language\":\"$input.params('Accept-Language')\",\"Pragma\":\"$input.params('Pragma')\",\"body\":$input.json('$')}"
+                        },
+                        "type": "AWS",
+                        "uri": "arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:018810891728:function:api-development-v1-users-post/invocations",
+                        "_embedded": {
+                            "integration:responses": [
+                                {
+                                    "_links": {
+                                        "self": {
+                                            "href": "/restapis/fqn4zn1bif/resources/mnf0tp/methods/POST/integration/responses/200",
+                                            "name": "200",
+                                            "title": "200"
+                                        },
+                                        "integrationresponse:delete": {
+                                            "href": "/restapis/fqn4zn1bif/resources/mnf0tp/methods/POST/integration/responses/200"
+                                        },
+                                        "integrationresponse:update": {
+                                            "href": "/restapis/fqn4zn1bif/resources/mnf0tp/methods/POST/integration/responses/200"
+                                        }
+                                    },
+                                    "responseTemplates": {
+                                        "application/json": null
+                                    },
+                                    "statusCode": "200"
+                                },
+                                {
+                                    "_links": {
+                                        "self": {
+                                            "href": "/restapis/fqn4zn1bif/resources/mnf0tp/methods/POST/integration/responses/400",
+                                            "name": "400",
+                                            "title": "400"
+                                        },
+                                        "integrationresponse:delete": {
+                                            "href": "/restapis/fqn4zn1bif/resources/mnf0tp/methods/POST/integration/responses/400"
+                                        },
+                                        "integrationresponse:update": {
+                                            "href": "/restapis/fqn4zn1bif/resources/mnf0tp/methods/POST/integration/responses/400"
+                                        }
+                                    },
+                                    "responseTemplates": {
+                                        "application/json": null
+                                    },
+                                    "selectionPattern": "400",
+                                    "statusCode": "400"
+                                },
+                                {
+                                    "_links": {
+                                        "self": {
+                                            "href": "/restapis/fqn4zn1bif/resources/mnf0tp/methods/POST/integration/responses/500",
+                                            "name": "500",
+                                            "title": "500"
+                                        },
+                                        "integrationresponse:delete": {
+                                            "href": "/restapis/fqn4zn1bif/resources/mnf0tp/methods/POST/integration/responses/500"
+                                        },
+                                        "integrationresponse:update": {
+                                            "href": "/restapis/fqn4zn1bif/resources/mnf0tp/methods/POST/integration/responses/500"
+                                        }
+                                    },
+                                    "responseTemplates": {
+                                        "application/json": null
+                                    },
+                                    "selectionPattern": "500",
+                                    "statusCode": "500"
+                                },
+                                {
+                                    "_links": {
+                                        "self": {
+                                            "href": "/restapis/fqn4zn1bif/resources/mnf0tp/methods/POST/integration/responses/401",
+                                            "name": "401",
+                                            "title": "401"
+                                        },
+                                        "integrationresponse:delete": {
+                                            "href": "/restapis/fqn4zn1bif/resources/mnf0tp/methods/POST/integration/responses/401"
+                                        },
+                                        "integrationresponse:update": {
+                                            "href": "/restapis/fqn4zn1bif/resources/mnf0tp/methods/POST/integration/responses/401"
+                                        }
+                                    },
+                                    "responseTemplates": {
+                                        "application/json": null
+                                    },
+                                    "selectionPattern": "401",
+                                    "statusCode": "401"
+                                }
+                            ]
+                        }
+                    },
+                    "method:responses": [
+                        {
+                            "_links": {
+                                "self": {
+                                    "href": "/restapis/fqn4zn1bif/resources/mnf0tp/methods/POST/responses/200",
+                                    "name": "200",
+                                    "title": "200"
+                                },
+                                "methodresponse:delete": {
+                                    "href": "/restapis/fqn4zn1bif/resources/mnf0tp/methods/POST/responses/200"
+                                },
+                                "methodresponse:update": {
+                                    "href": "/restapis/fqn4zn1bif/resources/mnf0tp/methods/POST/responses/200"
+                                }
+                            },
+                            "statusCode": "200"
+                        },
+                        {
+                            "_links": {
+                                "self": {
+                                    "href": "/restapis/fqn4zn1bif/resources/mnf0tp/methods/POST/responses/400",
+                                    "name": "400",
+                                    "title": "400"
+                                },
+                                "methodresponse:delete": {
+                                    "href": "/restapis/fqn4zn1bif/resources/mnf0tp/methods/POST/responses/400"
+                                },
+                                "methodresponse:update": {
+                                    "href": "/restapis/fqn4zn1bif/resources/mnf0tp/methods/POST/responses/400"
+                                }
+                            },
+                            "statusCode": "400"
+                        },
+                        {
+                            "_links": {
+                                "self": {
+                                    "href": "/restapis/fqn4zn1bif/resources/mnf0tp/methods/POST/responses/500",
+                                    "name": "500",
+                                    "title": "500"
+                                },
+                                "methodresponse:delete": {
+                                    "href": "/restapis/fqn4zn1bif/resources/mnf0tp/methods/POST/responses/500"
+                                },
+                                "methodresponse:update": {
+                                    "href": "/restapis/fqn4zn1bif/resources/mnf0tp/methods/POST/responses/500"
+                                }
+                            },
+                            "statusCode": "500"
+                        },
+                        {
+                            "_links": {
+                                "self": {
+                                    "href": "/restapis/fqn4zn1bif/resources/mnf0tp/methods/POST/responses/401",
+                                    "name": "401",
+                                    "title": "401"
+                                },
+                                "methodresponse:delete": {
+                                    "href": "/restapis/fqn4zn1bif/resources/mnf0tp/methods/POST/responses/401"
+                                },
+                                "methodresponse:update": {
+                                    "href": "/restapis/fqn4zn1bif/resources/mnf0tp/methods/POST/responses/401"
+                                }
+                            },
+                            "statusCode": "401"
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "_links": {
+            "self": {
+                "href": "/restapis/fqn4zn1bif/resources/mqe79c"
+            },
+            "method:by-http-method": {
+                "href": "/restapis/fqn4zn1bif/resources/mqe79c/methods/{http_method}",
+                "templated": true
+            },
+            "method:put": {
+                "href": "/restapis/fqn4zn1bif/resources/mqe79c/methods/{http_method}",
+                "templated": true
+            },
+            "resource:create-child": {
+                "href": "/restapis/fqn4zn1bif/resources/mqe79c"
+            },
+            "resource:delete": {
+                "href": "/restapis/fqn4zn1bif/resources/mqe79c"
+            },
+            "resource:methods": {
+                "href": "/restapis/fqn4zn1bif/resources/mqe79c/methods/GET",
+                "name": "GET",
+                "title": "GET"
+            },
+            "resource:update": {
+                "href": "/restapis/fqn4zn1bif/resources/mqe79c"
+            }
+        },
+        "id": "mqe79c",
+        "parentId": "63l1p8",
+        "path": "/search/images",
+        "pathPart": "images",
+        "_embedded": {
+            "resource:methods": {
+                "_links": {
+                    "self": {
+                        "href": "/restapis/fqn4zn1bif/resources/mqe79c/methods/GET",
+                        "name": "GET",
+                        "title": "GET"
+                    },
+                    "integration:put": {
+                        "href": "/restapis/fqn4zn1bif/resources/mqe79c/methods/GET/integration"
+                    },
+                    "method:delete": {
+                        "href": "/restapis/fqn4zn1bif/resources/mqe79c/methods/GET"
+                    },
+                    "method:integration": {
+                        "href": "/restapis/fqn4zn1bif/resources/mqe79c/methods/GET/integration"
+                    },
+                    "method:responses": [
+                        {
+                            "href": "/restapis/fqn4zn1bif/resources/mqe79c/methods/GET/responses/200",
+                            "name": "200",
+                            "title": "200"
+                        },
+                        {
+                            "href": "/restapis/fqn4zn1bif/resources/mqe79c/methods/GET/responses/400",
+                            "name": "400",
+                            "title": "400"
+                        },
+                        {
+                            "href": "/restapis/fqn4zn1bif/resources/mqe79c/methods/GET/responses/500",
+                            "name": "500",
+                            "title": "500"
+                        },
+                        {
+                            "href": "/restapis/fqn4zn1bif/resources/mqe79c/methods/GET/responses/401",
+                            "name": "401",
+                            "title": "401"
+                        }
+                    ],
+                    "method:update": {
+                        "href": "/restapis/fqn4zn1bif/resources/mqe79c/methods/GET"
+                    },
+                    "methodresponse:put": {
+                        "href": "/restapis/fqn4zn1bif/resources/mqe79c/methods/GET/responses/{status_code}",
+                        "templated": true
+                    }
+                },
+                "apiKeyRequired": false,
+                "authorizationType": "NONE",
+                "httpMethod": "GET",
+                "requestParameters": {
+                    "method.request.header.Accept": true,
+                    "method.request.header.User-Agent": true,
+                    "method.request.header.Referer": true,
+                    "method.request.header.Pragma": true,
+                    "method.request.header.Accept-Language": true,
+                    "method.request.header.Connection": true,
+                    "method.request.header.Accept-Encoding": true,
+                    "method.request.header.Host": true
+                },
+                "_embedded": {
+                    "method:integration": {
+                        "_links": {
+                            "self": {
+                                "href": "/restapis/fqn4zn1bif/resources/mqe79c/methods/GET/integration"
+                            },
+                            "integration:delete": {
+                                "href": "/restapis/fqn4zn1bif/resources/mqe79c/methods/GET/integration"
+                            },
+                            "integration:responses": [
+                                {
+                                    "href": "/restapis/fqn4zn1bif/resources/mqe79c/methods/GET/integration/responses/200",
+                                    "name": "200",
+                                    "title": "200"
+                                },
+                                {
+                                    "href": "/restapis/fqn4zn1bif/resources/mqe79c/methods/GET/integration/responses/400",
+                                    "name": "400",
+                                    "title": "400"
+                                },
+                                {
+                                    "href": "/restapis/fqn4zn1bif/resources/mqe79c/methods/GET/integration/responses/500",
+                                    "name": "500",
+                                    "title": "500"
+                                },
+                                {
+                                    "href": "/restapis/fqn4zn1bif/resources/mqe79c/methods/GET/integration/responses/401",
+                                    "name": "401",
+                                    "title": "401"
+                                }
+                            ],
+                            "integration:update": {
+                                "href": "/restapis/fqn4zn1bif/resources/mqe79c/methods/GET/integration"
+                            },
+                            "integrationresponse:put": {
+                                "href": "/restapis/fqn4zn1bif/resources/mqe79c/methods/GET/integration/responses/{status_code}",
+                                "templated": true
+                            }
+                        },
+                        "cacheKeyParameters": [],
+                        "cacheNamespace": "mqe79c",
+                        "httpMethod": "POST",
+                        "requestTemplates": {
+                            "application/json": "{\"Host\":\"$input.params('Host')\",\"Connection\":\"$input.params('Connection')\",\"User-Agent\":\"$input.params('User-Agent')\",\"Accept\":\"$input.params('Accept')\",\"Referer\":\"$input.params('Referer')\",\"Accept-Encoding\":\"$input.params('Accept-Encoding')\",\"Accept-Language\":\"$input.params('Accept-Language')\",\"Pragma\":\"$input.params('Pragma')\",\"offset\":\"$input.params('offset')\",\"count\":\"$input.params('count')\",\"body\":$input.json('$')}"
+                        },
+                        "type": "AWS",
+                        "uri": "arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:018810891728:function:api-development-v1-search-images-get/invocations",
+                        "_embedded": {
+                            "integration:responses": [
+                                {
+                                    "_links": {
+                                        "self": {
+                                            "href": "/restapis/fqn4zn1bif/resources/mqe79c/methods/GET/integration/responses/200",
+                                            "name": "200",
+                                            "title": "200"
+                                        },
+                                        "integrationresponse:delete": {
+                                            "href": "/restapis/fqn4zn1bif/resources/mqe79c/methods/GET/integration/responses/200"
+                                        },
+                                        "integrationresponse:update": {
+                                            "href": "/restapis/fqn4zn1bif/resources/mqe79c/methods/GET/integration/responses/200"
+                                        }
+                                    },
+                                    "responseTemplates": {
+                                        "application/json": null
+                                    },
+                                    "statusCode": "200"
+                                },
+                                {
+                                    "_links": {
+                                        "self": {
+                                            "href": "/restapis/fqn4zn1bif/resources/mqe79c/methods/GET/integration/responses/400",
+                                            "name": "400",
+                                            "title": "400"
+                                        },
+                                        "integrationresponse:delete": {
+                                            "href": "/restapis/fqn4zn1bif/resources/mqe79c/methods/GET/integration/responses/400"
+                                        },
+                                        "integrationresponse:update": {
+                                            "href": "/restapis/fqn4zn1bif/resources/mqe79c/methods/GET/integration/responses/400"
+                                        }
+                                    },
+                                    "responseTemplates": {
+                                        "application/json": null
+                                    },
+                                    "selectionPattern": "400",
+                                    "statusCode": "400"
+                                },
+                                {
+                                    "_links": {
+                                        "self": {
+                                            "href": "/restapis/fqn4zn1bif/resources/mqe79c/methods/GET/integration/responses/500",
+                                            "name": "500",
+                                            "title": "500"
+                                        },
+                                        "integrationresponse:delete": {
+                                            "href": "/restapis/fqn4zn1bif/resources/mqe79c/methods/GET/integration/responses/500"
+                                        },
+                                        "integrationresponse:update": {
+                                            "href": "/restapis/fqn4zn1bif/resources/mqe79c/methods/GET/integration/responses/500"
+                                        }
+                                    },
+                                    "responseTemplates": {
+                                        "application/json": null
+                                    },
+                                    "selectionPattern": "500",
+                                    "statusCode": "500"
+                                },
+                                {
+                                    "_links": {
+                                        "self": {
+                                            "href": "/restapis/fqn4zn1bif/resources/mqe79c/methods/GET/integration/responses/401",
+                                            "name": "401",
+                                            "title": "401"
+                                        },
+                                        "integrationresponse:delete": {
+                                            "href": "/restapis/fqn4zn1bif/resources/mqe79c/methods/GET/integration/responses/401"
+                                        },
+                                        "integrationresponse:update": {
+                                            "href": "/restapis/fqn4zn1bif/resources/mqe79c/methods/GET/integration/responses/401"
+                                        }
+                                    },
+                                    "responseTemplates": {
+                                        "application/json": null
+                                    },
+                                    "selectionPattern": "401",
+                                    "statusCode": "401"
+                                }
+                            ]
+                        }
+                    },
+                    "method:responses": [
+                        {
+                            "_links": {
+                                "self": {
+                                    "href": "/restapis/fqn4zn1bif/resources/mqe79c/methods/GET/responses/200",
+                                    "name": "200",
+                                    "title": "200"
+                                },
+                                "methodresponse:delete": {
+                                    "href": "/restapis/fqn4zn1bif/resources/mqe79c/methods/GET/responses/200"
+                                },
+                                "methodresponse:update": {
+                                    "href": "/restapis/fqn4zn1bif/resources/mqe79c/methods/GET/responses/200"
+                                }
+                            },
+                            "statusCode": "200"
+                        },
+                        {
+                            "_links": {
+                                "self": {
+                                    "href": "/restapis/fqn4zn1bif/resources/mqe79c/methods/GET/responses/400",
+                                    "name": "400",
+                                    "title": "400"
+                                },
+                                "methodresponse:delete": {
+                                    "href": "/restapis/fqn4zn1bif/resources/mqe79c/methods/GET/responses/400"
+                                },
+                                "methodresponse:update": {
+                                    "href": "/restapis/fqn4zn1bif/resources/mqe79c/methods/GET/responses/400"
+                                }
+                            },
+                            "statusCode": "400"
+                        },
+                        {
+                            "_links": {
+                                "self": {
+                                    "href": "/restapis/fqn4zn1bif/resources/mqe79c/methods/GET/responses/500",
+                                    "name": "500",
+                                    "title": "500"
+                                },
+                                "methodresponse:delete": {
+                                    "href": "/restapis/fqn4zn1bif/resources/mqe79c/methods/GET/responses/500"
+                                },
+                                "methodresponse:update": {
+                                    "href": "/restapis/fqn4zn1bif/resources/mqe79c/methods/GET/responses/500"
+                                }
+                            },
+                            "statusCode": "500"
+                        },
+                        {
+                            "_links": {
+                                "self": {
+                                    "href": "/restapis/fqn4zn1bif/resources/mqe79c/methods/GET/responses/401",
+                                    "name": "401",
+                                    "title": "401"
+                                },
+                                "methodresponse:delete": {
+                                    "href": "/restapis/fqn4zn1bif/resources/mqe79c/methods/GET/responses/401"
+                                },
+                                "methodresponse:update": {
+                                    "href": "/restapis/fqn4zn1bif/resources/mqe79c/methods/GET/responses/401"
+                                }
+                            },
+                            "statusCode": "401"
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "_links": {
+            "self": {
+                "href": "/restapis/fqn4zn1bif/resources/nqms91"
+            },
+            "method:by-http-method": {
+                "href": "/restapis/fqn4zn1bif/resources/nqms91/methods/{http_method}",
+                "templated": true
+            },
+            "method:put": {
+                "href": "/restapis/fqn4zn1bif/resources/nqms91/methods/{http_method}",
+                "templated": true
+            },
+            "resource:create-child": {
+                "href": "/restapis/fqn4zn1bif/resources/nqms91"
+            },
+            "resource:delete": {
+                "href": "/restapis/fqn4zn1bif/resources/nqms91"
+            },
+            "resource:methods": {
+                "href": "/restapis/fqn4zn1bif/resources/nqms91/methods/GET",
+                "name": "GET",
+                "title": "GET"
+            },
+            "resource:update": {
+                "href": "/restapis/fqn4zn1bif/resources/nqms91"
+            }
+        },
+        "id": "nqms91",
+        "parentId": "yahvnv",
+        "path": "/hello/{name}",
+        "pathPart": "{name}",
+        "_embedded": {
+            "resource:methods": {
+                "_links": {
+                    "self": {
+                        "href": "/restapis/fqn4zn1bif/resources/nqms91/methods/GET",
+                        "name": "GET",
+                        "title": "GET"
+                    },
+                    "integration:put": {
+                        "href": "/restapis/fqn4zn1bif/resources/nqms91/methods/GET/integration"
+                    },
+                    "method:delete": {
+                        "href": "/restapis/fqn4zn1bif/resources/nqms91/methods/GET"
+                    },
+                    "method:integration": {
+                        "href": "/restapis/fqn4zn1bif/resources/nqms91/methods/GET/integration"
+                    },
+                    "method:responses": [
+                        {
+                            "href": "/restapis/fqn4zn1bif/resources/nqms91/methods/GET/responses/200",
+                            "name": "200",
+                            "title": "200"
+                        },
+                        {
+                            "href": "/restapis/fqn4zn1bif/resources/nqms91/methods/GET/responses/400",
+                            "name": "400",
+                            "title": "400"
+                        },
+                        {
+                            "href": "/restapis/fqn4zn1bif/resources/nqms91/methods/GET/responses/401",
+                            "name": "401",
+                            "title": "401"
+                        }
+                    ],
+                    "method:update": {
+                        "href": "/restapis/fqn4zn1bif/resources/nqms91/methods/GET"
+                    },
+                    "methodresponse:put": {
+                        "href": "/restapis/fqn4zn1bif/resources/nqms91/methods/GET/responses/{status_code}",
+                        "templated": true
+                    }
+                },
+                "apiKeyRequired": false,
+                "authorizationType": "NONE",
+                "httpMethod": "GET",
+                "requestParameters": {
+                    "method.request.header.Accept": true,
+                    "method.request.path.name": true,
+                    "method.request.header.User-Agent": true,
+                    "method.request.header.Referer": true,
+                    "method.request.header.Pragma": true,
+                    "method.request.header.Accept-Language": true,
+                    "method.request.header.Connection": true,
+                    "method.request.header.Accept-Encoding": true,
+                    "method.request.header.Host": true
+                },
+                "_embedded": {
+                    "method:integration": {
+                        "_links": {
+                            "self": {
+                                "href": "/restapis/fqn4zn1bif/resources/nqms91/methods/GET/integration"
+                            },
+                            "integration:delete": {
+                                "href": "/restapis/fqn4zn1bif/resources/nqms91/methods/GET/integration"
+                            },
+                            "integration:responses": [
+                                {
+                                    "href": "/restapis/fqn4zn1bif/resources/nqms91/methods/GET/integration/responses/200",
+                                    "name": "200",
+                                    "title": "200"
+                                },
+                                {
+                                    "href": "/restapis/fqn4zn1bif/resources/nqms91/methods/GET/integration/responses/400",
+                                    "name": "400",
+                                    "title": "400"
+                                },
+                                {
+                                    "href": "/restapis/fqn4zn1bif/resources/nqms91/methods/GET/integration/responses/401",
+                                    "name": "401",
+                                    "title": "401"
+                                }
+                            ],
+                            "integration:update": {
+                                "href": "/restapis/fqn4zn1bif/resources/nqms91/methods/GET/integration"
+                            },
+                            "integrationresponse:put": {
+                                "href": "/restapis/fqn4zn1bif/resources/nqms91/methods/GET/integration/responses/{status_code}",
+                                "templated": true
+                            }
+                        },
+                        "cacheKeyParameters": [],
+                        "cacheNamespace": "nqms91",
+                        "httpMethod": "POST",
+                        "requestTemplates": {
+                            "application/json": "{\"Host\":\"$input.params('Host')\",\"Connection\":\"$input.params('Connection')\",\"User-Agent\":\"$input.params('User-Agent')\",\"Accept\":\"$input.params('Accept')\",\"Referer\":\"$input.params('Referer')\",\"Accept-Encoding\":\"$input.params('Accept-Encoding')\",\"Accept-Language\":\"$input.params('Accept-Language')\",\"Pragma\":\"$input.params('Pragma')\",\"name\":\"$input.params('name')\",\"body\":$input.json('$')}"
+                        },
+                        "type": "AWS",
+                        "uri": "arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:018810891728:function:api-development-v1-hello-_name_-get/invocations",
+                        "_embedded": {
+                            "integration:responses": [
+                                {
+                                    "_links": {
+                                        "self": {
+                                            "href": "/restapis/fqn4zn1bif/resources/nqms91/methods/GET/integration/responses/200",
+                                            "name": "200",
+                                            "title": "200"
+                                        },
+                                        "integrationresponse:delete": {
+                                            "href": "/restapis/fqn4zn1bif/resources/nqms91/methods/GET/integration/responses/200"
+                                        },
+                                        "integrationresponse:update": {
+                                            "href": "/restapis/fqn4zn1bif/resources/nqms91/methods/GET/integration/responses/200"
+                                        }
+                                    },
+                                    "responseTemplates": {
+                                        "application/json": null
+                                    },
+                                    "statusCode": "200"
+                                },
+                                {
+                                    "_links": {
+                                        "self": {
+                                            "href": "/restapis/fqn4zn1bif/resources/nqms91/methods/GET/integration/responses/400",
+                                            "name": "400",
+                                            "title": "400"
+                                        },
+                                        "integrationresponse:delete": {
+                                            "href": "/restapis/fqn4zn1bif/resources/nqms91/methods/GET/integration/responses/400"
+                                        },
+                                        "integrationresponse:update": {
+                                            "href": "/restapis/fqn4zn1bif/resources/nqms91/methods/GET/integration/responses/400"
+                                        }
+                                    },
+                                    "responseTemplates": {
+                                        "application/json": null
+                                    },
+                                    "selectionPattern": "400",
+                                    "statusCode": "400"
+                                },
+                                {
+                                    "_links": {
+                                        "self": {
+                                            "href": "/restapis/fqn4zn1bif/resources/nqms91/methods/GET/integration/responses/401",
+                                            "name": "401",
+                                            "title": "401"
+                                        },
+                                        "integrationresponse:delete": {
+                                            "href": "/restapis/fqn4zn1bif/resources/nqms91/methods/GET/integration/responses/401"
+                                        },
+                                        "integrationresponse:update": {
+                                            "href": "/restapis/fqn4zn1bif/resources/nqms91/methods/GET/integration/responses/401"
+                                        }
+                                    },
+                                    "responseTemplates": {
+                                        "application/json": null
+                                    },
+                                    "selectionPattern": "401",
+                                    "statusCode": "401"
+                                }
+                            ]
+                        }
+                    },
+                    "method:responses": [
+                        {
+                            "_links": {
+                                "self": {
+                                    "href": "/restapis/fqn4zn1bif/resources/nqms91/methods/GET/responses/200",
+                                    "name": "200",
+                                    "title": "200"
+                                },
+                                "methodresponse:delete": {
+                                    "href": "/restapis/fqn4zn1bif/resources/nqms91/methods/GET/responses/200"
+                                },
+                                "methodresponse:update": {
+                                    "href": "/restapis/fqn4zn1bif/resources/nqms91/methods/GET/responses/200"
+                                }
+                            },
+                            "statusCode": "200"
+                        },
+                        {
+                            "_links": {
+                                "self": {
+                                    "href": "/restapis/fqn4zn1bif/resources/nqms91/methods/GET/responses/400",
+                                    "name": "400",
+                                    "title": "400"
+                                },
+                                "methodresponse:delete": {
+                                    "href": "/restapis/fqn4zn1bif/resources/nqms91/methods/GET/responses/400"
+                                },
+                                "methodresponse:update": {
+                                    "href": "/restapis/fqn4zn1bif/resources/nqms91/methods/GET/responses/400"
+                                }
+                            },
+                            "statusCode": "400"
+                        },
+                        {
+                            "_links": {
+                                "self": {
+                                    "href": "/restapis/fqn4zn1bif/resources/nqms91/methods/GET/responses/401",
+                                    "name": "401",
+                                    "title": "401"
+                                },
+                                "methodresponse:delete": {
+                                    "href": "/restapis/fqn4zn1bif/resources/nqms91/methods/GET/responses/401"
+                                },
+                                "methodresponse:update": {
+                                    "href": "/restapis/fqn4zn1bif/resources/nqms91/methods/GET/responses/401"
+                                }
+                            },
+                            "statusCode": "401"
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "_links": {
+            "self": {
+                "href": "/restapis/fqn4zn1bif/resources/vfrktt"
+            },
+            "method:by-http-method": {
+                "href": "/restapis/fqn4zn1bif/resources/vfrktt/methods/{http_method}",
+                "templated": true
+            },
+            "method:put": {
+                "href": "/restapis/fqn4zn1bif/resources/vfrktt/methods/{http_method}",
+                "templated": true
+            },
+            "resource:create-child": {
+                "href": "/restapis/fqn4zn1bif/resources/vfrktt"
+            },
+            "resource:delete": {
+                "href": "/restapis/fqn4zn1bif/resources/vfrktt"
+            },
+            "resource:methods": {
+                "href": "/restapis/fqn4zn1bif/resources/vfrktt/methods/GET",
+                "name": "GET",
+                "title": "GET"
+            },
+            "resource:update": {
+                "href": "/restapis/fqn4zn1bif/resources/vfrktt"
+            }
+        },
+        "id": "vfrktt",
+        "parentId": "mnf0tp",
+        "path": "/users/feed",
+        "pathPart": "feed",
+        "_embedded": {
+            "resource:methods": {
+                "_links": {
+                    "self": {
+                        "href": "/restapis/fqn4zn1bif/resources/vfrktt/methods/GET",
+                        "name": "GET",
+                        "title": "GET"
+                    },
+                    "integration:put": {
+                        "href": "/restapis/fqn4zn1bif/resources/vfrktt/methods/GET/integration"
+                    },
+                    "method:delete": {
+                        "href": "/restapis/fqn4zn1bif/resources/vfrktt/methods/GET"
+                    },
+                    "method:integration": {
+                        "href": "/restapis/fqn4zn1bif/resources/vfrktt/methods/GET/integration"
+                    },
+                    "method:responses": [
+                        {
+                            "href": "/restapis/fqn4zn1bif/resources/vfrktt/methods/GET/responses/200",
+                            "name": "200",
+                            "title": "200"
+                        },
+                        {
+                            "href": "/restapis/fqn4zn1bif/resources/vfrktt/methods/GET/responses/400",
+                            "name": "400",
+                            "title": "400"
+                        },
+                        {
+                            "href": "/restapis/fqn4zn1bif/resources/vfrktt/methods/GET/responses/401",
+                            "name": "401",
+                            "title": "401"
+                        }
+                    ],
+                    "method:update": {
+                        "href": "/restapis/fqn4zn1bif/resources/vfrktt/methods/GET"
+                    },
+                    "methodresponse:put": {
+                        "href": "/restapis/fqn4zn1bif/resources/vfrktt/methods/GET/responses/{status_code}",
+                        "templated": true
+                    }
+                },
+                "apiKeyRequired": false,
+                "authorizationType": "NONE",
+                "httpMethod": "GET",
+                "requestParameters": {
+                    "method.request.header.Accept": true,
+                    "method.request.querystring.count": true,
+                    "method.request.querystring.show_world": true,
+                    "method.request.querystring.offset": true,
+                    "method.request.header.User-Agent": true,
+                    "method.request.header.Referer": true,
+                    "method.request.header.Pragma": true,
+                    "method.request.header.Accept-Language": true,
+                    "method.request.header.Connection": true,
+                    "method.request.header.Accept-Encoding": true,
+                    "method.request.querystring.friend_ids": true,
+                    "method.request.header.Host": true
+                },
+                "_embedded": {
+                    "method:integration": {
+                        "_links": {
+                            "self": {
+                                "href": "/restapis/fqn4zn1bif/resources/vfrktt/methods/GET/integration"
+                            },
+                            "integration:delete": {
+                                "href": "/restapis/fqn4zn1bif/resources/vfrktt/methods/GET/integration"
+                            },
+                            "integration:responses": [
+                                {
+                                    "href": "/restapis/fqn4zn1bif/resources/vfrktt/methods/GET/integration/responses/200",
+                                    "name": "200",
+                                    "title": "200"
+                                },
+                                {
+                                    "href": "/restapis/fqn4zn1bif/resources/vfrktt/methods/GET/integration/responses/400",
+                                    "name": "400",
+                                    "title": "400"
+                                }
+                            ],
+                            "integration:update": {
+                                "href": "/restapis/fqn4zn1bif/resources/vfrktt/methods/GET/integration"
+                            },
+                            "integrationresponse:put": {
+                                "href": "/restapis/fqn4zn1bif/resources/vfrktt/methods/GET/integration/responses/{status_code}",
+                                "templated": true
+                            }
+                        },
+                        "cacheKeyParameters": [],
+                        "cacheNamespace": "vfrktt",
+                        "httpMethod": "POST",
+                        "requestTemplates": {
+                            "application/json": "{\"Host\":\"$input.params('Host')\",\"Connection\":\"$input.params('Connection')\",\"User-Agent\":\"$input.params('User-Agent')\",\"Accept\":\"$input.params('Accept')\",\"Referer\":\"$input.params('Referer')\",\"Accept-Encoding\":\"$input.params('Accept-Encoding')\",\"Accept-Language\":\"$input.params('Accept-Language')\",\"Pragma\":\"$input.params('Pragma')\",\"friend_ids\":\"$input.params('friend_ids')\",\"show_world\":\"$input.params('show_world')\",\"offset\":\"$input.params('offset')\",\"count\":\"$input.params('count')\",\"body\":$input.json('$')}"
+                        },
+                        "type": "AWS",
+                        "uri": "arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:018810891728:function:api-development-v1-users-feed-get/invocations",
+                        "_embedded": {
+                            "integration:responses": [
+                                {
+                                    "_links": {
+                                        "self": {
+                                            "href": "/restapis/fqn4zn1bif/resources/vfrktt/methods/GET/integration/responses/200",
+                                            "name": "200",
+                                            "title": "200"
+                                        },
+                                        "integrationresponse:delete": {
+                                            "href": "/restapis/fqn4zn1bif/resources/vfrktt/methods/GET/integration/responses/200"
+                                        },
+                                        "integrationresponse:update": {
+                                            "href": "/restapis/fqn4zn1bif/resources/vfrktt/methods/GET/integration/responses/200"
+                                        }
+                                    },
+                                    "responseTemplates": {
+                                        "application/json": null
+                                    },
+                                    "statusCode": "200"
+                                },
+                                {
+                                    "_links": {
+                                        "self": {
+                                            "href": "/restapis/fqn4zn1bif/resources/vfrktt/methods/GET/integration/responses/400",
+                                            "name": "400",
+                                            "title": "400"
+                                        },
+                                        "integrationresponse:delete": {
+                                            "href": "/restapis/fqn4zn1bif/resources/vfrktt/methods/GET/integration/responses/400"
+                                        },
+                                        "integrationresponse:update": {
+                                            "href": "/restapis/fqn4zn1bif/resources/vfrktt/methods/GET/integration/responses/400"
+                                        }
+                                    },
+                                    "responseTemplates": {
+                                        "application/json": null
+                                    },
+                                    "selectionPattern": "400",
+                                    "statusCode": "400"
+                                }
+                            ]
+                        }
+                    },
+                    "method:responses": [
+                        {
+                            "_links": {
+                                "self": {
+                                    "href": "/restapis/fqn4zn1bif/resources/vfrktt/methods/GET/responses/200",
+                                    "name": "200",
+                                    "title": "200"
+                                },
+                                "methodresponse:delete": {
+                                    "href": "/restapis/fqn4zn1bif/resources/vfrktt/methods/GET/responses/200"
+                                },
+                                "methodresponse:update": {
+                                    "href": "/restapis/fqn4zn1bif/resources/vfrktt/methods/GET/responses/200"
+                                }
+                            },
+                            "statusCode": "200"
+                        },
+                        {
+                            "_links": {
+                                "self": {
+                                    "href": "/restapis/fqn4zn1bif/resources/vfrktt/methods/GET/responses/400",
+                                    "name": "400",
+                                    "title": "400"
+                                },
+                                "methodresponse:delete": {
+                                    "href": "/restapis/fqn4zn1bif/resources/vfrktt/methods/GET/responses/400"
+                                },
+                                "methodresponse:update": {
+                                    "href": "/restapis/fqn4zn1bif/resources/vfrktt/methods/GET/responses/400"
+                                }
+                            },
+                            "statusCode": "400"
+                        },
+                        {
+                            "_links": {
+                                "self": {
+                                    "href": "/restapis/fqn4zn1bif/resources/vfrktt/methods/GET/responses/401",
+                                    "name": "401",
+                                    "title": "401"
+                                },
+                                "methodresponse:delete": {
+                                    "href": "/restapis/fqn4zn1bif/resources/vfrktt/methods/GET/responses/401"
+                                },
+                                "methodresponse:update": {
+                                    "href": "/restapis/fqn4zn1bif/resources/vfrktt/methods/GET/responses/401"
+                                }
+                            },
+                            "statusCode": "401"
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "_links": {
+            "self": {
+                "href": "/restapis/fqn4zn1bif/resources/xph7og"
+            },
+            "method:by-http-method": {
+                "href": "/restapis/fqn4zn1bif/resources/xph7og/methods/{http_method}",
+                "templated": true
+            },
+            "method:put": {
+                "href": "/restapis/fqn4zn1bif/resources/xph7og/methods/{http_method}",
+                "templated": true
+            },
+            "resource:create-child": {
+                "href": "/restapis/fqn4zn1bif/resources/xph7og"
+            },
+            "resource:delete": {
+                "href": "/restapis/fqn4zn1bif/resources/xph7og"
+            },
+            "resource:methods": {
+                "href": "/restapis/fqn4zn1bif/resources/xph7og/methods/POST",
+                "name": "POST",
+                "title": "POST"
+            },
+            "resource:update": {
+                "href": "/restapis/fqn4zn1bif/resources/xph7og"
+            }
+        },
+        "id": "xph7og",
+        "parentId": "f3i6k50lo7",
+        "path": "/events",
+        "pathPart": "events",
+        "_embedded": {
+            "resource:methods": {
+                "_links": {
+                    "self": {
+                        "href": "/restapis/fqn4zn1bif/resources/xph7og/methods/POST",
+                        "name": "POST",
+                        "title": "POST"
+                    },
+                    "integration:put": {
+                        "href": "/restapis/fqn4zn1bif/resources/xph7og/methods/POST/integration"
+                    },
+                    "method:delete": {
+                        "href": "/restapis/fqn4zn1bif/resources/xph7og/methods/POST"
+                    },
+                    "method:integration": {
+                        "href": "/restapis/fqn4zn1bif/resources/xph7og/methods/POST/integration"
+                    },
+                    "method:responses": [
+                        {
+                            "href": "/restapis/fqn4zn1bif/resources/xph7og/methods/POST/responses/200",
+                            "name": "200",
+                            "title": "200"
+                        },
+                        {
+                            "href": "/restapis/fqn4zn1bif/resources/xph7og/methods/POST/responses/400",
+                            "name": "400",
+                            "title": "400"
+                        },
+                        {
+                            "href": "/restapis/fqn4zn1bif/resources/xph7og/methods/POST/responses/500",
+                            "name": "500",
+                            "title": "500"
+                        },
+                        {
+                            "href": "/restapis/fqn4zn1bif/resources/xph7og/methods/POST/responses/401",
+                            "name": "401",
+                            "title": "401"
+                        }
+                    ],
+                    "method:update": {
+                        "href": "/restapis/fqn4zn1bif/resources/xph7og/methods/POST"
+                    },
+                    "methodresponse:put": {
+                        "href": "/restapis/fqn4zn1bif/resources/xph7og/methods/POST/responses/{status_code}",
+                        "templated": true
+                    }
+                },
+                "apiKeyRequired": false,
+                "authorizationType": "NONE",
+                "httpMethod": "POST",
+                "requestParameters": {
+                    "method.request.header.Accept": true,
+                    "method.request.header.User-Agent": true,
+                    "method.request.header.Referer": true,
+                    "method.request.header.Pragma": true,
+                    "method.request.header.Accept-Language": true,
+                    "method.request.header.Connection": true,
+                    "method.request.header.Accept-Encoding": true,
+                    "method.request.header.Host": true
+                },
+                "_embedded": {
+                    "method:integration": {
+                        "_links": {
+                            "self": {
+                                "href": "/restapis/fqn4zn1bif/resources/xph7og/methods/POST/integration"
+                            },
+                            "integration:delete": {
+                                "href": "/restapis/fqn4zn1bif/resources/xph7og/methods/POST/integration"
+                            },
+                            "integration:responses": [
+                                {
+                                    "href": "/restapis/fqn4zn1bif/resources/xph7og/methods/POST/integration/responses/200",
+                                    "name": "200",
+                                    "title": "200"
+                                },
+                                {
+                                    "href": "/restapis/fqn4zn1bif/resources/xph7og/methods/POST/integration/responses/400",
+                                    "name": "400",
+                                    "title": "400"
+                                },
+                                {
+                                    "href": "/restapis/fqn4zn1bif/resources/xph7og/methods/POST/integration/responses/500",
+                                    "name": "500",
+                                    "title": "500"
+                                },
+                                {
+                                    "href": "/restapis/fqn4zn1bif/resources/xph7og/methods/POST/integration/responses/401",
+                                    "name": "401",
+                                    "title": "401"
+                                }
+                            ],
+                            "integration:update": {
+                                "href": "/restapis/fqn4zn1bif/resources/xph7og/methods/POST/integration"
+                            },
+                            "integrationresponse:put": {
+                                "href": "/restapis/fqn4zn1bif/resources/xph7og/methods/POST/integration/responses/{status_code}",
+                                "templated": true
+                            }
+                        },
+                        "cacheKeyParameters": [],
+                        "cacheNamespace": "xph7og",
+                        "httpMethod": "POST",
+                        "requestTemplates": {
+                            "application/json": "{\"Host\":\"$input.params('Host')\",\"Connection\":\"$input.params('Connection')\",\"User-Agent\":\"$input.params('User-Agent')\",\"Accept\":\"$input.params('Accept')\",\"Referer\":\"$input.params('Referer')\",\"Accept-Encoding\":\"$input.params('Accept-Encoding')\",\"Accept-Language\":\"$input.params('Accept-Language')\",\"Pragma\":\"$input.params('Pragma')\",\"body\":$input.json('$')}"
+                        },
+                        "type": "AWS",
+                        "uri": "arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:018810891728:function:api-development-v1-events-post/invocations",
+                        "_embedded": {
+                            "integration:responses": [
+                                {
+                                    "_links": {
+                                        "self": {
+                                            "href": "/restapis/fqn4zn1bif/resources/xph7og/methods/POST/integration/responses/200",
+                                            "name": "200",
+                                            "title": "200"
+                                        },
+                                        "integrationresponse:delete": {
+                                            "href": "/restapis/fqn4zn1bif/resources/xph7og/methods/POST/integration/responses/200"
+                                        },
+                                        "integrationresponse:update": {
+                                            "href": "/restapis/fqn4zn1bif/resources/xph7og/methods/POST/integration/responses/200"
+                                        }
+                                    },
+                                    "responseTemplates": {
+                                        "application/json": null
+                                    },
+                                    "statusCode": "200"
+                                },
+                                {
+                                    "_links": {
+                                        "self": {
+                                            "href": "/restapis/fqn4zn1bif/resources/xph7og/methods/POST/integration/responses/400",
+                                            "name": "400",
+                                            "title": "400"
+                                        },
+                                        "integrationresponse:delete": {
+                                            "href": "/restapis/fqn4zn1bif/resources/xph7og/methods/POST/integration/responses/400"
+                                        },
+                                        "integrationresponse:update": {
+                                            "href": "/restapis/fqn4zn1bif/resources/xph7og/methods/POST/integration/responses/400"
+                                        }
+                                    },
+                                    "responseTemplates": {
+                                        "application/json": null
+                                    },
+                                    "selectionPattern": "400",
+                                    "statusCode": "400"
+                                },
+                                {
+                                    "_links": {
+                                        "self": {
+                                            "href": "/restapis/fqn4zn1bif/resources/xph7og/methods/POST/integration/responses/500",
+                                            "name": "500",
+                                            "title": "500"
+                                        },
+                                        "integrationresponse:delete": {
+                                            "href": "/restapis/fqn4zn1bif/resources/xph7og/methods/POST/integration/responses/500"
+                                        },
+                                        "integrationresponse:update": {
+                                            "href": "/restapis/fqn4zn1bif/resources/xph7og/methods/POST/integration/responses/500"
+                                        }
+                                    },
+                                    "responseTemplates": {
+                                        "application/json": null
+                                    },
+                                    "selectionPattern": "500",
+                                    "statusCode": "500"
+                                },
+                                {
+                                    "_links": {
+                                        "self": {
+                                            "href": "/restapis/fqn4zn1bif/resources/xph7og/methods/POST/integration/responses/401",
+                                            "name": "401",
+                                            "title": "401"
+                                        },
+                                        "integrationresponse:delete": {
+                                            "href": "/restapis/fqn4zn1bif/resources/xph7og/methods/POST/integration/responses/401"
+                                        },
+                                        "integrationresponse:update": {
+                                            "href": "/restapis/fqn4zn1bif/resources/xph7og/methods/POST/integration/responses/401"
+                                        }
+                                    },
+                                    "responseTemplates": {
+                                        "application/json": null
+                                    },
+                                    "selectionPattern": "401",
+                                    "statusCode": "401"
+                                }
+                            ]
+                        }
+                    },
+                    "method:responses": [
+                        {
+                            "_links": {
+                                "self": {
+                                    "href": "/restapis/fqn4zn1bif/resources/xph7og/methods/POST/responses/200",
+                                    "name": "200",
+                                    "title": "200"
+                                },
+                                "methodresponse:delete": {
+                                    "href": "/restapis/fqn4zn1bif/resources/xph7og/methods/POST/responses/200"
+                                },
+                                "methodresponse:update": {
+                                    "href": "/restapis/fqn4zn1bif/resources/xph7og/methods/POST/responses/200"
+                                }
+                            },
+                            "responseModels": {},
+                            "responseParameters": {},
+                            "statusCode": "200"
+                        },
+                        {
+                            "_links": {
+                                "self": {
+                                    "href": "/restapis/fqn4zn1bif/resources/xph7og/methods/POST/responses/400",
+                                    "name": "400",
+                                    "title": "400"
+                                },
+                                "methodresponse:delete": {
+                                    "href": "/restapis/fqn4zn1bif/resources/xph7og/methods/POST/responses/400"
+                                },
+                                "methodresponse:update": {
+                                    "href": "/restapis/fqn4zn1bif/resources/xph7og/methods/POST/responses/400"
+                                }
+                            },
+                            "responseModels": {},
+                            "responseParameters": {},
+                            "statusCode": "400"
+                        },
+                        {
+                            "_links": {
+                                "self": {
+                                    "href": "/restapis/fqn4zn1bif/resources/xph7og/methods/POST/responses/500",
+                                    "name": "500",
+                                    "title": "500"
+                                },
+                                "methodresponse:delete": {
+                                    "href": "/restapis/fqn4zn1bif/resources/xph7og/methods/POST/responses/500"
+                                },
+                                "methodresponse:update": {
+                                    "href": "/restapis/fqn4zn1bif/resources/xph7og/methods/POST/responses/500"
+                                }
+                            },
+                            "responseModels": {},
+                            "responseParameters": {},
+                            "statusCode": "500"
+                        },
+                        {
+                            "_links": {
+                                "self": {
+                                    "href": "/restapis/fqn4zn1bif/resources/xph7og/methods/POST/responses/401",
+                                    "name": "401",
+                                    "title": "401"
+                                },
+                                "methodresponse:delete": {
+                                    "href": "/restapis/fqn4zn1bif/resources/xph7og/methods/POST/responses/401"
+                                },
+                                "methodresponse:update": {
+                                    "href": "/restapis/fqn4zn1bif/resources/xph7og/methods/POST/responses/401"
+                                }
+                            },
+                            "responseModels": {},
+                            "responseParameters": {},
+                            "statusCode": "401"
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "_links": {
+            "self": {
+                "href": "/restapis/fqn4zn1bif/resources/yahvnv"
+            },
+            "method:by-http-method": {
+                "href": "/restapis/fqn4zn1bif/resources/yahvnv/methods/{http_method}",
+                "templated": true
+            },
+            "method:put": {
+                "href": "/restapis/fqn4zn1bif/resources/yahvnv/methods/{http_method}",
+                "templated": true
+            },
+            "resource:create-child": {
+                "href": "/restapis/fqn4zn1bif/resources/yahvnv"
+            },
+            "resource:delete": {
+                "href": "/restapis/fqn4zn1bif/resources/yahvnv"
+            },
+            "resource:update": {
+                "href": "/restapis/fqn4zn1bif/resources/yahvnv"
+            }
+        },
+        "id": "yahvnv",
+        "parentId": "f3i6k50lo7",
+        "path": "/hello",
+        "pathPart": "hello"
+    }
+]
