@@ -7,3 +7,5 @@ export let mapKeys = r.curry((fn, obj) => {
 });
 
 export let mapIndexed = r.addIndex(r.map);
+
+export let notNil = r.compose(r.not, r.isNil);

@@ -1,12 +1,12 @@
 import "babel-polyfill";
-import asyncTest from "./../asynctest.js";
+import asyncTest from "./lib/asynctest.js";
 import proxyquire from "proxyquire";
 import chai from "chai";
 
 let expect = chai.expect;
 
 let stubbedRequest = (responseText, headers, error) => {
-    return proxyquire("../../lib/awsrequest", {
+    return proxyquire("../src/awsrequest", {
         https: {
             request: (opts, cb) => {
                 let res = null;

@@ -1,4 +1,0 @@
-
-describe("Safe Copy", () => {
-
-});

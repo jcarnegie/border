@@ -2,7 +2,7 @@
 
 import "babel-polyfill";
 import proxyquire from "proxyquire";
-import asyncTest from "../asynctest";
+import asyncTest from "./lib/asynctest";
 import Bluebird from "bluebird";
 import sinon from "sinon";
 import chai from "chai";
@@ -38,7 +38,7 @@ describe("Deploy", () => {
         let logStub = sinon.stub();
         let restapisStub = sinon.stub().resolves([]);
         let createRestapiStub = sinon.stub();
-        let deploy = proxyquire("../../lib/deploy", {
+        let deploy = proxyquire("../src/deploy", {
             "../lib/apigateway": {
                 restapis: restapisStub,
                 createRestapi: createRestapiStub
@@ -55,7 +55,7 @@ describe("Deploy", () => {
         let logStub = sinon.stub();
         let restapisStub = sinon.stub().resolves([{ name: "api" }]);
         let createRestapiStub = sinon.stub();
-        let deploy = proxyquire("../../lib/deploy", {
+        let deploy = proxyquire("../src/deploy", {
             "../lib/apigateway": {
                 restapis: restapisStub,
                 createRestapi: createRestapiStub
@@ -73,7 +73,7 @@ describe("Deploy", () => {
         it ("should create a resource", async () => {
             let resourcesStub = sinon.stub().resolves([{ path: "/", id: "x" }]);
             let createResourceStub = sinon.stub().resolves({ path: "/test", pathPart: "test", id: "y", parentId: "x" });
-            let deploy = proxyquire("../../lib/deploy", {
+            let deploy = proxyquire("../src/deploy", {
                 "../lib/apigateway": {
                     resources: resourcesStub,
                     createResource: createResourceStub
@@ -90,7 +90,7 @@ describe("Deploy", () => {
         it ("should create a nested resource", async () => {
             let resourcesStub = sinon.stub().resolves([{ path: "/", id: "x" }]);
             let createResourceStub = sinon.stub();
-            let deploy = proxyquire("../../lib/deploy", {
+            let deploy = proxyquire("../src/deploy", {
                 "../lib/apigateway": {
                     resources: resourcesStub,
                     createResource: createResourceStub
@@ -115,7 +115,7 @@ describe("Deploy", () => {
                 { path: "/nested/middle", id: "z" }
             ]);
             let createResourceStub = sinon.stub();
-            let deploy = proxyquire("../../lib/deploy", {
+            let deploy = proxyquire("../src/deploy", {
                 "../lib/apigateway": {
                     resources: resourcesStub,
                     createResource: createResourceStub
@@ -138,7 +138,7 @@ describe("Deploy", () => {
     describe("List Lambda Functions", () => {
         it ("should list all lambda functions", async () => {
             let listFuncsStub = sinon.stub().yields(null, { Functions: ["a", "b"]});
-            let deploy = proxyquire("../../lib/deploy", {
+            let deploy = proxyquire("../src/deploy", {
                 "aws-sdk": {
                     Lambda: function() {
                         return {
@@ -159,7 +159,7 @@ describe("Deploy", () => {
 
         it ("should list all lambda fns with multiple listFunctions calls", async () => {
             let listFuncsStub = sinon.stub();
-            let deploy = proxyquire("../../lib/deploy", {
+            let deploy = proxyquire("../src/deploy", {
                 "aws-sdk": {
                     Lambda: function() {
                         return {
@@ -208,7 +208,7 @@ describe("Deploy", () => {
         let createMethodResponseStub = sinon.stub().resolves({});
         let createIntegrationResponseStub = sinon.stub().resolves({});
         let deployStub       = sinon.stub().resolves({});
-        let deploy = proxyquire("../../lib/deploy", {
+        let deploy = proxyquire("../src/deploy", {
             "./transpile": transpileStub,
             "./npminstall": npmInstallStub,
             "../lib/apigateway": {
@@ -294,7 +294,7 @@ describe("Deploy", () => {
         let addPermStub      = sinon.stub().yields(null, {});
         let createIntegrationStub = sinon.stub().resolves({});
         let deployStub       = sinon.stub().resolves({});
-        let deploy = proxyquire("../../lib/deploy", {
+        let deploy = proxyquire("../src/deploy", {
             "./transpile": transpileStub,
             "./npminstall": npmInstallStub,
             "../lib/apigateway": {

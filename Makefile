@@ -28,4 +28,4 @@ lint:
 test: lib bin test-unit
 
 test-unit:
-	mocha -c --compilers js:babel-register ./test/**/*.js
+	mocha -c --compilers js:babel-register './test/**/*.js'

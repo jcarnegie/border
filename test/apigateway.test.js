@@ -1,5 +1,5 @@
 import "babel-polyfill";
-import asyncTest from "../asynctest";
+import asyncTest from "./lib/asynctest";
 
 describe("Create", async () => {
     xit ("should create a new API gateway", asyncTest(async () => {

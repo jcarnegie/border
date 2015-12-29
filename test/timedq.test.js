@@ -1,4 +1,4 @@
-import timedq from "../../lib/timedq";
+import timedq from "../src/timedq";
 import sinon from "sinon";
 import chai from "chai";
 

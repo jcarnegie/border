@@ -1,5 +1,5 @@
 import "babel-polyfill";
-import swagger from "../../lib/swagger";
+import swagger from "../src/swagger";
 import Promise from "bluebird";
 import chai from "chai";
 import fs from "fs";

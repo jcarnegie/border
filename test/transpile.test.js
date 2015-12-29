@@ -1,5 +1,5 @@
 import "babel-polyfill";
-import asyncTest from "../asynctest";
+import asyncTest from "./lib/asynctest";
 import proxyquire from "proxyquire";
 import sinon from "sinon";
 import "sinon-as-promised";
@@ -16,7 +16,7 @@ describe("Transpile", () => {
         let transformStub = sinon.stub().resolves({ code: "code" });
         let writeFileStub = sinon.stub().yields(null);
 
-        let transpile = proxyquire("../../lib/transpile", {
+        let transpile = proxyquire("../src/transpile", {
             glob: globStub,
             mkdirp: mkdirStub,
             "./transformfile": transformStub,
