@@ -1,7 +1,7 @@
 import Promise from "bluebird";
 import gateway from "../lib/apigateway";
-import set from "./set";
 import lambdazip from "./lambdazip";
+import { mapSerialAsync } from "./util";
 import pathUtil from "path";
 import transpile from "./transpile";
 import npmInstall from "./npminstall";
@@ -17,20 +17,6 @@ let listFunctions  = awaitable(lambda.listFunctions.bind(lambda));
 let getUser        = awaitable(iam.getUser.bind(iam));
 let updateFunctionCode = awaitable(lambda.updateFunctionCode.bind(lambda));
 let updateFunctionConfiguration = awaitable(lambda.updateFunctionConfiguration.bind(lambda));
-
-let mapSerialAsync = async (fn, list) => {
-    if (!list || list.length === 0) return [];
-    let result = await fn(r.head(list));
-    let tail = r.tail(list);
-    let results = [];
-
-    if (tail.length > 0) {
-        results = await mapSerialAsync(fn, tail);
-        return r.concat([result], results);
-    } else {
-        return [result];
-    }
-};
 
 let lambdaFunctionName = (apiSpec, methodSpec) => {
     let basename = r.compose(
@@ -85,7 +71,7 @@ let createResources = async (region, api, spec) => {
     let deployedResources = await gateway.resources(region, api.id);
     let pathsToDeploy = specPathsToResources(spec);
     let deployedPaths = r.map(r.prop("path"), deployedResources);
-    let pathsToCreate = set.difference(new Set(pathsToDeploy), new Set(deployedPaths));
+    let pathsToCreate = r.difference(pathsToDeploy, deployedPaths);
     let root          = r.find(r.propEq("path", "/"), deployedResources);
 
     let createPath = r.curry(async (api, resources, parent, path) => {

@@ -32,7 +32,7 @@ let addPathToSwagger = (swagger, pathSpecPair) => {
     return swagger;
 };
 
-let build = async stage => {
+export let build = async stage => {
     let swagger = await readAndParse("swagger.json", "utf8");
     let files   = await glob(`src/${stage}/**/package.json`);
     let data    = await Promise.all(r.map(pathAndSpec(`src/${stage}`), r.filter(notModule, files)));
@@ -40,5 +40,3 @@ let build = async stage => {
     let spec = r.reduce(addPathToSwagger, swagger, data);
     return spec;
 };
-
-export default { build };

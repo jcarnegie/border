@@ -1,5 +1,5 @@
 import "babel-polyfill";
-import swagger from "../src/swagger";
+import { build } from "../src/swagger";
 import Promise from "bluebird";
 import chai from "chai";
 import fs from "fs";
@@ -23,7 +23,7 @@ describe("Swagger", () => {
     });
 
     it ("should build a JSON swagger spec", async () => {
-        let spec       = await swagger.build("v1");
+        let spec       = await build("v1");
         let testSpec   = await readAndParse("swagger.json", "utf8");
         let pathSpec   = await readAndParse("src/v1/resource/get/package.json", "utf8");
         testSpec.paths = { "/resource": { get: pathSpec["x-swagger-path"]} };
