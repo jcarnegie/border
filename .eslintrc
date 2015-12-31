@@ -13,6 +13,7 @@
         "require": false,
         "process": false,
         "console": false,
+        "global": false,
         "setTimeout": false,
         "clearTimeout": false,
         "setInterval": false,
