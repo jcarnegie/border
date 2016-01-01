@@ -2,7 +2,7 @@ import r from "ramda";
 import spec from "../../fixtures/extractors/swagger.json";
 import { extract } from "../../../src/extractors/swagger/resources";
 
-describe ("Swagger Resources Extractor", () => {
+describe ("Extract Swagger Resources", () => {
     it ("should extract resources from a swagger spec", () => {
         let resources = r.map(path => {
             return { path };

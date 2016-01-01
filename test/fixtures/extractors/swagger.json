@@ -27,6 +27,9 @@
     "paths": {
         "/auth/session": {
             "post": {
+                "x-aws-apigateway": {
+                    "apiKeyRequired": true
+                },
                 "description": "Create a new user",
                 "responses": {
                     "200": {
