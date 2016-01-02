@@ -14,14 +14,10 @@ export let updatedMethods = (awsgwResourceData, swaggerSpec) => {
     let apigwMethods    = apigwExtractMethods(awsgwResourceData);
     let swaggerMethods  = swaggerExtractMethods(swaggerSpec);
     let cmp             = (a, b) => {
-        let eq = r.and(
+        return r.and(
             r.equals(a.requestParameters, b.requestParameters),
             cmpObjProps(COMPARE_PROPS, a, b)
         );
-        if (cmpObjProps(COMPARE_PROPS, a, b) && !r.equals(a.requestParameters, b.requestParameters)) {
-            console.log("reqparams:", a, b);
-        }
-        return eq;
     };
     let methodsToUpdate = r.differenceWith(cmp, swaggerMethods, apigwMethods);
     return methodsToUpdate;
