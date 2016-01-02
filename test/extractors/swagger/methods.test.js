@@ -7,7 +7,7 @@ describe ("Extract Swagger Methods", () => {
         expect(extract(spec)[0]).to.eql({
             apiKeyRequired: true,
             authorizationType: "NONE",
-            httpMethod: "post",
+            httpMethod: "POST",
             path: "/auth/session",
             requestParameters: {
                 "method.request.header.Accept": true,

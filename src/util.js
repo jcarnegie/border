@@ -12,6 +12,13 @@ export let notNil = r.compose(r.not, r.isNil);
 
 export let propNotEq = r.curry(r.compose(r.not, r.propEq));
 
+export let cmpObj = r.curry((a, b, prop) => a[prop] === b[prop]);
+
+export let cmpObjProps = r.curry((props, a, b) => {
+    let vals = r.map(cmpObj(a, b), props);
+    return r.all(r.equals(true), vals);
+});
+
 export let mapSerialAsync = r.curry(async (fn, list) => {
     if (!list || list.length === 0) return [];
     let result = await fn(r.head(list));

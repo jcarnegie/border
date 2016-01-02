@@ -25,4 +25,25 @@ describe("Utilities", () => {
             expect(sum).to.eql(init);
         });
     });
+
+    describe ("Compare Object by Properties", () => {
+        let a = null;
+        let b = null;
+        let cmp = null;
+
+        beforeEach(() => {
+            a = { id: 0, height: 6 };
+            b = { id: 0, height: 6, weight: 180 };
+            cmp = util.cmpObjProps(["id", "height"]);
+        });
+
+        it ("should be equal", () => {
+            expect(cmp(a, b)).to.eql(true);
+        });
+
+        it ("shouldn't be equal", () => {
+            a.height = 7;
+            expect(cmp(a, b)).to.eql(false);
+        });
+    });
 });

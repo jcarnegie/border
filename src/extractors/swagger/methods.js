@@ -1,4 +1,5 @@
 import r from "ramda";
+import deepmerge from "deepmerge";
 
 const PROPS = [
     "path",
@@ -13,6 +14,8 @@ const DEFAULTS = {
     authorizationType: "NONE",
     apiKeyRequired: false
 };
+
+let merge = r.curry(deepmerge);
 
 // translate swagger param type to AWS param type
 let awsType = type => (type === "query") ? "querystring" : type;
@@ -31,10 +34,20 @@ let paramsObj = (params) => {
     return r.zipObj(params, vals);
 };
 
+let extractParams = (spec) => {
+    let params = spec.parameters || [];
+    let queryparams = awsParams(r.map(r.prop("name"), r.filter(r.propEq("in", "query"), params)), "query");
+    let pathparams = awsParams(r.map(r.prop("name"), r.filter(r.propEq("in", "path"), params)), "path");
+    let headers = awsParams(r.map(r.prop("name"), r.filter(r.propEq("in", "header"), params)), "header");
+    params = r.concat(r.concat(queryparams, pathparams), headers);
+    return paramsObj(params);
+};
+
 let extendSpec = r.curry((path, spec, method) => {
     let extSpec = r.clone(spec);
     extSpec.path = path;
-    extSpec.httpMethod = method;
+    extSpec.httpMethod = r.toUpper(method);
+    extSpec.requestParameters = extractParams(spec);
     return extSpec;
 });
 
@@ -56,6 +69,6 @@ export let extract = (spec) => {
     let defaultParams = {
         requestParameters: paramsObj(defReqParams(spec))
     };
-    methods = r.map(r.merge(defaultParams), methods);
+    methods = r.map(merge(defaultParams), methods);
     return r.map((method) => r.merge(method, method["x-aws-apigateway"]), methods);
 };

@@ -49,6 +49,7 @@
     "body-parser": "^1.14.2",
     "colors": "^1.1.2",
     "commander": "^2.9.0",
+    "deepmerge": "^0.2.10",
     "express": "^4.13.3",
     "glob": "^6.0.1",
     "mkdirp": "^0.5.1",
