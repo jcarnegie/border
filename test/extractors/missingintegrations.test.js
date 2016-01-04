@@ -3,7 +3,7 @@ import data from "../fixtures/extractors/apigw.json";
 import swagger from "../fixtures/extractors/swagger.json";
 import { missingIntegrations } from "../../src/extractors/missingintegrations";
 
-describe ("Extract Missing Methods", () => {
+describe ("Extract Missing Integrations", () => {
     let spec = null;
 
     beforeEach(() => {
