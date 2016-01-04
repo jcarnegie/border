@@ -10,10 +10,16 @@ const PROPS = [
 
 let expandResponses = r.curry((method) => {
     let expand = r.curry((method, response, statusCode) => {
+        let oPath = ["x-aws-apigateway", "selectionPattern"];
+        let selectionPatternOverride = r.path(oPath, response);
         let expanded = r.merge(method, {
             statusCode,
             responseDescription: response.description,
-            selectionPattern: (statusCode === "200") ? null : statusCode
+            selectionPattern: selectionPatternOverride
+                ? selectionPatternOverride
+                : (statusCode === "200")
+                    ? null
+                    : statusCode
         });
         return expanded;
     });

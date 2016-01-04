@@ -27,21 +27,18 @@ describe("Extract Swagger Integration Responses", () => {
         expect(r.all(r.isNil, selectionPatterns)).to.eql(true);
     });
 
-    // it("should override defaults from spec", () => {
-    //     let modifiedSpec = r.clone(spec);
-    //     modifiedSpec.paths["/auth/session"].post["x-aws-apigateway"] = {
-    //         httpMethod: "GET",
-    //         type: "HTTP",
-    //         uri: "http://www.google.com"
-    //     };
-    //     let integrations = extract(modifiedSpec);
-    //     let integration = r.find(
-    //         r.where({
-    //             path: r.equals("/auth/session"),
-    //             resourceMethod: r.equals("POST")
-    //         }), integrations);
-    //     expect(integration.httpMethod).to.eql("GET");
-    //     expect(integration.type).to.eql("HTTP");
-    //     expect(integration.uri).to.eql("http://www.google.com");
-    // });
+    it("should override defaults from spec", () => {
+        let modifiedSpec = r.clone(spec);
+        modifiedSpec.paths["/auth/session"].post.responses["400"]["x-aws-apigateway"] = {
+            selectionPattern: "status_code: 200"
+        };
+
+        let integrationResponses = extract(modifiedSpec);
+        let integrationResponse = r.find(r.where({
+            path: r.equals("/auth/session"),
+            httpMethod: r.equals("POST"),
+            statusCode: r.equals("400")
+        }), integrationResponses);
+        expect(integrationResponse.selectionPattern).to.eql("status_code: 200");
+    });
 });
