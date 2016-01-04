@@ -14,7 +14,7 @@ let hasRequiredProps = r.allPass([
 ]);
 
 describe ("Extract API GW Integrations", () => {
-    it ("should extract methods from the resources data", () => {
+    it ("should extract integrations from the resources data", () => {
         let integrations = extract(data);
         expect(r.all(hasRequiredProps, integrations)).to.eql(true);
         expect(r.all(r.propEq("type", "AWS")), integrations);
