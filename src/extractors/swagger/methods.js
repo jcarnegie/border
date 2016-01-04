@@ -22,14 +22,14 @@ let awsType = type => (type === "query") ? "querystring" : type;
 // translate a swagger param to an AWS param
 let awsParams = (params, type) => r.map((param) => `method.request.${awsType(type)}.${param}`, params);
 
-let defReqParams = (spec) => {
+export let defReqParams = (spec) => {
     let defParamsPath = ["info", "x-aws-apigateway", "default-request-params"];
     let defParams = r.pathOr({}, defParamsPath, spec);
     let awsDefParams = r.mapObjIndexed(awsParams, defParams);
     return r.flatten(r.values(awsDefParams));
 };
 
-let paramsObj = (params) => {
+export let paramsObj = (params) => {
     let vals = r.map(() => true, r.range(0, r.length(params)));
     return r.zipObj(params, vals);
 };
@@ -55,7 +55,7 @@ let collapseSpec = (methods, path) => {
     return r.values(r.mapObjIndexed(extendSpec(path), methods));
 };
 
-let extractMethods = r.compose(
+export let extractMethods = r.compose(
     r.map(r.merge(DEFAULTS)),
     r.map(r.pick(PROPS)),
     r.flatten,
