@@ -51,7 +51,7 @@ let extendSpec = r.curry((path, spec, method) => {
     return extSpec;
 });
 
-let collapseSpec = (methods, path) => {
+export let collapseSpec = (methods, path) => {
     return r.values(r.mapObjIndexed(extendSpec(path), methods));
 };
 
