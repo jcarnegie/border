@@ -11,11 +11,13 @@ const PROPS = [
 
 let expandResponses = r.curry((method) => {
     let expand = r.curry((method, response, statusCode) => {
+        let modelsOverride = r.pathOr({}, ["x-aws-apigateway", "responseModels"], response);
+        let paramsOverride = r.pathOr({}, ["x-aws-apigateway", "responseParameters"], response);
         let expanded = r.merge(method, {
             resourceMethod: method.httpMethod,
             statusCode,
-            responseModels: {},
-            responseParameters: {}
+            responseModels: modelsOverride,
+            responseParameters: paramsOverride
         });
 
         return expanded;

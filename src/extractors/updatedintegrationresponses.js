@@ -1,13 +1,15 @@
 import r from "ramda";
-import { cmpObjProps } from "../util";
+import { cmpObjProps, updatedSetElements } from "../util";
 import { extract as apigwExtractIntegrationResponses } from "./apigw/integrationresponses";
 import { extract as swaggerExtractIntegrationResponses } from "./swagger/integrationresponses";
 
-const INTERSECT_PROPS = [
+const ID_PROPS = [
     "path",
     "resourceMethod",
     "statusCode"
 ];
+
+const COMPARE_PROPS = r.append("selectionPattern", ID_PROPS);
 
 /**
  * Comparing:
@@ -19,9 +21,11 @@ const INTERSECT_PROPS = [
 export let updatedIntegrationResponses = (awsgwResourceData, swaggerSpec) => {
     let apigwIntegrationResponses    = apigwExtractIntegrationResponses(awsgwResourceData);
     let swaggerIntegrationResponses  = swaggerExtractIntegrationResponses(swaggerSpec);
-    let intersectCompare             = cmpObjProps(INTERSECT_PROPS);
-    let existingIntegrationResponses = r.intersectionWith(intersectCompare, apigwIntegrationResponses, swaggerIntegrationResponses);
-    let diffCompare                  = cmpObjProps(r.append("selectionPattern", INTERSECT_PROPS));
-    let integrationResponsesToUpdate = r.differenceWith(diffCompare, existingIntegrationResponses, swaggerIntegrationResponses);
+    let integrationResponsesToUpdate = updatedSetElements(
+        cmpObjProps(ID_PROPS),
+        cmpObjProps(COMPARE_PROPS),
+        apigwIntegrationResponses,
+        swaggerIntegrationResponses
+    );
     return integrationResponsesToUpdate;
 };

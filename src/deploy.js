@@ -1,5 +1,5 @@
 import Promise from "bluebird";
-import gateway from "../lib/apigateway";
+import gateway from "./apigateway";
 import lambdazip from "./lambdazip";
 import { mapSerialAsync } from "./util";
 import pathUtil from "path";

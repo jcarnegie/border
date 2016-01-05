@@ -35,20 +35,32 @@ describe("Deploy", () => {
     });
 
     it ("should create a new api", async () => {
+        console.log("CHECKPOINT: A");
         let logStub = sinon.stub();
         let restapisStub = sinon.stub().resolves([]);
         let createRestapiStub = sinon.stub();
         let deploy = proxyquire("../src/deploy", {
-            "../lib/apigateway": {
+            "./apigateway": {
                 restapis: restapisStub,
                 createRestapi: createRestapiStub
             }
         });
 
-        await deploy.createApi(logStub, region, "api", "api");
+        console.log("CHECKPOINT: B");
+
+        try {
+            await deploy.createApi(logStub, region, "api", "api");
+        } catch (e) {
+            console.log("exception:", e.stack);
+            throw e;
+        }
+
+        console.log("CHECKPOINT: C");
 
         expect(restapisStub.withArgs(region).calledOnce).to.eql(true);
+        console.log("CHECKPOINT: D");
         expect(createRestapiStub.withArgs(region, "api", "api").calledOnce).to.eql(true);
+        console.log("CHECKPOINT: E");
     });
 
     it ("should not create an api if it already exists", async () => {
@@ -56,7 +68,7 @@ describe("Deploy", () => {
         let restapisStub = sinon.stub().resolves([{ name: "api" }]);
         let createRestapiStub = sinon.stub();
         let deploy = proxyquire("../src/deploy", {
-            "../lib/apigateway": {
+            "./apigateway": {
                 restapis: restapisStub,
                 createRestapi: createRestapiStub
             }
@@ -74,7 +86,7 @@ describe("Deploy", () => {
             let resourcesStub = sinon.stub().resolves([{ path: "/", id: "x" }]);
             let createResourceStub = sinon.stub().resolves({ path: "/test", pathPart: "test", id: "y", parentId: "x" });
             let deploy = proxyquire("../src/deploy", {
-                "../lib/apigateway": {
+                "./apigateway": {
                     resources: resourcesStub,
                     createResource: createResourceStub
                 }
@@ -91,7 +103,7 @@ describe("Deploy", () => {
             let resourcesStub = sinon.stub().resolves([{ path: "/", id: "x" }]);
             let createResourceStub = sinon.stub();
             let deploy = proxyquire("../src/deploy", {
-                "../lib/apigateway": {
+                "./apigateway": {
                     resources: resourcesStub,
                     createResource: createResourceStub
                 }
@@ -116,7 +128,7 @@ describe("Deploy", () => {
             ]);
             let createResourceStub = sinon.stub();
             let deploy = proxyquire("../src/deploy", {
-                "../lib/apigateway": {
+                "./apigateway": {
                     resources: resourcesStub,
                     createResource: createResourceStub
                 }
@@ -211,7 +223,7 @@ describe("Deploy", () => {
         let deploy = proxyquire("../src/deploy", {
             "./transpile": transpileStub,
             "./npminstall": npmInstallStub,
-            "../lib/apigateway": {
+            "./apigateway": {
                 restapis: restapisStub,
                 createRestapi: createApiStub,
                 resources: resourcesStub,
@@ -297,7 +309,7 @@ describe("Deploy", () => {
         let deploy = proxyquire("../src/deploy", {
             "./transpile": transpileStub,
             "./npminstall": npmInstallStub,
-            "../lib/apigateway": {
+            "./apigateway": {
                 restapis: restapisStub,
                 createRestapi: createApiStub,
                 resources: resourcesStub,

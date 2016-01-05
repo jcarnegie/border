@@ -10,12 +10,12 @@ describe ("Extract Missing Integrations", () => {
         spec = r.clone(swagger);
         spec.paths = r.merge(spec.paths, {
             "/test/missing": {
-                get: { description: "test for missing methods" }
+                get: { description: "test for missing integrations" }
             }
         });
     });
 
-    it ("should extract missing methods", () => {
+    it ("should extract missing integrations", () => {
         expect(missingIntegrations(data, spec)).to.eql([{
             apiKeyRequired: false,
             authorizationType: "NONE",

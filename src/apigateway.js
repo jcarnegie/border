@@ -1,5 +1,5 @@
 import r from "ramda";
-import awsreq from "../lib/awsrequest";
+import awsreq from "./awsrequest";
 
 let restapis = async (region) => {
     let reg = region || process.env.AWS_DEFAULT_REGION;
