@@ -35,7 +35,6 @@ describe("Deploy", () => {
     });
 
     it ("should create a new api", async () => {
-        console.log("CHECKPOINT: A");
         let logStub = sinon.stub();
         let restapisStub = sinon.stub().resolves([]);
         let createRestapiStub = sinon.stub();
@@ -46,21 +45,10 @@ describe("Deploy", () => {
             }
         });
 
-        console.log("CHECKPOINT: B");
-
-        try {
-            await deploy.createApi(logStub, region, "api", "api");
-        } catch (e) {
-            console.log("exception:", e.stack);
-            throw e;
-        }
-
-        console.log("CHECKPOINT: C");
+        await deploy.createApi(logStub, region, "api", "api");
 
         expect(restapisStub.withArgs(region).calledOnce).to.eql(true);
-        console.log("CHECKPOINT: D");
         expect(createRestapiStub.withArgs(region, "api", "api").calledOnce).to.eql(true);
-        console.log("CHECKPOINT: E");
     });
 
     it ("should not create an api if it already exists", async () => {

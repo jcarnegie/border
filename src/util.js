@@ -72,12 +72,7 @@ export let subpaths = (paths) => {
 };
 
 export let updatedSetElements = (matchPred, diffPred, a, b) => {
-    console.log("diffPred:", diffPred.toString());
     let sharedElements = r.intersectionWith(matchPred, a, b);
-    console.log("sharedElements:", sharedElements);
-    console.log("set a:", sharedElements);
-    console.log("set b:", b);
     let diff = r.differenceWith(diffPred, sharedElements, b);
-    console.log("a - b:", diff);
     return diff;
 };
