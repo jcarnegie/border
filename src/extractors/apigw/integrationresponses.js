@@ -1,6 +1,6 @@
 import r from "ramda";
 import { extractIntegrations } from "./integrations";
-import { propagate, ensurePathArray } from "./util";
+import { propagate, ensurePathArray, setIf } from "./util";
 
 const PROPS = [
     "id",
@@ -11,14 +11,6 @@ const PROPS = [
     "responseParameters",
     "responseTemplates"
 ];
-
-let setIf = r.curry((pred, prop, val, obj) => {
-    if (pred(obj)) {
-        return r.assoc(prop, val, obj);
-    } else {
-        return obj;
-    }
-});
 
 export let extractIntegrationResponses = r.compose(
     r.flatten,

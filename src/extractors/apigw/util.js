@@ -27,3 +27,15 @@ export let ensurePathArray = r.curry((path, obj) => {
     let val = r.path(path, obj);
     return r.assocPath(path, r.is(Array, val) ? val : [val], obj);
 });
+
+export let setIf = r.curry((pred, prop, val, obj) => {
+    if (pred(obj)) {
+        return r.assoc(prop, val, obj);
+    } else {
+        return obj;
+    }
+});
+
+export let propIsNil = r.curry((prop, obj) => {
+    return r.isNil(r.prop(prop, obj));
+});
