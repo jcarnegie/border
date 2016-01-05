@@ -16,8 +16,8 @@ describe ("Extract Missing Integrations", () => {
             type: "HTTP",
             uri: "http://www.google.com"
         };
-        let methods = updatedIntegrations(data, spec);
-        let updated = r.map(r.pick(["path", "resourceMethod", "httpMethod", "type"]), methods);
+        let integrations = updatedIntegrations(data, spec);
+        let updated = r.map(r.pick(["path", "resourceMethod", "httpMethod", "type"]), integrations);
         expect(updated).to.eql([{
             path: "/auth/session",
             resourceMethod: "POST",

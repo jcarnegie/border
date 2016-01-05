@@ -32,7 +32,6 @@ describe("Extract Swagger Integration Responses", () => {
         modifiedSpec.paths["/auth/session"].post.responses["400"]["x-aws-apigateway"] = {
             selectionPattern: "status_code: 200"
         };
-
         let integrationResponses = extract(modifiedSpec);
         let integrationResponse = r.find(r.where({
             path: r.equals("/auth/session"),
