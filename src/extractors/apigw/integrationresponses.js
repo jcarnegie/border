@@ -12,6 +12,14 @@ const PROPS = [
     "responseTemplates"
 ];
 
+let setIf = r.curry((pred, prop, val, obj) => {
+    if (pred(obj)) {
+        return r.assoc(prop, val, obj);
+    } else {
+        return obj;
+    }
+});
+
 export let extractIntegrationResponses = r.compose(
     r.flatten,
     r.map(r.pathOr([], ["_embedded", "integration:responses"])),
@@ -24,5 +32,6 @@ export let extractIntegrationResponses = r.compose(
 
 export let extract = r.compose(
     r.map(r.pick(PROPS)),
+    r.map(setIf(r.propEq("selectionPattern", undefined), "selectionPattern", null)), // eslint-disable-line
     extractIntegrationResponses
 );

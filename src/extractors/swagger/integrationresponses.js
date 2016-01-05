@@ -3,7 +3,7 @@ import { collapseSpec } from "./methods";
 
 const PROPS = [
     "path",
-    "httpMethod",
+    "resourceMethod",
     "statusCode",
     "selectionPattern"
 ];
@@ -13,6 +13,7 @@ let expandResponses = r.curry((method) => {
         let oPath = ["x-aws-apigateway", "selectionPattern"];
         let selectionPatternOverride = r.path(oPath, response);
         let expanded = r.merge(method, {
+            resourceMethod: method.httpMethod,
             statusCode,
             responseDescription: response.description,
             selectionPattern: selectionPatternOverride
@@ -21,6 +22,7 @@ let expandResponses = r.curry((method) => {
                     ? null
                     : statusCode
         });
+
         return expanded;
     });
     return r.values(r.mapObjIndexed(expand(method), method.responses));

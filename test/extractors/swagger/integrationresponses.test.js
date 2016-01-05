@@ -4,7 +4,7 @@ import { extract } from "../../../src/extractors/swagger/integrationresponses";
 
 let hasRequiredProps = r.allPass([
     r.has("path"),
-    r.has("httpMethod"),
+    r.has("resourceMethod"),
     r.has("statusCode"),
     r.has("selectionPattern")
 ]);
@@ -36,7 +36,7 @@ describe("Extract Swagger Integration Responses", () => {
         let integrationResponses = extract(modifiedSpec);
         let integrationResponse = r.find(r.where({
             path: r.equals("/auth/session"),
-            httpMethod: r.equals("POST"),
+            resourceMethod: r.equals("POST"),
             statusCode: r.equals("400")
         }), integrationResponses);
         expect(integrationResponse.selectionPattern).to.eql("status_code: 200");
