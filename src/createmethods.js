@@ -11,7 +11,7 @@ const VALID_PARAMS = [
 ];
 
 export let createMethod = r.curry(async (gw, resources, methodSpec) => {
-    let resource = r.find(r.propEq("path", methodSpec.path));
+    let resource = r.find(r.propEq("path", methodSpec.path), resources);
     let resourceId = r.prop("id", resource);
     let params = r.pick(VALID_PARAMS, r.merge(methodSpec, { resourceId }));
 

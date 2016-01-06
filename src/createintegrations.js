@@ -22,7 +22,7 @@ let makeParams = r.compose(
 );
 
 export let createIntegration = r.curry(async (gw, resources, integrationSpec) => {
-    let resource = r.find(r.propEq("path", integrationSpec.path));
+    let resource = r.find(r.propEq("path", integrationSpec.path), resources);
     let resourceId = r.prop("id", resource);
     let params = makeParams(r.merge(integrationSpec, { resourceId }));
     return await gw.putIntegration(params);

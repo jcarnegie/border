@@ -10,6 +10,8 @@ describe ("Push", () => {
     let createResourcesStub = null;
     let createMethodsStub = null;
     let createIntegrationsStub = null;
+    let createIntegrationResponsesStub = null;
+    let createResponsesStub = null;
 
     describe ("New", () => {
         beforeEach(async () => {
@@ -23,6 +25,8 @@ describe ("Push", () => {
             createResourcesStub = sinon.stub();
             createMethodsStub = sinon.stub();
             createIntegrationsStub = sinon.stub();
+            createIntegrationResponsesStub = sinon.stub();
+            createResponsesStub = sinon.stub();
 
             pushModule = proxyquire("../src/push", {
                 "./apigateway": {
@@ -39,7 +43,14 @@ describe ("Push", () => {
                 },
                 "./createintegrations": {
                     createIntegrations: createIntegrationsStub
+                },
+                "./createintegrationresponses": {
+                    createIntegrationResponses: createIntegrationResponsesStub
+                },
+                "./createresponses": {
+                    createResponses: createResponsesStub
                 }
+
             });
 
             await pushModule.push(region, apiId, "v1");
@@ -105,8 +116,69 @@ describe ("Push", () => {
             expect(createIntegrationsStub.withArgs(...args).calledOnce).to.eql(true);
         });
 
-        it ("should push new integration responses");
-        it ("should push new responses");
+        it ("should push new integration responses", () => {
+            let integrationResponsesSpecs = [{
+                path: "/auth/session",
+                resourceMethod: "POST",
+                statusCode: "200",
+                selectionPattern: null,
+                restApiId: "abcdefg"
+            }, {
+                path: "/auth/session",
+                resourceMethod: "POST",
+                statusCode: "400",
+                selectionPattern: "400",
+                restApiId: "abcdefg"
+            }, {
+                path: "/auth/session",
+                resourceMethod: "POST",
+                statusCode: "401",
+                selectionPattern: "401",
+                restApiId: "abcdefg"
+            }, {
+                path: "/auth/session",
+                resourceMethod: "POST",
+                statusCode: "500",
+                selectionPattern: "500",
+                restApiId: "abcdefg"
+            }];
+            let args = [sinon.match.object, [], integrationResponsesSpecs];
+            expect(createIntegrationResponsesStub.withArgs(...args).calledOnce).to.eql(true);
+        });
+
+        it ("should push new responses", () => {
+            let responsesSpecs = [{
+                path: "/auth/session",
+                resourceMethod: "POST",
+                statusCode: "200",
+                responseModels: {},
+                responseParameters: {},
+                restApiId: "abcdefg"
+            }, {
+                path: "/auth/session",
+                resourceMethod: "POST",
+                statusCode: "400",
+                responseModels: {},
+                responseParameters: {},
+                restApiId: "abcdefg"
+            }, {
+                path: "/auth/session",
+                resourceMethod: "POST",
+                statusCode: "401",
+                responseModels: {},
+                responseParameters: {},
+                restApiId: "abcdefg"
+            }, {
+                path: "/auth/session",
+                resourceMethod: "POST",
+                statusCode: "500",
+                responseModels: {},
+                responseParameters: {},
+                restApiId: "abcdefg"
+            }];
+            let args = [sinon.match.object, [], responsesSpecs];
+            expect(createResponsesStub.withArgs(...args).calledOnce).to.eql(true);
+        });
     });
 
     describe("Updated", () => {
