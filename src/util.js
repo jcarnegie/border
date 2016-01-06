@@ -6,6 +6,13 @@ export let mapKeys = r.curry((fn, obj) => {
     return r.zipObj(r.map(fn, keys), vals);
 });
 
+export let renameProp = r.curry((oldProp, newProp, obj) => {
+    return r.dissoc(
+        oldProp,
+        r.assoc(newProp, r.path(oldProp, obj), obj)
+    );
+});
+
 export let mapIndexed = r.addIndex(r.map);
 
 export let notNil = r.compose(r.not, r.isNil);

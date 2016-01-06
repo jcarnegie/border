@@ -9,6 +9,7 @@ describe ("Push", () => {
     let swaggerBuildStub = null;
     let createResourcesStub = null;
     let createMethodsStub = null;
+    let createIntegrationsStub = null;
 
     describe ("New", () => {
         beforeEach(async () => {
@@ -21,6 +22,7 @@ describe ("Push", () => {
             swaggerBuildStub = sinon.stub().resolves(swaggerSpec);
             createResourcesStub = sinon.stub();
             createMethodsStub = sinon.stub();
+            createIntegrationsStub = sinon.stub();
 
             pushModule = proxyquire("../src/push", {
                 "./apigateway": {
@@ -34,6 +36,9 @@ describe ("Push", () => {
                 },
                 "./createmethods": {
                     createMethods: createMethodsStub
+                },
+                "./createintegrations": {
+                    createIntegrations: createIntegrationsStub
                 }
             });
 
@@ -73,7 +78,33 @@ describe ("Push", () => {
             expect(createMethodsStub.withArgs(...args).calledOnce).to.eql(true);
         });
 
-        it ("should push new integrations");
+        it ("should push new integrations", () => {
+            let integrationSpecs = [{
+                requestParameters: {
+                    "method.request.header.Host": true,
+                    "method.request.header.Connection": true,
+                    "method.request.header.User-Agent": true,
+                    "method.request.header.Accept": true,
+                    "method.request.header.Referer": true,
+                    "method.request.header.Accept-Encoding": true,
+                    "method.request.header.Accept-Language": true,
+                    "method.request.header.Pragma": true
+                },
+                authorizationType: "NONE",
+                apiKeyRequired: true,
+                path: "/auth/session",
+                "x-aws-apigateway": {
+                    apiKeyRequired: true
+                },
+                resourceMethod: "POST",
+                httpMethod: "POST",
+                type: "AWS",
+                restApiId: "abcdefg"
+            }];
+            let args = [sinon.match.object, [], integrationSpecs];
+            expect(createIntegrationsStub.withArgs(...args).calledOnce).to.eql(true);
+        });
+
         it ("should push new integration responses");
         it ("should push new responses");
     });
