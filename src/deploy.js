@@ -141,7 +141,7 @@ let listAllFunctions = async (region, nextMarker) => {
     }
 };
 
-let createOrUpdateFunction = async (existingFunctions, params) => {
+let createOrUpdateFunction = async (logFn, existingFunctions, params) => {
     let func = r.find(r.propEq("FunctionName", params.FunctionName), existingFunctions);
 
     if (func) {
@@ -151,9 +151,14 @@ let createOrUpdateFunction = async (existingFunctions, params) => {
         Reflect.deleteProperty(updateParams, "Code");
         Reflect.deleteProperty(updateParams, "Runtime");
         await updateFunctionCode(codeParams);
-        return await updateFunctionConfiguration(updateParams);
+        logFn("info", `updated function code`);
+        let res = await updateFunctionConfiguration(updateParams);
+        logFn("info", `updated function configuration`);
+        return res;
     } else {
-        return await createFunction(params);
+        let res = await createFunction(params);
+        logFn("info", `created integration`);
+        return res;
     }
 };
 
@@ -198,8 +203,8 @@ let createOrUpdateMethod = r.curry(async (region, apiId, resources, spec, endpoi
     }
 });
 
-let createGatewayLambdaFunction = r.curry(async (apiSpec, functionName, zip) => {
-    return await createOrUpdateFunction(apiSpec.lambdaFunctions, {
+let createGatewayLambdaFunction = r.curry(async (logFn, apiSpec, functionName, zip) => {
+    return await createOrUpdateFunction(logFn, apiSpec.lambdaFunctions, {
         Code: { ZipFile: zip },
         FunctionName: functionName,
         // Handler: `${functionName}.${apiSpec.defaultHandler}`,
@@ -209,17 +214,21 @@ let createGatewayLambdaFunction = r.curry(async (apiSpec, functionName, zip) => 
     });
 });
 
-let addMethodPermission = r.curry(async (apiSpec, methodSpec, functionName) => {
-    return await addPermission({
+let addMethodPermission = r.curry(async (logFn, apiSpec, methodSpec, functionName) => {
+    let res = await addPermission({
         Action: "lambda:InvokeFunction",
         FunctionName: functionName,
         Principal: "apigateway.amazonaws.com",
         StatementId: `${functionName}-${new Date().getTime()}`,
         SourceArn: `arn:aws:execute-api:${apiSpec.region}:${apiSpec.accountId}:${apiSpec.api.id}/*/${methodSpec.method.toUpperCase()}${methodSpec.path}`
     });
+
+    logFn("info", `added method permission ${methodSpec.method.toUpperCase()} ${methodSpec.path}`);
+
+    return res;
 });
 
-let createOrUpdateIntegration = r.curry(async (apiSpec, methodSpec, resourceId, functionName) => {
+let createOrUpdateIntegration = r.curry(async (logFn, apiSpec, methodSpec, resourceId, functionName) => {
     let params = methodRequestParams(apiSpec.spec, methodSpec);
     let functionArn = `arn:aws:lambda:${apiSpec.region}:${apiSpec.accountId}:function:${functionName}`;
     let paramNames = r.map(r.compose(r.last, r.split(".")), r.keys(params));
@@ -249,13 +258,17 @@ let createOrUpdateIntegration = r.curry(async (apiSpec, methodSpec, resourceId, 
     opts.requestTemplates = requestTemplates;
 
     try {
-        return await gateway.createIntegration(opts);
+        let res = await gateway.createIntegration(opts);
+        logFn("info", `created integration ${methodSpec.method.toUpperCase()} ${methodSpec.path}`);
+        return res;
     } catch (e) {
-        return await gateway.updateIntegration(opts);
+        let res = await gateway.updateIntegration(opts);
+        logFn("info", `updated integration ${methodSpec.method.toUpperCase()} ${methodSpec.path}`);
+        return res;
     }
 });
 
-let createOrUpdateMethodResponses = r.curry(async (apiSpec, methodSpec, resourceId) => {
+let createOrUpdateMethodResponses = r.curry(async (logFn, apiSpec, methodSpec, resourceId) => {
     let method = methodSpec.method.toUpperCase();
     let addCode = (val, key) => r.assoc("statusCode", key, val);
     let responses = r.values(r.mapObjIndexed(addCode, methodSpec.responses));
@@ -265,15 +278,19 @@ let createOrUpdateMethodResponses = r.curry(async (apiSpec, methodSpec, resource
         let addParam = (params, header) => r.assoc(headerParam(header), true, params);
         let responseParameters = r.reduce(addParam, {}, r.keys(response.headers || {}));
         try {
-            return await gateway.createMethodResponse(apiSpec.region, apiSpec.api.id, resourceId, method, response.statusCode, responseParameters);
+            let res = await gateway.createMethodResponse(apiSpec.region, apiSpec.api.id, resourceId, method, response.statusCode, responseParameters);
+            logFn("info", `created method response ${methodSpec.method.toUpperCase()} ${methodSpec.path}`);
+            return res;
         } catch (e) {
-            return await gateway.updateMethodResponse(apiSpec.region, apiSpec.api.id, resourceId, method, response.statusCode, responseParameters);
+            let res = await gateway.updateMethodResponse(apiSpec.region, apiSpec.api.id, resourceId, method, response.statusCode, responseParameters);
+            logFn("info", `updated method response ${methodSpec.method.toUpperCase()} ${methodSpec.path}`);
+            return res;
         }
     });
     return await mapSerialAsync(createOrUpdate(apiSpec, method, resourceId), responses);
 });
 
-let createOrUpdateIntegrationResponses = r.curry(async (apiSpec, methodSpec, resourceId) => {
+let createOrUpdateIntegrationResponses = r.curry(async (logFn, apiSpec, methodSpec, resourceId) => {
     let method = methodSpec.method.toUpperCase();
     let addCode = (val, key) => r.assoc("statusCode", key, val);
     let responses = r.values(r.mapObjIndexed(addCode, methodSpec.responses));
@@ -284,10 +301,13 @@ let createOrUpdateIntegrationResponses = r.curry(async (apiSpec, methodSpec, res
         throw new Error(`sorry, ${method} ${methodSpec.path} can't have more than one 2xx response`);
     }
 
+
     let createOrUpdate = r.curry(async (apiSpec, method, resourceId, response) => {
         let selectionPattern = has200RespCode(response) ? null : response.statusCode;
         try {
-            return await gateway.createIntegrationResponse(apiSpec.region, apiSpec.api.id, resourceId, method, response.statusCode, selectionPattern);
+            let res = await gateway.createIntegrationResponse(apiSpec.region, apiSpec.api.id, resourceId, method, response.statusCode, selectionPattern);
+            logFn("info", `created integration response ${methodSpec.method.toUpperCase()} ${methodSpec.path}`);
+            return res;
         } catch (e) {
             // *gulp*
         }
@@ -296,20 +316,22 @@ let createOrUpdateIntegrationResponses = r.curry(async (apiSpec, methodSpec, res
     return await mapSerialAsync(createOrUpdate(apiSpec, method, resourceId), responses);
 });
 
-let zip = r.curry(async (apiSpec, spec, functionName) => {
-    return await lambdazip(`${apiSpec.dest}/${apiSpec.stage}${spec.path}/${spec.method}`, functionName);
+let zip = r.curry(async (logFn, apiSpec, spec, functionName) => {
+    let res = await lambdazip(`${apiSpec.dest}/${apiSpec.stage}${spec.path}/${spec.method}`, functionName);
+    logFn("info", `created lambda zip ${spec.method.toUpperCase()} ${spec.path}`);
+    return res;
 });
 
 let bindEndpointAndFunction = r.curry(async (logFn, apiSpec, methodSpec) => {
     let resourceId     = r.prop("id", r.find(r.propEq("path", methodSpec.path), apiSpec.resources));
     let functionName   = lambdaFunctionName(apiSpec, methodSpec);
     let createEndpoint = r.composeP(
-        () => createOrUpdateIntegrationResponses(apiSpec, methodSpec, resourceId),
-        () => createOrUpdateMethodResponses(apiSpec, methodSpec, resourceId),
-        () => createOrUpdateIntegration(apiSpec, methodSpec, resourceId, functionName),
-        () => addMethodPermission(apiSpec, methodSpec, functionName),
-        createGatewayLambdaFunction(apiSpec, functionName),
-        zip(apiSpec, methodSpec)
+        () => createOrUpdateIntegrationResponses(logFn, apiSpec, methodSpec, resourceId),
+        () => createOrUpdateMethodResponses(logFn, apiSpec, methodSpec, resourceId),
+        () => createOrUpdateIntegration(logFn, apiSpec, methodSpec, resourceId, functionName),
+        () => addMethodPermission(logFn, apiSpec, methodSpec, functionName),
+        createGatewayLambdaFunction(logFn, apiSpec, functionName),
+        zip(logFn, apiSpec, methodSpec)
     );
     let result = await createEndpoint(functionName);
     logFn("ok", `deployed ${methodSpec.method.toUpperCase()} ${methodSpec.path}`);
