@@ -26,7 +26,7 @@ describe("Transpile", () => {
 
         await transpile("src", "dest", r.identity);
 
-        expect(globStub.withArgs("src/**", { nodir: true }).calledOnce).to.eql(true);
+        expect(globStub.withArgs("src/**", { nodir: true, follow: true }).calledOnce).to.eql(true);
         expect(transformStub.withArgs("hello/get/index.js").calledOnce).to.eql(true);
         expect(writeFileStub.withArgs("dest/hello/get/index.js", "code").calledOnce).to.eql(true);
         expect(copyStub.calledTwice).to.eql(true);
