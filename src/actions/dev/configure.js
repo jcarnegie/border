@@ -26,14 +26,25 @@ let ignoreNodeModules = r.compose(
     r.test(/node_modules/)
 );
 
+let isEven = x => x % 2 === 0;
+let isOdd = r.compose(r.not, isEven);
+let filterIndexed = r.addIndex(r.filter);
+let filterEvenIndexed = filterIndexed((x, idx) => isEven(idx));
+let filterOddIndexed = filterIndexed((x, idx) => isOdd(idx));
+
 export default async (app, stage) => {
     let cwd = process.cwd();
     let allFiles = await glob(`${cwd}/dist/${stage}/**/package.json`);
     let files = r.filter(ignoreNodeModules, allFiles);
 
     let endpointWrapper = r.curry((handler, req, res) => {
+        let headers = r.zipObj(
+            filterEvenIndexed(req.rawHeaders),
+            filterOddIndexed(req.rawHeaders)
+        );
+
         let event = {
-            ...req.headers,
+            ...headers,
             ...req.query,
             ...req.param,
             body: req.body

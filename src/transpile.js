@@ -21,7 +21,8 @@ let writeFileSafe = (file, contents) => {
 
 export default async (src, dest, nameTransformFn) => {
     return new Promise((resolve) => {
-        glob(`${src}/**`, { nodir: true }, async (err, files) => {
+        glob(`${src}/**`, { nodir: true, follow: true }, async (err, files) => {
+            console.log("transpiling files:", files);
             for (let prefixedFile of files) {
                 let file = prefixedFile.replace(`${src}/`, "");
                 if (file.match(/\.js$/)) {
