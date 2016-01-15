@@ -9,7 +9,8 @@ module.exports = function (wallaby) {
         files: [
             "src/**/*.js",
             "test/lib/*.js",
-            "test/fixtures/**"
+            "test/fixtures/**",
+            "test/**/*.json"
         ],
 
         tests: [

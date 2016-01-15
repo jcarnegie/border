@@ -52,7 +52,12 @@ let extendSpec = r.curry((path, spec, method) => {
 });
 
 export let collapseSpec = (methods, path) => {
-    return r.values(r.mapObjIndexed(extendSpec(path), methods));
+    return r.values(
+        r.mapObjIndexed(
+            extendSpec(path),
+            methods
+        )
+    );
 };
 
 export let extractMethods = r.compose(
