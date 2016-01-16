@@ -1,0 +1,89 @@
+[
+    {
+        "id": "meh8b3",
+        "parentId": "fjomzi",
+        "path": "/auth/session",
+        "pathPart": "session",
+        "_embedded": {
+            "resource:methods": {
+                "apiKeyRequired": false,
+                "authorizationType": "NONE",
+                "httpMethod": "POST",
+                "requestParameters": {
+                    "method.request.header.Accept": true,
+                    "method.request.header.User-Agent": true,
+                    "method.request.header.Referer": true,
+                    "method.request.header.Pragma": true,
+                    "method.request.header.Accept-Language": true,
+                    "method.request.header.Connection": true,
+                    "method.request.header.Accept-Encoding": true,
+                    "method.request.header.Host": true,
+                    "method.request.header.DeleteMe": true
+                },
+                "_embedded": {
+                    "method:integration": {
+                        "cacheKeyParameters": [],
+                        "cacheNamespace": "meh8b3",
+                        "httpMethod": "POST",
+                        "requestTemplates": {
+                            "application/json": "{\"Host\":\"$input.params('Host')\",\"Connection\":\"$input.params('Connection')\",\"User-Agent\":\"$input.params('User-Agent')\",\"Accept\":\"$input.params('Accept')\",\"Referer\":\"$input.params('Referer')\",\"Accept-Encoding\":\"$input.params('Accept-Encoding')\",\"Accept-Language\":\"$input.params('Accept-Language')\",\"Pragma\":\"$input.params('Pragma')\",\"body\":$input.json('$')}"
+                        },
+                        "type": "AWS",
+                        "uri": "arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:018810891728:function:api-development-v1-auth-session-post/invocations",
+                        "_embedded": {
+                            "integration:responses": [
+                                {
+                                    "responseTemplates": {
+                                        "application/json": null
+                                    },
+                                    "statusCode": "200"
+                                },
+                                {
+                                    "responseTemplates": {
+                                        "application/json": null
+                                    },
+                                    "selectionPattern": "400",
+                                    "statusCode": "400"
+                                },
+                                {
+                                    "responseTemplates": {
+                                        "application/json": null
+                                    },
+                                    "selectionPattern": "500",
+                                    "statusCode": "500"
+                                },
+                                {
+                                    "responseTemplates": {
+                                        "application/json": null
+                                    },
+                                    "selectionPattern": "401",
+                                    "statusCode": "401"
+                                }
+                            ]
+                        }
+                    },
+                    "method:responses": [
+                        {
+                            "statusCode": "200"
+                        },
+                        {
+                            "statusCode": "400"
+                        },
+                        {
+                            "statusCode": "500"
+                        },
+                        {
+                            "statusCode": "401"
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "id": "d1yazt",
+        "parentId": "f3i6k50lo7",
+        "path": "/creates",
+        "pathPart": "creates"
+    }
+]

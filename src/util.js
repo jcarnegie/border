@@ -6,6 +6,14 @@ export let mapKeys = r.curry((fn, obj) => {
     return r.zipObj(r.map(fn, keys), vals);
 });
 
+export let replaceKey = r.curry((origKey, newKey, obj) => {
+    let value = r.path([origKey], obj);
+    let updated = r.assoc(newKey, value, obj);
+    return r.dissoc(origKey, updated);
+});
+
+export let renameKey = replaceKey;
+
 export let renameProp = r.curry((oldProp, newProp, obj) => {
     return r.dissoc(
         oldProp,
@@ -18,6 +26,8 @@ export let mapIndexed = r.addIndex(r.map);
 export let notNil = r.compose(r.not, r.isNil);
 
 export let propNotEq = r.curry(r.compose(r.not, r.propEq));
+
+export let compareProps = r.curry((props, a, b) => r.equals(r.pick(props, a), r.pick(props, b)));
 
 export let cmpObj = r.curry((a, b, prop) => a[prop] === b[prop]);
 

@@ -1,7 +1,7 @@
 import r from "ramda";
 import AWS from "aws-sdk";
 import Promise from "bluebird";
-import { propagate, ensurePathArray } from "../util";
+import { compareProps, propagate, ensurePathArray } from "../util";
 
 const EXISTING_METHOD_PROPS = [
     "id",
@@ -21,13 +21,28 @@ const SWAGGER_METHOD_PROPS = [
     "authorizationType",
     "httpMethod",
     "requestParameters",
-    "requestModels"
+    "requestModels",
+    "cacheNamespace"
 ];
 
 const SWAGGER_METHOD_DEFAULTS = {
     authorizationType: "NONE",
     apiKeyRequired: false
 };
+
+const SWAGGER_INTEGRATION_DEFAULTS = {
+    type: "AWS",
+    integrationHttpMethod: "POST"
+};
+
+const PUT_METHOD_PROPS = [
+    "restApiId",
+    "resourceId",
+    "httpMethod",
+    "apiKeyRequired",
+    "authorizationType",
+    "requestParameters"
+];
 
 let gateway = new AWS.APIGateway();
 let putMethod = Promise.promisify(gateway.putMethod.bind(gateway));
@@ -60,24 +75,41 @@ export let getSwaggerMethods = (swaggerApi) => {
         return r.merge(defReqParams(swaggerApi), params);
     };
 
+    let requestTemplates = (method) => {
+        let params = r.prop("requestParameters", method);
+        let paramNames = r.map(r.compose(r.last, r.split(".")), r.keys(params));
+        let requestTemplates = {};
+        if (paramNames.length > 0) {
+            let contentType = "application/json";
+            let templates = {};
+            r.map(param => templates[param] = `$input.params('${param}')`, paramNames);
+            templates.body = "$input.json('$')";
+            let templateStr = JSON.stringify(templates);
+            let match = "\"$input.json('$')\"";
+            let replacement = "$input.json('$$')";
+            requestTemplates[contentType] = templateStr.replace(match, replacement);
+        }
+        return requestTemplates;
+    };
+
     return r.flatten(
         r.values(
             r.mapObjIndexed((methods, path) => {
                 return r.values(
                     r.mapObjIndexed((method, httpMethod) => {
                         method = r.merge(method, SWAGGER_METHOD_DEFAULTS);
+                        method = r.merge(method, SWAGGER_INTEGRATION_DEFAULTS);
                         method = r.merge(method, r.propOr({}, "x-aws-apigateway", method));
                         method = r.assoc("path", path, method);
                         method = r.assoc("httpMethod", r.toUpper(httpMethod), method);
-                        return r.assoc("requestParameters", requestParams(method), method);
+                        method = r.assoc("requestParameters", requestParams(method), method);
+                        return r.assoc("requestTemplates", requestTemplates(method), method);
                     }, methods)
                 );
             }, r.prop("paths", swaggerApi))
         )
     );
 };
-
-let compareProps = r.curry((props, a, b) => r.equals(r.pick(props, a), r.pick(props, b)));
 
 let compareNewMethods = compareProps(["path", "httpMethod"]);
 
@@ -94,8 +126,15 @@ let assocApiId = r.assoc("restApiId");
 let assocResourceId = r.curry((existingApi, method) => {
     let path = r.prop("path", method);
     let existingMethod = r.find(r.propEq("path", path), existingApi);
-    let parentId = r.prop("parentId", existingMethod);
-    return r.assoc("resourceId", parentId, method);
+    let resourceId = r.prop("id", existingMethod);
+    return r.assoc("resourceId", resourceId, method);
+});
+
+let assocCacheNamespace = r.curry((existingApi, method) => {
+    let path = r.prop("path", method);
+    let existingMethod = r.find(r.propEq("path", path), existingApi);
+    let resourceId = r.prop("id", existingMethod);
+    return r.assoc("cacheNamespace", resourceId, method);
 });
 
 let updateMethods = async (existingMethods, swaggerMethods, updatedMethods) => {
@@ -161,7 +200,8 @@ let updateMethods = async (existingMethods, swaggerMethods, updatedMethods) => {
 export let update = async (apiId, existingApi, swaggerApi) => {
     let assocData = r.compose(
         assocApiId(apiId),
-        assocResourceId(existingApi)
+        assocResourceId(existingApi),
+        assocCacheNamespace(existingApi)
     );
 
     let existingMethods = r.map(assocData, r.map(r.pick(EXISTING_METHOD_PROPS), getExistingMethods(existingApi)));
@@ -169,7 +209,7 @@ export let update = async (apiId, existingApi, swaggerApi) => {
     let newMethods = diffForNew(swaggerMethods, existingMethods);
     let intersectingMethods = intersectForUpdate(existingMethods, swaggerMethods);
     let updatedMethods = diffForUpdate(intersectingMethods, swaggerMethods);
-    let createPromises = r.map(putMethod, newMethods);
+    let createPromises = r.compose(r.map(putMethod), r.map(r.pick(PUT_METHOD_PROPS)))(newMethods);
     let updatePromises = updateMethods(existingMethods, swaggerMethods, updatedMethods);
 
     return await Promise.all(r.concat(createPromises, updatePromises));

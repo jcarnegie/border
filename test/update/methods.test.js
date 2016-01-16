@@ -40,15 +40,14 @@ describe("Update Methods", () => {
             },
             authorizationType: "NONE",
             apiKeyRequired: false,
-            path: "/creates",
             httpMethod: "POST",
-            resourceId: "f3i6k50lo7",
+            resourceId: "d1yazt",
             restApiId: "abcdef"
         };
 
         let updateParams =  {
             httpMethod: "POST",
-            resourceId: "fjomzi",
+            resourceId: "meh8b3",
             restApiId: "abcdef",
             patchOperations: [
                 {
